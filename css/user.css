@@ -1,0 +1,82 @@
+.content-container {
+    background-color: #fff;    
+    max-width: 700px;
+    border-radius: 10px;
+    margin-top:120px;    
+    overflow: hidden;
+    position: relative;
+    left: calc(50% - 700px/2);    
+    margin-bottom:40px;
+}
+
+.content-wrapper {
+    margin: 60px;    
+    max-width: 540px;    
+}
+
+.form-group > input[type='email'] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-check {
+    margin: 8px 0;
+}
+
+form > button[type='submit'] {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #2C293A;
+    border: none;
+    height: 50px;
+    font-size:18px;
+    font-weight: 500;
+    font-family: Inter;
+}
+
+form > button[type='submit']:hover {
+    background-color: #C70800;
+}
+
+.content-wrapper > .content-title {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #2C293A;
+    font-family: Readex Pro;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.title-line {
+    width: 350px;
+    height: 0px;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 30px;
+    margin-left: calc(50% - 350px/2);
+}
+
+input {
+    font-family: Inter !important;
+    font-weight: normal;
+}
+
+footer {
+    background-color: #C70800;
+    color: #fff;
+}
+
+.fab {
+    color: #fff;
+    margin-right: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+footer {
+    padding-top:5px;
+}

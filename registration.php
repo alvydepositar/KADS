@@ -1,9 +1,9 @@
 <?php
-    /*require 'conn.php';
+    /*require 'conn.php'; */
     include 'header-guest.html';
 
     #authorization smth
-
+    /*
     $email = $password = $confirm_password = "";
     $email_err = $password_err = $confirm_password_err = "";
 

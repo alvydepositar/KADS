@@ -1,0 +1,17 @@
+footer {
+    background-color: #C70800;
+    color: #fff;
+}
+
+.fab {
+    color: #fff;
+    margin-right: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+footer {
+    padding-top:5px;
+}

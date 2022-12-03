@@ -9,14 +9,7 @@
   }
 
 body {
-    padding: 0%;
-}
-
-.grid-container {
-    max-width: 1900px;
-    margin: 0 auto;
-    display: grid;
-    gap: 1rem;
+    padding: 0px 0px 20px 0px;
 }
 
 @media (min-width: 900px) {
@@ -25,70 +18,71 @@ body {
     }
 }
 
-.title {
-    font-family: ReadexPro;
-    font-weight: 700;
-    font-size: 42px;
-    line-height: 60px;
-    color: #c70800;
-    padding: 30px 0px 5px 150px;
+.col img {
+    height: 625px;
+    width: 600px;
+    padding: 35px 0px 25px 50px;
 }
 
-.subcontent,  .content {
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.subcontent {
-    padding: 5px 25px 10px 155px;
-}
-
-form {
-    display: flex;
-    flex-direction: row;
-}
-
-.content {
-    padding: 10px 5px 5px 155px;
-}
-
-.h6 {
+.col h6 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
     color: rgba(44, 41, 58, 0.8);
-    padding-bottom: 15px;
 }
 
-input[type=text],[type=email],[type=date], [type=tel], [type=password] {
+.title {
+    font-family: 'ReadexPro';
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 60px;
+    color: #c70800;
+    padding: 125px 25px 25px 0px;
+}
+
+input[type=email] {
     background-color: #E7E7E7;
     border: 1.2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     padding: 0px 10px 0px 25px;
-    height: 30px;
-    width: 600px;
+    height: 35px;
+    width: 550px;
     margin-bottom: 15px;
 }
 
-.terms {
+input[type=password] {
     background-color: #E7E7E7;
+    border: 1.2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-    height: 30px;
-    width: 30px;
-    padding: top;
+    padding: 0px 10px 0px 25px;
+    height: 35px;
+    width: 550px;
+    margin-bottom: 15px;
 }
 
-#firstname, #lastname, #bday, #phone {
-    width: 285px;
+.btn-arrow {
+    background-color: #c70800;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    font-size:24px; 
+    margin: 20px 0;
 }
 
-
-.left-container img {
-    height: 625px;
-    width: 600px;
-    padding: 100px 0px 25px 50px;
+.btn-arrow:hover {
+    background-color: #8e0000;    
 }
 
+.fa-arrow-right {
+    color:#fff;
+}
+
+a {
+    color:#c70800;
+}
+
+a:hover {
+    color:#8e0000;
+}

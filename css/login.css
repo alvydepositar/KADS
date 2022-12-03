@@ -68,26 +68,27 @@ input[type=text],[type=email],[type=date], [type=tel], [type=password] {
     border: 1.2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     padding: 0px 10px 0px 25px;
-    height: 35px;
+    height: 30px;
     width: 600px;
     margin-bottom: 15px;
 }
 
-input[type=checkbox] {
+.terms {
     background-color: #E7E7E7;
     border-radius: 5px;
-    height: 15px;
-    width: 15px;
-    padding: 15px 0px 0px 15px;
+    height: 30px;
+    width: 30px;
+    padding: top;
 }
 
 #firstname, #lastname, #bday, #phone {
     width: 285px;
 }
 
+
 .left-container img {
     height: 625px;
     width: 600px;
-    padding: 60px 0px 25px 50px;
+    padding: 100px 0px 25px 50px;
 }
 

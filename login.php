@@ -4,18 +4,20 @@
 
     #authorization smth
 
-    $email = $password = $confirm_password = "";
-    $email_err = $password_err = $confirm_password_err = "";
-
     if (isset($_REQUEST['email'])) {
+        $email = stripslashes($_REQUEST['email']);
+        $email = mysqli_real_escape_string($conn, $email);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($conn, $password);
         
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
@@ -26,8 +28,13 @@
             <div class="title">Sign Up</div>
             <div class="subcontent"> Tell us more about you so we can give you a better delivery experience.</div>
             <div class="content">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form action="">
                     <div class="wrapper">
+
+                    <div class="left-container">
+                        <img src="images/dummy-img.jpg" alt="dummy image">
+                    </div>
+
 
                     <div class="row">
                         <h6>Name</h6>
@@ -73,24 +80,15 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="checkbox" id="terms" name="terms"> I have read and agreed to the terms and conditions. </input>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <i class="fa-thin fa-circle-arrow-right"> </i>
-                        </button>
+                            <div class="terms">
+                                <input type="checkbox"> I have read and agreed to the terms and conditions.
+                            </div>
                         </div>
                     </div>
 
                     </div>
                 </form>
             </div>
-        </div>
-    
-        <div class="left-container">
-            <img src="images/dummy-img.jpg" alt="dummy image">
         </div>
 
     </div>

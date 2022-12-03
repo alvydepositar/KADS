@@ -1,6 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 @import url('https://fonts.googleapis.com/css?family=Readex Pro');
 
+
+  body{
+    background-color: #E7E7E7; 
+    font-family: "Readex Pro";
+}
+
+.big-title {
+
+    color: var(--darkOne);
+   
+   font-family: 'Readex Pro';
+   font-style: bold;
+   font-weight: 900;
+   font-size: 50px;
+   line-height: 90px;
+  
+   
+  }
+  
+  
+
 .showcase-area .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -30,7 +51,7 @@
 
   .landing_pic {
  
-    position: absolute;
+    position: relative;
     width: 900px;
     height:800px;
     left: 700px;

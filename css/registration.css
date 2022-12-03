@@ -1,0 +1,93 @@
+@font-face {
+    font-family: ReadexPro;
+    src: url(../font/ReadexPro.ttf);
+  }
+
+@font-face {
+    font-family: Inter;
+    src: url(../font/Inter.ttf);
+  }
+
+body {
+    padding: 0%;
+}
+
+.grid-container {
+    max-width: 1900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 900px) {
+    .grid-container { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+.title {
+    font-family: ReadexPro;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 60px;
+    color: #c70800;
+    padding: 30px 0px 5px 150px;
+}
+
+.subcontent,  .content {
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.subcontent {
+    padding: 5px 25px 10px 155px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    padding: 10px 5px 5px 155px;
+}
+
+.h6 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: rgba(44, 41, 58, 0.8);
+    padding-bottom: 15px;
+}
+
+input[type=text],[type=email],[type=date], [type=tel], [type=password] {
+    background-color: #E7E7E7;
+    border: 1.2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0px 10px 0px 25px;
+    height: 35px;
+    width: 600px;
+    margin-bottom: 15px;
+}
+
+input[type=checkbox] {
+    background-color: #E7E7E7;
+    border-radius: 5px;
+    height: 15px;
+    width: 15px;
+    padding: 15px 0px 0px 15px;
+}
+
+#firstname, #lastname, #bday, #phone {
+    width: 285px;
+}
+
+.left-container img {
+    height: 625px;
+    width: 600px;
+    padding: 60px 0px 25px 50px;
+}
+

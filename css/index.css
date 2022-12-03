@@ -27,3 +27,15 @@
     --lightOne: #ccc;
     --lightTwo: #e7e3e3;
   }
+
+  .landing_pic {
+ 
+    position: absolute;
+    width: 900px;
+    height:800px;
+    left: 700px;
+    top: -120px;
+    line-height: 90px;
+  
+  
+  }

@@ -91,3 +91,27 @@ input[type=checkbox] {
     padding: 60px 0px 25px 50px;
 }
 
+.btn-arrow {
+    background-color: #c70800;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    font-size:24px; 
+    margin: 20px 0;
+}
+
+.btn-arrow:hover {
+    background-color: #8e0000;    
+}
+
+.fa-arrow-right {
+    color:#fff;
+}
+
+a {
+    color:#c70800;
+}
+
+a:hover {
+    color:#8e0000;
+}

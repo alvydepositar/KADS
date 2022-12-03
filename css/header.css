@@ -233,3 +233,11 @@ font-size: 16px;
 height: 30px;
 font-family: Readex Pro;
 }
+.login:hover{
+  color: #C70800;
+    background-color: #ffffff;
+}
+.cancelbtn:hover{
+  color: #C70800;
+  background-color: #ffffff;
+}

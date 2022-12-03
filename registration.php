@@ -1,5 +1,5 @@
 <?php
-    require 'conn.php';
+    /*require 'conn.php';
     include 'header-guest.html';
 
     #authorization smth
@@ -10,6 +10,7 @@
     if (isset($_REQUEST['email'])) {
         
     }
+    */
 ?>
 
 <!DOCTYPE html>

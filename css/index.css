@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+@import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+.showcase-area .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .light {
+    --mainColor: #C70800;
+    --hoverColor: #2C293A;
+    --backgroundColor: #ffff;
+    --darkOne: #312f3a;
+    --darkTwo: #45424b;
+    --lightOne: #919191;
+    --lightTwo: #aaa;
+  }
+  
+  .dark {
+    --mainColor: #C70800;
+    --hoverColor: #2C293A;
+    --backgroundColor: #12151c;
+    --darkOne: #f3f3f3;
+    --darkTwo: #fff;
+    --lightOne: #ccc;
+    --lightTwo: #e7e3e3;
+  }

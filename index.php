@@ -110,6 +110,53 @@
             </form>
         </div>
 
+        <div class="showcase-area">
+          <div class="container">
+            <div class="left">
+              <div class="big-title">
+                
+                <h1>This is</h1>
+                <h1>how we</h1>
+                <h1>roll! &#x1F363&#x1F962</h1>
+            
+              </div>
+              <p class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Delectus eius distinctio odit, magni magnam qui ex perferendis
+                vitae!
+              </p>
+              <div class="cta">
+                <a href="#" class="btn">Order Now</a>
+              </div>
+            </div>
+
+            <div class="right">
+              <img src="main.png" alt="KADS" class="landing_pic" />
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!--header script-->
         <script>
             // Get the modal
@@ -121,6 +168,8 @@
                 modal.style.display = "none";
                 }
             };
+
+
         </script>
 
         <!-- bootstrap -->

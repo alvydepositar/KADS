@@ -51,7 +51,7 @@
                     <div class="row"> 
                         <h6>Email Address</h6>
                         <div class="col">
-                        <input type="email" name="address" id="address" placeholder="abc@gmail.com" require>
+                        <input type="email" name="email" id="email" placeholder="abc@gmail.com" require>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                     <div class="row" style="margin-bottom: 40px;">
                         <div class="col">
                             Already have an account? 
-                            <a href="">Sign in.</a>
+                            <a href="login.php">Sign in.</a>
                         </div>
                     </div>
 

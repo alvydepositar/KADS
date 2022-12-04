@@ -2,25 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Readex Pro');
 
 
-  body{
-    background-color: #E7E7E7; 
-    font-family: "Readex Pro";
+body{
+  font-family: "Readex Pro";
 }
-
-.big-title {
-
-    color: var(--darkOne);
-   
-   font-family: 'Readex Pro';
-   font-style: bold;
-   font-weight: 900;
-   font-size: 50px;
-   line-height: 90px;
-  
-   
-  }
-  
-  
 
 .showcase-area .container {
     display: grid;
@@ -49,14 +33,62 @@
     --lightTwo: #e7e3e3;
   }
 
+  .left {
+    width: 600px;
+    padding-left: 120px;
+  }
+  
+  h1{
+    color: var(--darkOne);
+    font-family: 'Readex Pro';
+    font-style: bold;
+    font-weight: 750;
+    font-size: 85px;
+    line-height: 95px;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+  }
+
+  p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #757575;
+    padding-top: 20px;
+  }
+  
   .landing_pic {
- 
     position: relative;
-    width: 900px;
-    height:800px;
-    left: 700px;
-    top: -120px;
+    width: 950px;
+    height: 600px;
+    left: 185px;
+    top: 20px;
     line-height: 90px;
-  
-  
+  }
+
+  .cta {
+    padding-top: 20px;
+  }
+
+  .cta .btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 40px;
+    gap: 5px;
+    color: #fff;
+    background: #C70800;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    width: 175px;
+    height: 45px;
+  }
+
+  .cta .btn:hover {
+    background: #C70800;
+    color: #ffffff;
+    background-color: #8e0000;
   }

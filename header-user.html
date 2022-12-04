@@ -12,7 +12,7 @@
     </head>
     <body>
        <!-- header -->
-       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid navbar-content">
             <a class="navbar-brand" href="#">
                 <img src="images/kads_logo_1.png" alt="" height="85" id="headerlogo">
@@ -23,7 +23,7 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active activelink" aria-current="page" href="#" >Home</a>
+                <a class="nav-link" aria-current="page" href="index.html" >Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Menu</a>
@@ -38,12 +38,18 @@
                     <table class="table-borderless">                           
                       <tbody>
                         <tr>
-                          <td rowspan="2"><img id="useravatar" src="images/avatar-1.jpg" width="50px" height="50px"></td>
+                          <td rowspan="2">
+                            <a href="userprofile.html">
+                              <img id="useravatar" src="images/avatar-1.jpg" width="50px" height="50px">                                  
+                            </a>
+                          </td>
                           <td class="rowspace"></td>
-                          <td>Ansherina T. Albaros</td>
+                          <td><a href="userprofile.php" class="user-name">
+                            Ansherina T. Albaros
+                          </a></td>
                           <td class="rowspace"></td> 
                           <td rowspan="2">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="checkout.php">
                               <img class="cart" src="images/cart-vector-1.png" alt="cart" height="25" width="25"/>
                             </a>
                           </td>

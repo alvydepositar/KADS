@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Readex Pro');
 
 body{
-    background-color: #E7E7E7; 
     font-family: Inter;
 }
 
@@ -10,6 +9,7 @@ body{
 .navbar{
     z-index: 1000;    
     filter: drop-shadow(0px 2px 2px #E7E7E7);
+    font-family: Readex Pro;
 }
 
 .navbar-content {
@@ -22,11 +22,13 @@ body{
 
 .nav-item {
     padding: 0 15px;    
+    font-family: Readex Pro;
 }
 
 .nav-link {
     color: #2C293A;
     font-weight: 500;
+    font-family: Readex Pro;
 }
 
 .nav-link:hover {
@@ -77,6 +79,7 @@ body{
 
 .cart:hover {
     opacity: 0.7;
+    transition: all 0.2s;
 }
 
 /** user **/
@@ -101,6 +104,7 @@ tr > #usertitle {
 
 #useravatar:hover {
     opacity: 0.7;
+    transition: all 0.2s;
 }
 
 .btn-primary{
@@ -109,4 +113,16 @@ tr > #usertitle {
 
 a {
     text-decoration: none;
+    font-family: Readex Pro;
+}
+
+.user-name, td>a{
+    color: #2C293A;
+    font-size: 14px;
+    font-family: Readex Pro !important;
+}
+
+.user-name:hover {
+    color: #C70800;
+    transition: all 0.2s;
 }

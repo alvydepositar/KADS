@@ -1,8 +1,14 @@
+body{
+    background-color: #E7E7E7; 
+    font-family: Inter;
+}
+
 .content-container {
     background-color: #fff;    
     max-width: 700px;
+    min-width: 625px;
     border-radius: 10px;
-    margin-top:120px;    
+    margin-top:40px;    
     overflow: hidden;
     position: relative;
     left: calc(50% - 700px/2);    
@@ -11,7 +17,7 @@
 
 .content-wrapper {
     margin: 60px;    
-    max-width: 540px;    
+    max-width: 580px;    
 }
 
 .form-group > input[type='email'] {

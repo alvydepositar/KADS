@@ -1,3 +1,7 @@
+<?php
+    include 'header-user.html';
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -6,8 +10,8 @@
         <title>KADS | Checkout</title>
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <!-- css -->        
-        <link rel="stylesheet" href="css/header-responsive.css" />
+        <!-- css -->   
+        <link rel="stylesheet" href="css/header-responsive.css" />             
         <link rel="stylesheet" href="css/footer.css" />
         <link rel="stylesheet" href="css/user.css" />
         <!-- favicon -->
@@ -16,64 +20,7 @@
         <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <!-- header -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid navbar-content">
-                <a class="navbar-brand" href="#">
-                    <img src="images/kads_logo_1.png" alt="" height="85" id="headerlogo">
-                </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#" >Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Menu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                  </li>
-                </ul>
-                <ul class="navbar-nav">                  
-                    <li class="nav-item">                      
-                      <span id="username">                                              
-                        <table class="table-borderless">                           
-                          <tbody>
-                            <tr>
-                              <td rowspan="2">
-                                <a href="userprofile.html">
-                                  <img id="useravatar" src="images/avatar-1.jpg" width="50px" height="50px">                                  
-                                </a>
-                              </td>
-                              <td class="rowspace"></td>
-                              <td><a href="userprofile.html" class="user-name">
-                                Ansherina T. Albaros
-                              </a></td>
-                              <td class="rowspace"></td> 
-                              <td rowspan="2">
-                                <a class="nav-link" href="checkout.html">
-                                  <img class="cart" src="images/cart-vector-1.png" alt="cart" height="25" width="25"/>
-                                </a>
-                              </td>
-                            </tr>
-                            <tr>     
-                              <td class="rowspace"></td>                         
-                              <td id="usertitle">Customer</td>
-                              <td class="rowspace"></td>
-                              <td></td>
-                            </tr>                        
-                          </tbody>                          
-                        </table>
-                      </span>                      
-                    </li>                              
-                    <li class="nav-responsive-padding-bottom"></li>                  
-                </ul>
-              </div>
-            </div>
-        </nav>
+       
 
         <!-------------- content start --------------->
           <div class="content-container">
@@ -141,7 +88,8 @@
             </div>  
                     
           </div>
-          <!-- Footer -->
+          
+            <!-- Footer -->
           <footer class="footer text-center text-lg-start">  
             <!-- Section: Links  -->
             <section class="">

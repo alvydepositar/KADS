@@ -107,3 +107,6 @@ tr > #usertitle {
     color: white;
 }
 
+a {
+    text-decoration: none;
+}

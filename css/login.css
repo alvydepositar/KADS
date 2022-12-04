@@ -48,7 +48,7 @@ input[type=email] {
     border-radius: 5px;
     padding: 0px 10px 0px 25px;
     height: 35px;
-    width: 550px;
+    width: 400px;
     margin-bottom: 15px;
 }
 
@@ -58,7 +58,7 @@ input[type=password] {
     border-radius: 5px;
     padding: 0px 10px 0px 25px;
     height: 35px;
-    width: 550px;
+    width: 400px;
     margin-bottom: 15px;
 }
 

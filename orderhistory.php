@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>KADS | My Profile</title>
+        <title>KADS | Order History</title>
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <!-- css -->
@@ -25,14 +25,14 @@
         <!-------------- content start --------------->
 
         <div class="content-container container d-flex justify-content-center">          
-          <div class="row content-wrapper">
-            <div class="col-4 left-content">
-              <div class="container">
+          <div class="row content-wrapper" style="background-color:pink;">
+            <div class="col-4 left-content" style="background-color:lightblue;">
+              <div class="container" style="background-color:red;">
                 <div class="row links-title-top">My Account</div>      
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links side-links-active">My Profile</button>                    
+                    <button type="button" class="btn side-links">My Profile</button>                    
                   </div>                  
                 </div>
                 <div class="row">
@@ -51,47 +51,31 @@
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">Order History</button>
+                    <button type="button" class="btn side-links side-links-active">Order History</button>
                   </div>                  
                 </div>                  
               </div>
-
             </div>
-            <div class="col right-content">
-              <h1 class="container-title text-center">My Profile</h1>
-              <div class="title-line"></div>
 
-              <form class="form-style">
-                <div class="row">
-                  <div class="col">
-                    <label for="inputFirstName">First Name</label>
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="First name">
-                  </div>                  
-                </div>
 
-                <div class="row">                  
-                  <div class="col">
-                    <label for="inputLastName">Last Name</label>
-                    <input type="text" class="form-control" id="inputLastName" placeholder="Last name">
+            <div class="col right-content-2" style="background-color:yellow;">
+              <h2 class="section-title">Order History</h2>
+              
+              <div class="order-container">
+                <b>December 5, 2022, 9:37 PM</b><br>
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <img src="images/avatar-1.jpg" class="order-icon">
+                    </div>
+                    <div class="col">1x</div>
+                    <div class="col">Salmon Roll</div>
+                    <div class="col">P150.00</div>
                   </div>
                 </div>
 
-                <div class="row">                  
-                  <div class="col">
-                    <label for="inputEmail">Email Address</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">                    
-                  </div>
-                </div>   
-                
-                <div class="row">                  
-                  <div class="col">
-                    <label for="inputEmail">Date of birth</label>
-                    <input type="date" class="form-control" id="inputBday" placeholder="2000/01/01">                    
-                  </div>
-                </div>    
-                
-                <button type="submit" class="btn btn-save">Save</button>                
-              </form>
+              </div>
 
             </div>
           </div>                    

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Readex Pro');
 
 body{
-    background-color: #E7E7E7; 
+    background-color: #FFFFFF; 
     font-family: Inter;
 }
 
@@ -37,13 +37,20 @@ body{
     font-size: 15px;
 }
 
+.links-title-top {
+    font-family: Readex Pro;
+    font-weight: 600;
+    color: #2C293A;
+    font-size: 15px;
+}
+
 .side-links {    
     text-align: left;
     font-family: Readex Pro;
     font-weight:400;
     font-size: 15px;
     border: none;
-    background-color: #E7E7E7;
+    background-color: #fff;
     color: #2C2A3A;
     padding: 2px 10px;
 }
@@ -89,4 +96,17 @@ body{
 .btn-save:hover {
     background-color: #8e0001;
     color: #fff;
+}
+
+/**ORDER HISTORY**/
+.order-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.order-icon {
+    height:50px;
+    width:50px;
+    border-radius: 100%;
 }

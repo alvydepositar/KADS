@@ -7,8 +7,7 @@ body{
     background-color: #fff;    
     max-width: 700px;
     min-width: 625px;
-    border-radius: 10px;
-    margin-top:40px;    
+    border-radius: 10px;         
     overflow: hidden;
     position: relative;
     left: calc(50% - 700px/2);    
@@ -35,7 +34,7 @@ body{
 form > button[type='submit'] {
     width: 100%;
     margin-top: 10px;
-    background-color: #2C293A;
+    background-color: #C70800;
     border: none;
     height: 50px;
     font-size:18px;
@@ -44,7 +43,7 @@ form > button[type='submit'] {
 }
 
 form > button[type='submit']:hover {
-    background-color: #C70800;
+    background-color: #8e0001;
 }
 
 .content-wrapper > .content-title {

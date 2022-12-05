@@ -32,26 +32,34 @@
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links side-links-active">My Profile</button>                    
+                    <a href="userprofile.php">
+                      <button type="button" class="btn side-links side-links-active">My Profile</button>                    
+                    </a>
                   </div>                  
                 </div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">My Addresses</button>
+                    <a href="#">
+                      <button type="button" class="btn side-links">My Addresses</button>
+                    </a>
                   </div>                  
                 </div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">Change Password</button>
+                    <a href="#">
+                      <button type="button" class="btn side-links">Change Password</button>
+                    </a>
                   </div>                  
                 </div>                
                 <div class="row links-title">My Orders</div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">Order History</button>
+                    <a href="orderhistory.php">
+                      <button type="button" class="btn side-links">Order History</button>
+                    </a>
                   </div>                  
                 </div>                  
               </div>

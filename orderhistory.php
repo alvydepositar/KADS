@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/header-responsive.css" />
         <link rel="stylesheet" href="css/footer.css" />
         <link rel="stylesheet" href="css/userprofile.css" />
+        <link rel="stylesheet" href="css/orderhistory.css" />
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <!-- fontawesome -->
@@ -24,57 +25,136 @@
 
         <!-------------- content start --------------->
 
-        <div class="content-container container d-flex justify-content-center">          
-          <div class="row content-wrapper" style="background-color:pink;">
-            <div class="col-4 left-content" style="background-color:lightblue;">
-              <div class="container" style="background-color:red;">
+        <div class="order-content-container container d-flex justify-content-center">          
+          <div class="row content-wrapper">
+            <div class="col-4 left-content">
+              <div class="container">
                 <div class="row links-title-top">My Account</div>      
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">My Profile</button>                    
+                    <a href="userprofile.php">
+                      <button type="button" class="btn side-links">My Profile</button>                    
+                    </a>
                   </div>                  
                 </div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">My Addresses</button>
+                    <a href="#">
+                      <button type="button" class="btn side-links">My Addresses</button>
+                    </a>
                   </div>                  
                 </div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links">Change Password</button>
+                    <a href="#">
+                      <button type="button" class="btn side-links">Change Password</button>
+                    </a>
                   </div>                  
                 </div>                
                 <div class="row links-title">My Orders</div>
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <button type="button" class="btn side-links side-links-active">Order History</button>
+                    <a href="orderhistory.php">
+                      <button type="button" class="btn side-links side-links-active">Order History</button>
+                    </a>                    
                   </div>                  
                 </div>                  
               </div>
             </div>
 
 
-            <div class="col right-content-2" style="background-color:yellow;">
-              <h2 class="section-title">Order History</h2>
-              
+            <div class="col right-content-2">
+              <h2 class="section-title">My Orders</h2>
+
               <div class="order-container">
                 <b>December 5, 2022, 9:37 PM</b><br>
-
-                <div class="container">
+                <div class="container order-group">
                   <div class="row">
-                    <div class="col">
-                      <img src="images/avatar-1.jpg" class="order-icon">
+                    <div class="col-auto">
+                      <img src="images/order-icon.png" class="order-icon">
                     </div>
-                    <div class="col">1x</div>
-                    <div class="col">Salmon Roll</div>
-                    <div class="col">P150.00</div>
-                  </div>
+                    <div class="col">
+                      <div class="row order-item">                        
+                        <div class="col"><b>1x</b></div>
+                        <div class="col-8">Salmon Roll</div>
+                        <div class="col order-price">P150.00</div>
+                      </div>
+                      <div class="row order-item">                        
+                        <div class="col"><b>3x</b></div>
+                        <div class="col-8">Cucumber Roll</div>
+                        <div class="col order-price">P450.00</div>
+                      </div>
+                      <div class="row">                        
+                        <div class="col"></div>
+                        <div class="col-8 total-text"><b>Total</b></div>
+                        <div class="col order-total order-price"><b>P600.00</b></div>
+                      </div>
+                    </div>
+                    
+                  </div>                  
                 </div>
+              </div>
 
+              <div class="order-container">
+                <b>December 2, 2022, 7:21 PM</b><br>
+                <div class="container order-group">
+                  <div class="row">
+                    <div class="col-auto">
+                      <img src="images/order-icon.png" class="order-icon">
+                    </div>
+                    <div class="col">                      
+                      <div class="row order-item">                        
+                        <div class="col"><b>3x</b></div>
+                        <div class="col-8">Cucumber Roll</div>
+                        <div class="col order-price">P450.00</div>
+                      </div>
+                      <div class="row">                        
+                        <div class="col"></div>
+                        <div class="col-8 total-text"><b>Total</b></div>
+                        <div class="col order-total order-price"><b>P450.00</b></div>
+                      </div>
+                    </div>
+                    
+                  </div>                  
+                </div>
+              </div>
+
+              <div class="order-container">
+                <b>November 29, 2022, 9:14 PM</b><br>
+                <div class="container order-group">
+                  <div class="row">
+                    <div class="col-auto">
+                      <img src="images/order-icon.png" class="order-icon">
+                    </div>
+                    <div class="col">
+                      <div class="row order-item">                        
+                        <div class="col"><b>1x</b></div>
+                        <div class="col-8">Salmon Roll</div>
+                        <div class="col order-price">P150.00</div>
+                      </div>
+                      <div class="row order-item">                        
+                        <div class="col"><b>3x</b></div>
+                        <div class="col-8">Cucumber Roll</div>
+                        <div class="col order-price">P450.00</div>
+                      </div>
+                      <div class="row order-item">                        
+                        <div class="col"><b>1x</b></div>
+                        <div class="col-8">Salmon Roll</div>
+                        <div class="col order-price">P150.00</div>
+                      </div>
+                      <div class="row">                        
+                        <div class="col"></div>
+                        <div class="col-8 total-text"><b>Total</b></div>
+                        <div class="col order-total order-price"><b>P750.00</b></div>
+                      </div>
+                    </div>
+                    
+                  </div>                  
+                </div>
               </div>
 
             </div>

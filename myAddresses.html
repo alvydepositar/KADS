@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <!-- css -->
-    <link rel="stylesheet" href="css/changePass.css" />
+    <link rel="stylesheet" href="myAddresses.css" />
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
@@ -115,7 +115,7 @@
             <div class="row">
               <div class="col-1"></div>
               <div class="col-11">
-                <button type="button" class="btn side-links">
+                <button type="button" class="btn side-links side-links-active">
                   My Addresses
                 </button>
               </div>
@@ -123,7 +123,7 @@
             <div class="row">
               <div class="col-1"></div>
               <div class="col-11">
-                <button type="button" class="btn side-links side-links-active">
+                <button type="button" class="btn side-links">
                   Change Password
                 </button>
               </div>
@@ -140,47 +140,78 @@
           </div>
         </div>
         <div class="col right-content">
-          <h1 class="container-title text-center">Password</h1>
+          <h1 class="container-title text-center">My Addresses</h1>
           <div class="title-line"></div>
 
           <form class="form-style">
             <div class="row">
               <div class="col">
-                <label for="Password">Current Password</label>
+                <label for="address">Billing Address</label>
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  id="password"
-                  placeholder="********"
+                  id="address"
+                  placeholder="111 Somewhere Street"
                 />
               </div>
             </div>
 
             <div class="row">
               <div class="col">
-                <label for="inputLastName">New Password</label>
+                <label for="city">City</label>
+                <select type="text" class="form-control" id="city">
+                  <option value="Caloocan">Caloocan</option>
+                  <option value="LasPiñas">Las Piñas</option>
+                  <option value="Makati">Makati</option>
+                  <option value="Malabon">Malabon</option>
+                  <option value="Mandaluyong">Mandaluyong</option>
+                  <option value="Manila">Manila</option>
+                  <option value="Marikina">Marikina</option>
+                  <option value="Muntinlupa">Muntinlupa</option>
+                  <option value="Navotas">Navotas</option>
+                  <option value="Parañaque">Parañaque</option>
+                  <option value="Pasay">Pasay</option>
+                  <option value="Pasig">Pasig</option>
+                  <option value="Pateros">Pateros</option>
+                  <option value="QuezonCity">Quezon City</option>
+                  <option value="SanJuan">San Juan</option>
+                  <option value="Taguig">Taguig</option>
+                  <option value="Valenzuela">Valenzuela</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="province">Province</label>
+                <select id="province" name="province" class="form-control">
+                  <option value="metroManila">Metro Manila</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="phone">Contact Number</label>
                 <input
-                  type="password"
+                  type="tel"
                   class="form-control"
-                  id="newpass"
-                  placeholder="********"
+                  id="phone"
+                  placeholder="09*********"
+                  pattern="[0-9]{4}[0-9]{3}[0-9]{4}"
+                  minlength="11"
+                  maxlength="11"
                 />
               </div>
             </div>
 
             <div class="row">
               <div class="col">
-                <label for="inputEmail">Confirm Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="confirmpass"
-                  placeholder="********"
-                />
+                <input type="checkbox" id="same" name="same" value="same" />
+                <label for="same">
+                  My billing and shipping address are the same</label
+                ><br />
               </div>
             </div>
 
-            <button type="submit" class="btn btn-save">Change Password</button>
+            <button type="submit" class="btn btn-save">Save</button>
           </form>
         </div>
       </div>

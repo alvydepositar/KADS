@@ -92,10 +92,9 @@
         </section>
 
         <div class ="howto">
-          <h1>  <center> How To Order </center></h1>
-          <br>
-          <p class="follow"> <center> Follow these steps to enjoy the best sushi in town!</p></center>
-          <br>
+          <h1>  <center> How To Order </h1>
+          <p class="follow"> Follow these steps to enjoy the best sushi in town!</p> </center>
+       
           </div>
        
         

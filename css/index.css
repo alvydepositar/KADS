@@ -18,6 +18,23 @@ body{
   color: #C70800;
 }
 
+.menutext{
+  font-size: 25px;
+  color: #12151c;
+}
+.menutext1{
+  
+  font-size:17.5px;
+  color: #12151c;
+  font-family: Inter;
+}
+.menutext2{
+  font-size: 15px;
+  color: #2C293A;
+  font-family: Inter;
+  margin-top: -90px;
+}
+
 .sushi_pic {
  
   position: absolute;
@@ -158,9 +175,17 @@ body{
     font-size: 90px;
 
   }
+
+  .col-4{
+    margin-top: 60px;
+    color: #12151c;
+  }
   
   .follow{
     font-size: 30px;
+    color: #12151c;
+    font-family: Inter;
+    margin-left: 280px;
   }
   
 footer {

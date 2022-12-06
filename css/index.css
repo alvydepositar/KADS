@@ -4,6 +4,53 @@
 
 body{
   font-family: "Readex Pro";
+  overflow-x: hidden ;
+ 
+}
+.three{
+  height: 50vh;
+}
+.one{
+  height: 40vh;
+}
+.about-kads{
+  font-size: 50px;
+  color: #C70800;
+}
+
+.sushi_pic {
+ 
+  position: absolute;
+  width: 700px;
+  height:400px;
+  left: 930px;
+  top: 350px;
+  margin-top: 830px;
+  margin-left: 50px;
+
+
+
+}
+.three{
+  font-size: 40px;
+}
+
+.button{
+  position: absolute;
+  display: inline-block;
+  padding: 0.9rem 1.9rem;
+  color: #fff !important;
+  background-color: #C70800;
+  border-radius: 5px;
+ right: 395px;
+ cursor: pointer;
+  top:1150px;
+  text-transform: capitalize;
+  transition: 0.3s;
+}
+.button:hover {
+  background-color: #8e0000;
+  transform: scale(1) !important;
 }
 
 .showcase-area .container {
@@ -42,13 +89,15 @@ body{
     color: var(--darkOne);
     font-family: 'Readex Pro';
     font-style: bold;
-    font-weight: 750;
-    font-size: 85px;
-    line-height: 95px;
+    font-weight: 780;
+    font-size: 70px;
+    line-height: 80px;
     letter-spacing: .5px;
     text-transform: capitalize;
   }
-
+  .text2{
+    margin-top: 90px;
+  }
   p {
     font-family: 'Inter';
     font-style: normal;
@@ -67,14 +116,25 @@ body{
     left: 185px;
     top: 20px;
     line-height: 90px;
+    
+  }
+
+  .left-pic{
+    width: 1000px;
+    margin-left: -280px;
   }
 
   .cta {
     padding-top: 20px;
+    font-family: 'Readex Pro';
+  }
+  .btn{
+    font-family: 'Readex Pro';
   }
 
   .cta .btn {
     display: flex;
+    font-family: 'Readex Pro';
     flex-direction: row;
     align-items: center;
     padding: 15px 40px;
@@ -92,3 +152,72 @@ body{
     color: #ffffff;
     background-color: #8e0000;
   }
+
+  .howto{
+
+    font-size: 90px;
+
+  }
+  
+  .follow{
+    font-size: 30px;
+  }
+  
+footer {
+    background-color: #C70800;
+    color: #fff;
+    font-family: Inter;
+    padding-top:5px;
+}
+
+.fab {
+    color: #fff;
+    margin-right: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    font-family: Inter;
+}
+
+h6 {
+    font-family: Inter;
+}
+
+.text-reset:hover {
+    color:#8e0000;
+}
+
+.text-reset:hover, .fab:hover {
+    color:#8e0000 !important;
+}
+
+footer {
+  background-color: #C70800;
+  color: #fff;
+  font-family: Inter;
+  padding-top:5px;
+  max-width: 6000px;
+}
+
+.fab {
+  color: #fff;
+  margin-right: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  font-family: Inter;
+}
+
+h6 {
+  font-family: Inter;
+}
+
+.text-reset:hover {
+  color:#8e0000;
+}
+
+.text-reset:hover, .fab:hover {
+  color:#8e0000 !important;
+}

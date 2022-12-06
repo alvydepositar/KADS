@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+@import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+footer {
+    background-color: #C70800;
+    color: #fff;
+    font-family: Inter;
+    padding-top:5px;
+}
+
+.fab {
+    color: #fff;
+    margin-right: 20px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    font-family: Inter;
+}
+
+h6 {
+    font-family: Inter;
+}
+
+.text-reset:hover {
+    color:#8e0000;
+}
+
+.text-reset:hover, .fab:hover {
+    color:#8e0000 !important;
+}

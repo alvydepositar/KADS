@@ -19,8 +19,7 @@
         <!-- fontawesome -->
         <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-       
+    <body>      
 
         <!-------------- content start --------------->
           <div class="content-container">

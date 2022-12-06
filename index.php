@@ -90,6 +90,57 @@
         </div>
            
         </section>
+
+        <div class ="howto">
+          <h1>  <center> How To Order </center></h1>
+          <br>
+          <p class="follow"> <center> Follow these steps to enjoy the best sushi in town!</p></center>
+          <br>
+          </div>
+       
+        
+       </div>
+       
+
+       <div class="row">
+  <div class="col-4"> <center>
+  <h1>  &#127843</h1>
+    <p class="menutext"> <b>Choose menu</p></b>
+    <p class="menutext1"><br> Select the food or drink menu you want and add it to your shopping cart </p>
+  </div>
+  <div class="col-4"> <center>
+  <h1> &#128722</h1>
+    <p class="menutext"><b>Checkout Order</p></b>
+    <p class="menutext1"><br> Once the orders are in your shopping cart, check out to process your order </p>
+  </div>
+  <div class="col-4"> <center>
+  <h1> &#128757</h1>
+  <p class="menutext"><b>Wait for Delivery</p></b>
+  <p class="menutext1"><br> Your order will be prepared and delivered to you </p>
+
+</section>        
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- Footer -->
   <footer class="footer text-center text-lg-start">  
         <!-- Section: Links  -->

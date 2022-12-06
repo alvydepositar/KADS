@@ -7,8 +7,12 @@ body{
   overflow-x: hidden ;
  
 }
+
+.right{
+  margin-top: 1px;
+}
 .three{
-  height: 50vh;
+  height: 60vh;
 }
 .one{
   height: 40vh;
@@ -23,7 +27,7 @@ body{
   color: #12151c;
 }
 .menutext1{
-  
+  margin-top: none;
   font-size:17.5px;
   color: #12151c;
   font-family: Inter;
@@ -42,12 +46,78 @@ body{
   height:400px;
   left: 930px;
   top: 350px;
-  margin-top: 830px;
+  margin-top: 890px;
   margin-left: 50px;
 
 
 
 }
+
+.toggle-btn {
+  display: inline-block;
+  border: none;
+  background: #8e0000;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  height: 39px;
+  width: 39px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.toggle-btn i {
+  line-height: 39px;
+}
+
+.toggle-btn:hover {
+  background: #C70800;
+}
+
+.big-wrapper.light .toggle-btn i:last-child {
+  display: none;
+}
+
+.big-wrapper.light .toggle-btn i:first-child {
+  display: block;
+}
+
+.big-wrapper.dark .toggle-btn i:last-child {
+  display: block;
+}
+
+.big-wrapper.dark .toggle-btn i:first-child {
+  display: none;
+}
+
+.shape {
+  position: absolute;
+  z-index: 0;
+  width: 500px;
+  bottom: -180px;
+  left: -15px;
+  opacity: 0.1;
+}
+
+.copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  animation: appear 1s 1 both;
+}
+
+@keyframes appear {
+  0% {
+    clip-path: circle(30% at -25% -25%);
+  }
+  100% {
+    clip-path: circle(150% at 0 0);
+  }
+}
+
+
 .three{
   font-size: 40px;
 }
@@ -62,6 +132,7 @@ body{
  right: 395px;
  cursor: pointer;
   top:1150px;
+  margin-top: 60px;
   text-transform: capitalize;
   transition: 0.3s;
 }

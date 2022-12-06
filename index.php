@@ -75,15 +75,17 @@
          <p class="text1">
           All of our menu items are inspired by Japanese cuisine and have been created by our head chef, kads, after studying authentic Japanese cuisine in japan. 
           Not only do we have fresh flown-in seafood from the northeast, but we also have a variety of handcrafted cocktails, wine, and beer to choose from.
-        
+          <div class="button"> Our Menu </div>
+     
+       
         </p>
 
-        <div class="button"> Our Menu </div>
-     
-           </div>
+      
 </div>
+<br>
 <section class="one">
 <div class="right">
+  <br>
   <br>
   <br>
           <img src="images/sushi.png" alt="KADS" class="sushi_pic" />
@@ -104,22 +106,22 @@
        <div class="row">
   <div class="col-4"> <center>
   <h1>  &#127843</h1>
-    <p class="menutext"> <b>Choose menu</p></b>
-    <p class="menutext1"><br> Select the food or drink menu you want and add it to your shopping cart </p>
+    <p class="menutext"> <b>Choose Menu</p></b>
+    <p class="menutext1">Select the food or drink menu you want and add it to your shopping cart </p>
   </div>
   <div class="col-4"> <center>
   <h1> &#128722</h1>
     <p class="menutext"><b>Checkout Order</p></b>
-    <p class="menutext1"><br> Once the orders are in your shopping cart, check out to process your order </p>
+    <p class="menutext1"> Once the orders are in your shopping cart, check out to process your order </p>
   </div>
   <div class="col-4"> <center>
   <h1> &#128757</h1>
   <p class="menutext"><b>Wait for Delivery</p></b>
-  <p class="menutext1"><br> Your order will be prepared and delivered to you </p>
+  <p class="menutext1"> Your order will be prepared and delivered to you </p>
 
 </section>        
 </center>
-
+</div>
 
 
 

@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>KADS | Header</title>
         <link rel="stylesheet" href="CSS/index.css" />
+        <link rel="stylesheet" href="script.js" />
        
     </head>
     <body>
@@ -75,10 +76,11 @@
          <p class="text1">
           All of our menu items are inspired by Japanese cuisine and have been created by our head chef, kads, after studying authentic Japanese cuisine in japan. 
           Not only do we have fresh flown-in seafood from the northeast, but we also have a variety of handcrafted cocktails, wine, and beer to choose from.
-          <div class="button"> Our Menu </div>
-     
+          
        
         </p>
+       <button class="button button1" a href="#"> Our Menu </button>
+     
 
       
 </div>
@@ -123,11 +125,121 @@
 </center>
 </div>
 
+  <!-- carousel -->
 
+  
 
-
-
-
+  <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="card">
+                <div class="img-wrapper"><img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Cucumber Sushi</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="images/SPICY-KANI-ROLL.png" class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Kani Roll</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="images/Basic-Sushi-Salmon (1).png" class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Salmon Sushi</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Bonito Roll</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title 5</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title 6</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title 7</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="btn btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title 8</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title 9</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a href="#" button class="button btn-primary">Order Now</a> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 
 
@@ -225,5 +337,9 @@
 
         <!-- bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    </body>
+
+  
+  
+  
+      </body>
 </html>

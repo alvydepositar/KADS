@@ -82,6 +82,8 @@
        <button class="button button1" a href="#"> Our Menu </button>
      
 
+       <br>
+<br>
       
 </div>
 <br>
@@ -95,6 +97,11 @@
            
         </section>
 
+        <br>
+<br>
+
+<br>
+<br>
         <div class ="howto">
           <h1>  <center> How To Order </h1>
           <p class="follow"> Follow these steps to enjoy the best sushi in town!</p> </center>
@@ -126,8 +133,11 @@
 </div>
 
   <!-- carousel -->
-
+<br>
+<br>
   
+<br>
+<br>
 
   <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -241,7 +251,8 @@
     </button>
 </div>
 
-
+<br>
+<br>
 
 
 

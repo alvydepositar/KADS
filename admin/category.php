@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Protein Blends PH | Admin</title>
+    <title>KADS | Admin</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
@@ -220,7 +220,7 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title">Categories
-                            <a href="add-category.php"><button class="btn btn-primary btn-user">
+                            <a href="add-category.php"><button class="btn btn-border">
                                 Add Category
                             </button></a>
                             </h3>
@@ -244,11 +244,11 @@
                                             <td>ID<?php //echo $row['id']; ?></td>
                                             <td>Title<?php //echo $row['title']; ?></td>
                                             <td class="col-1">
-                                            <a  class="btn btn-custom">Edit</a>                                            
+                                            <a  class="btn btn-solid" href="edit-category.php?edit=">Edit</a>                                            
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-custom">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-category.php?id=">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php

@@ -10,7 +10,7 @@ body{font: 14px sans-serif; background-color:#F2F9E7; font-family: 'Poppins';col
             left: -0.21%;
             right: 0%;
             top: 0px;
-            background: #FFB100;
+            background: #C70800;
         }
         .edituserblock {
             background-color:#fff;
@@ -102,3 +102,42 @@ body{font: 14px sans-serif; background-color:#F2F9E7; font-family: 'Poppins';col
         }
 
      
+        .btn-border {
+            background-color: #fff;
+            color: #2C2A3A;
+            border: 1px solid #C70800;
+            border-radius: 5px;
+            padding:3px 10px;
+            margin-left: 15px;
+        }
+
+        .btn-border:hover {
+            background-color: #8e0001;
+            color: #fff;
+        }
+
+        .btn-solid {
+            background-color: #2C2A3A;
+            color: #fff;
+            border-radius: 5px;
+            padding:3px 10px;
+            margin-left: 15px;
+        }
+
+        .btn-solid:hover {
+            background-color: #C70800;
+            color: #fff;
+        }
+
+        .btn-red {
+            background-color: #C70800;
+            color: #fff;
+            border-radius: 5px;
+            padding:3px 10px;
+            margin-left: 15px;
+        }
+
+        .btn-red:hover {
+            background-color: #8e0001;
+            color: #fff;
+        }

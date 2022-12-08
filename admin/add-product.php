@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
         header("location: ../admin.php");
@@ -80,19 +80,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	} 
 }   
 
-?>
+*/?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein Blends | Add Product</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pagestyles.css" rel="stylesheet">
 </head>
+<style>
+    body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
+    .btn-style, .btn-style:hover{
+        color:#fff;
+    }
+</style>
 <body>
     <div class="wrapper">
         <div class="top-line"></div>  
@@ -103,44 +109,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>   
         <div class="edituserblock">
             <h2>Add Product</h2>  
-                <?php if (isset($_GET['error'])): ?>
-                    <p><?php echo $_GET['error']; ?></p>
-                <?php endif ?>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+                <?php /*if (isset($_GET['error'])):*/ ?>
+                    <p><?php /*echo $_GET['error'];*/ ?></p>
+                <?php /*endif*/ ?>
+            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
-                    <input type="file" name="my_image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
+                    <input type="file" name="my_image" class="form-control <?php /*echo (!empty($image_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $image;*/ ?>">
                 </div>
 
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
-                    <span class="invalid-feedback"><?php echo $name_err; ?></span>
+                    <input type="text" name="name" class="form-control <?php /*echo (!empty($name_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $name;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $name_err;*/ ?></span>
                 </div>
 
                 <div class="form-group">
                     <label>Product Description</label>
-                    <input type="text" name="desc" class="form-control <?php echo (!empty($desc_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $desc; ?>">
-                    <span class="invalid-feedback"><?php echo $desc_err; ?></span>
+                    <input type="text" name="desc" class="form-control <?php /*echo (!empty($desc_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $desc;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $desc_err;*/ ?></span>
                 </div>
 
                 <div class="form-group">
                     <label>Product Price</label>
-                    <input type="number" name="price" min="0" value="0" step=".01" class="form-control <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $price; ?>">
-                    <span class="invalid-feedback"><?php echo $price_err; ?></span>
+                    <input type="number" name="price" min="0" value="0" step=".01" class="form-control <?php /*echo (!empty($price_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $price;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $price_err;*/ ?></span>
                 </div>
 
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name ="category" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
                         <?php
-                            if(mysqli_num_rows($result) >= 0) {
-                                while($row = mysqli_fetch_assoc($result)){
+                            /*if(mysqli_num_rows($result) >= 0) {
+                                while($row = mysqli_fetch_assoc($result)){*/
                         ?>
-                        <option value="<?php echo $row['id'] ?>"> <?php echo $row['title']; ?> </option>
+                        <option value="<?php /*echo $row['id']*/ ?>"> <?php /*echo $row['title'];*/ ?> </option>
                         <?php 
-                                }
-                            } ?>
+                                /*}
+                            }*/ ?>
                     </select> 
                 </div>
 
@@ -152,5 +158,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 </html>
 <?php 
-    }
+    /*}*/
 ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
         header("location: ../admin.php");
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				header("Location: category.php");
 		}
     
-} 
+}*/ 
   
 
 ?>
@@ -50,13 +50,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein Blends | Add Category</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pagestyles.css" rel="stylesheet">
 </head>
+<style>
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
+        .btn-style{
+            background-color:#C70800;
+            color:#fff;
+            margin-bottom:0px;
+            margin-right:10px;
+            border:none;
+        }        
+        .btn-style:hover,.btn-style:focus{
+            background-color: #8e0001;
+            color: #fff;
+        }
+    </style>
 <body>
     <div class="wrapper">
         <div class="top-line"></div>  
@@ -67,15 +81,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>   
         <div class="edituserblock">
             <h2>Add Category</h2>  
-            <?php if (isset($_GET['error'])): ?>
-                <p><?php echo $_GET['error']; ?></p>
-            <?php endif ?>
+            <?php /*if (isset($_GET['error'])):*/ ?>
+                <p><?php /*echo $_GET['error'];*/ ?></p>
+            <?php /*endif*/ ?>
 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="catname" class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $catname; ?>">
-                    <span class="invalid-feedback"><?php echo $catname_err; ?></span>
+                    <input type="text" name="catname" class="form-control <?php /*echo (!empty($catname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $catname;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $catname_err;*/ ?></span>
                 </div>
                 <input class="btn btn-primary btn-style" type="submit" name="submit" value="Upload">                
             </form>

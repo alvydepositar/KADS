@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Protein Blends PH | Admin</title>
+    <title> KADS | Admin</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
@@ -84,8 +84,8 @@
                 margin:5px;
             }
             .btn-edit{
-                background-color: #B2D62D;
-                color: #141C07;
+                background-color: #C70800;
+                color: #fff;
                 border: none;
                 font-weight: 600;
                 font-size: 14px;
@@ -97,8 +97,8 @@
                 box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
             }
             .btn-edit:hover,.btn-edit:focus{
-                background-color: #7BB12F;
-                color: #141C07;
+                background-color: #8e0001;
+                color: #fff;
                 transition: 0.25s all ease;
             }
             .back-icon img{
@@ -114,7 +114,7 @@
             }
             b{
                 font-weight:600;
-                color:#7BB12F;
+                color:#C70800;
             }
 
     </style>

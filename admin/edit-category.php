@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
 if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
     header("location: ../admin.php");
@@ -29,23 +29,44 @@ $catname  = $_POST["catname"];
 
 mysqli_query($conn, "UPDATE category SET title = '$catname' WHERE id = $id");
 header("Location: category.php");
-}
+}*/
 ?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Protein Blends | Edit Category</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pagestyles.css" rel="stylesheet">
     <style>
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
         .wrapper{
             width: 600px;
             margin: 0 auto;
+        }
+        .btn-primary{
+            background-color: #C70800;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius:5px;
+        }
+        .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
+            background-color: #8e0001;
+            color: #fff;
+        }
+        .btn-secondary{
+            background-color: #fff;
+            color: #C70800;
+            border: 1px solid #C70800;
+            font-weight: 600;
+            font-size: 14px;            
+            border-radius:5px;
         }
     </style>
 </head>
@@ -59,12 +80,12 @@ header("Location: category.php");
         </div>   
         <div class="edituserblock" style="margin-left:100px;">
             <h2>Edit Category</h2> 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php /*echo $id;*/ ?>">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="catname" class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $catname; ?>">
-                    <span class="invalid-feedback"><?php echo $catname_err; ?></span>
+                    <input type="text" name="catname" class="form-control <?php /*echo (!empty($catname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $catname;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $catname_err;*/ ?></span>
                 </div>
                 
                 <input type="submit" class="btn btn-primary" style="margin-left:195px;" value="Update">
@@ -75,4 +96,4 @@ header("Location: category.php");
 </body>
 </html>
 
-<?php } ?>
+<?php /*}*/ ?>

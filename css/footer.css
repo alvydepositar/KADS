@@ -3,17 +3,17 @@
 
 footer {
     background-color: #C70800;
-    color: #fff;
+    color: #fff !important;
     font-family: Inter;
     padding-top:5px;
 }
 
 .fab {
-    color: #fff;
+    color: #fff !important;
     margin-right: 20px;
 }
 
-a:link, a:visited, a:hover, a:active {
+a:link, a:visited, a:hover, a:active {    
     text-decoration: none;
     font-family: Inter;
 }

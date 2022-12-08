@@ -1,382 +1,244 @@
-@import url('https://fonts.googleapis.com/css?family=Inter');
-@import url('https://fonts.googleapis.com/css?family=Readex Pro');
-
-
-body{
-  font-family: "Readex Pro";
-  overflow-x: hidden ;
- 
+:root {
+  --primary: #C70800;
+  --primary-dark: #8e0001;
+  --secondary: #2C2A3A;
+  --light: #E7E7E7;      
 }
 
-.right{
-  margin-top: 1px;
-}
-.three{
-  height: 60vh;
-}
-.one{
-  height: 40vh;
-}
-.about-kads{
-  font-size: 50px;
-  color: #C70800;
+body {
+  overflow-x: hidden;      
 }
 
-.carousel-inner {
-  padding: 30px;
-  align-items: center;
+/************************************/
+
+.left1 {
+  margin-left: 8vw;
 }
-.card {
-  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-  border: none;
-  height: 500px;
-  width: 400px;
-  align-items: center;
+
+.image1 {      
+  height: auto; 
+  width:auto; 
+  margin-right:calc(-150px + -11vw);
+  margin-top:2vw;
 }
-.h5,h5{
-  font-size: 30px;
-  margin-left: 50px;
-  align-items: center;
+
+.image1 > img {
+  max-height: 700px;
+  min-height: 500px;
+  min-width: 700px;
+}
+
+h1 {
+  color: var(--secondary);
   font-family: 'Readex Pro';
-}
-.carousel-control-prev,
-.carousel-control-next {
-  background-color: #e1e1e1;
-  width: 8vh;
-  height: 6vh;
-  border-radius: 50%;
-  top: 50%;
-  align-items: center;
-  transform: translateY(-50%);
+  font-style: bold;
+  font-weight: 780;
+  font-size: calc(35px + 3vw);
+  letter-spacing: .5px;
 }
 
-.card-text{
-  font-family: "Readex Pro";
-  align-items: center;
-
-
-}
-@media (min-width: 768px) {
-  .carousel-item {
-    margin-right: 0;
-    flex: 0 0 33.333333%;
-    display: block;
-  }
-  .carousel-inner {
-    display: flex;
-  }
-}
-.card .img-wrapper {
-    max-width: 90%;
-  height: 400px;
-  width: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.card img {
-    max-height: 90%;
-}
-@media (max-width: 767px) {
-  .card .img-wrapper {
-    height: 17em;
-    width: 60px;
-  }
+.emoji1 {
+  font-size: calc(15px + 2.5vw);
 }
 
-.menutext{
-  font-size: 25px;
-  font-family: "readex pro";
-  color: #12151c;
-}
-.menutext1{
-  margin-top: none;
-  font-size:17.5px;
-  color: #12151c;
-  font-family: Inter;
-}
-.menutext2{
+.text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
   font-size: 15px;
-  color: #2C293A;
-  font-family: Inter;
-  margin-top: -90px;
-}
-.text1{
-  margin-bottom: 20px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #757575;
+  padding: 20px 0;
+  max-width: 400px;  
 }
 
-.sushi_pic {
- 
+.cta .btn, .button1 {
+  background-color: var(--primary);
+  border: none;  
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  text-transform: capitalize;
+  transition: 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta .btn:hover,.button1:hover {
+  background: var(--primary);
+  color: #ffffff;
+  background-color: var(--primary-dark);
+}
+
+.pt-100 {
+  padding-top:100px;
+}
+
+.ml {
+  margin-left:100px;
+}
+
+/************************************/
+
+.image2 {      
+  height: auto; 
+  width:auto; 
+  margin-left:-5vw;
+}
+
+.image2 > img {
+  max-height: 500px;
+}
+
+.about-kads{
+  font-size: calc(25px + 3vw);
+  color: var(--primary);
+  font-family: 'Readex Pro';
+  font-style: bold;
+  font-weight: 780;   
+}
+
+.right1 {
+  padding-right: 5vw;
+  padding-left: 5vw;
+  min-width: 60%;
+  max-width: 800px;
+  padding-bottom: 50px;
+}
+
+.text1 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  color: #757575;
+  padding: 20px 0; 
+}
+
+.sushi_pic { 
+  width: 450px;
+  height: auto;
   position: absolute;
-  width: 700px;
-  height:400px;
-  left: 930px;
-  top: 350px;
-  margin-top: 930px;
-  margin-left: 90px;
-
-
-
+  right: 0;
+  margin-top: -50px;
+  margin-right: -20px;
 }
 
-.btn-primary{
-  background-color: #C70800; /* Red */
-  border: none;
- 
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  text-transform: capitalize;
-  transition: 0.3s;
-  border-radius: 5px;
-  cursor: pointer;
-  
-}
-.btn-primary:hover{
-  background-color: #8e0000;
-  transform: scale(1) !important;
-  color: white;
+/************************************/
 
-}
-.toggle-btn {
-  display: inline-block;
-  border: none;
-  background: #8e0000;
-  color: white;
-  outline: none;
-  cursor: pointer;
-  height: 39px;
-  width: 39px;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  transition: 0.3s;
+.content-3 {
+  padding: 150px 0;
 }
 
-.toggle-btn i {
-  line-height: 39px;
+.howto{
+  font-size: calc(20px + 2vw);
+  color: var(--secondary);
+  font-family: 'Readex Pro';
+  font-style: bold;
+  font-weight: 780;   
 }
 
-.toggle-btn:hover {
-  background: #C70800;
+.follow {
+  font-size: calc(10px + 1vw);
+  color: #12151c;
+  font-family: Inter;
 }
 
-.big-wrapper.light .toggle-btn i:last-child {
-  display: none;
+.steps-group {
+  margin-top: 20px;
+  padding: 0 80px;
 }
 
-.big-wrapper.light .toggle-btn i:first-child {
-  display: block;
+.step-item {
+  margin: 0 50px;
 }
 
-.big-wrapper.dark .toggle-btn i:last-child {
-  display: block;
+.menutext1 {
+  font-size: 12px;
 }
 
-.big-wrapper.dark .toggle-btn i:first-child {
-  display: none;
+/************************************/
+
+.ohayo-group {
+  margin-left: 8vw;
 }
 
-
-
-.three{
-  font-size: 40px;
+.ohayo-title {
+  font-size: calc(20px + 2vw);
+  color: var(--secondary);
+  font-family: 'Readex Pro';
+  font-style: bold;
+  font-weight: 780;   
 }
 
-.button1 {
-  background-color: #C70800; /* Red */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  text-transform: capitalize;
-  transition: 0.3s;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.button1:hover {
-  background-color: #8e0000;
-  transform: scale(1) !important;
+.ohayo-text {
+  font-size: 12px;
 }
 
-.showcase-area .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .light {
-    --mainColor: #C70800;
-    --hoverColor: #2C293A;
-    --backgroundColor: #ffff;
-    --darkOne: #312f3a;
-    --darkTwo: #45424b;
-    --lightOne: #919191;
-    --lightTwo: #aaa;
-  }
-  
-  .dark {
-    --mainColor: #C70800;
-    --hoverColor: #2C293A;
-    --backgroundColor: #12151c;
-    --darkOne: #f3f3f3;
-    --darkTwo: #fff;
-    --lightOne: #ccc;
-    --lightTwo: #e7e3e3;
-  }
-
-  .left {
-    width: 600px;
-    padding-left: 120px;
-  }
-  
-  h1{
-    color: var(--darkOne);
-    font-family: 'Readex Pro';
-    font-style: bold;
-    font-weight: 780;
-    font-size: 70px;
-    line-height: 80px;
-    letter-spacing: .5px;
-    text-transform: capitalize;
-  }
-  .text2{
-    margin-top: 90px;
-  }
-  p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.2px;
-    color: #757575;
-    padding-top: 20px;
-  }
-  
-  .landing_pic {
-    position: relative;
-    width: 950px;
-    height: 600px;
-    left: 185px;
-    top: 20px;
-    line-height: 90px;
-    
-  }
-
-  .left-pic{
-    width: 1000px;
-    margin-left: -280px;
-  }
-
-  .cta {
-    padding-top: 20px;
-    font-family: 'Readex Pro';
-  }
-  .btn{
-    font-family: 'Readex Pro';
-  }
-
-  .cta .btn {
-    background-color: #C70800; /* Red */
-    border: none;
-    
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    text-transform: capitalize;
-    transition: 0.3s;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .cta .btn:hover {
-    background: #C70800;
-    color: #ffffff;
-    background-color: #8e0000;
-  }
-
-  .howto{
-
-    font-size: 90px;
-
-  }
-
-  .col-4{
-    margin-top: 60px;
-    color: #12151c;
-  }
-  
-  .follow{
-    font-size: 30px;
-    color: #12151c;
-    font-family: Inter;
-    margin-left: 280px;
-  }
-  
-footer {
-    background-color: #C70800;
-    color: #fff;
-    font-family: Inter;
-    padding-top:5px;
+.MultiCarousel { 
+  float: left; overflow: hidden; padding: 15px; width: 100%; position:relative;
+}
+.MultiCarousel .MultiCarousel-inner { 
+  transition: 1s ease all; float: left; 
+}
+.MultiCarousel .MultiCarousel-inner .item {
+  float: left;
+}
+.MultiCarousel .MultiCarousel-inner .item > div { 
+  text-align: center; padding:10px; margin:10px; background:#fff; color:#666;
+}
+.MultiCarousel .leftLst, .MultiCarousel .rightLst { 
+  position:absolute; border-radius:50%;top:calc(50% - 20px); border: none; background-color: var(--primary); 
+}
+.MultiCarousel .leftLst:hover, .MultiCarousel .rightLst:hover, .MultiCarousel .leftLst:focus, .MultiCarousel .rightLst:focus {
+  background-color: var(--primary-dark); color:#fff;
+}
+.MultiCarousel .leftLst { 
+  left:0; 
+}
+.MultiCarousel .rightLst { 
+  right:0; 
+}
+.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { 
+  pointer-events: none; background:var(--secondary); border: none;
 }
 
-.fab {
-    color: #fff;
-    margin-right: 20px;
+.card-title {
+  font-family: "Readex Pro";
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--secondary);
 }
 
-a:link, a:visited, a:hover, a:active {
-    text-decoration: none;
-    font-family: Inter;
+.card-text {
+  font-family: "Inter";
+  font-size: 10px;
+  color: var(--secondary);
+  margin: 10px;
 }
 
-h6 {
-    font-family: Inter;
-}
-
-.text-reset:hover {
-    color:#8e0000;
-}
-
-.text-reset:hover, .fab:hover {
-    color:#8e0000 !important;
-}
-
-footer {
-  background-color: #C70800;
+.card-btn {
+  background-color: var(--primary);
   color: #fff;
+  border-radius: 5px;
   font-family: Inter;
-  padding-top:5px;
-  max-width: 6000px;
+  font-size: 12px;
+  border: none;
+  padding: 8px 15px;
+  margin-bottom: 10px;
 }
 
-.fab {
+.card-btn:hover {
+  background-color: var(--primary-dark);
   color: #fff;
-  margin-right: 20px;
 }
 
-a:link, a:visited, a:hover, a:active {
+.card-btn > a {
   text-decoration: none;
-  font-family: Inter;
-}
-
-h6 {
-  font-family: Inter;
-}
-
-.text-reset:hover {
-  color:#8e0000;
-}
-
-.text-reset:hover, .fab:hover {
-  color:#8e0000 !important;
+  color: #fff;
 }

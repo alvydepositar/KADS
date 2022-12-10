@@ -41,7 +41,17 @@ body {
 }
 
 .food-item {
-    overflow: hidden;
+    /*overflow: hidden;*/
+    background: #EEEEEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    color: #000;
+    margin: 1rem 0;
+    animation: fadeIn 2s;
+}
+
+.food-item-1 {
+    /*overflow: hidden;*/
     background: #EEEEEE;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
@@ -94,6 +104,13 @@ body {
         align-items: center;
         padding: 1rem;
         column-gap: 1rem;
+    }
+
+    .food-item-1 {
+        display: grid;
+        align-items: center;
+        padding: 1rem;
+        column-gap: 1rem;    
     }
 
     .food-content {
@@ -260,4 +277,15 @@ body {
 .checkout:hover {
     cursor: pointer;
     background-color: #c70800;
+}
+
+/********/
+
+.x-unicode {
+    color: #b7b7b7;
+    font-size:40px;
+}
+
+.x-unicode:hover, .x-unicode:focus {
+    color: #c70800;
 }

@@ -79,8 +79,9 @@
                   <label class="form-check-label" for="defaultCheck1">
                     Create an account for later</label>
                 </div>
-                
-                <button type="submit" class="btn-submit">Place Order</button>                
+                <a href="orderhistory.php">
+                  <button type="submit" class="btn-submit">Place Order</button>            
+                </a>    
               </form>
             </div>  
                     

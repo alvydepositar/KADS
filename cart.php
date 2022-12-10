@@ -33,57 +33,101 @@
             <!-- cart -->
             <div class="left-side">
                 <p>My Cart</p>
-                <!-- item -->
-                <div class="food-item">
-                    <div class="food-img">
-                        <img src="products/cucumber-roll.png" alt="food image">
-                    </div>
-                    <div class="food-content">
-                        <h2 class="food-name">Cucumber Roll</h2>
-                        <!-- price should add up everytime the quantity goes up. 
-                        for example, the original price of cucumber roll is 100
-                        but the user ordered 2 of it. the total price of cucumber 
-                        roll should reflect on the food price-->
-                        <h3 class="food-price">₱200.00</h3>
-                        <div class="quantity">
-                            <span class="decrement">-</span>
-                            <span class="intnum">01</span>
-                            <span class="increment">+</span>
+
+                <!-- item -->  
+                <div class="d-flex">
+                    <div class="food-item-1 w-100">
+                        <div class="d-flex align-items-center">
+                            <div class="food-img flex-shrink-0">
+                                <img src="products/cucumber-roll.png" alt="food image">
+                            </div>
+                            <div class="food-content flex-grow-1 ms-3">
+                                <h2 class="food-name">Cucumber Roll</h2>
+                                <!-- price should add up everytime the quantity goes up. 
+                                for example, the original price of cucumber roll is 100
+                                but the user ordered 2 of it. the total price of cucumber 
+                                roll should reflect on the food price-->
+                                <h3 class="food-price">₱200.00</h3>
+                                <div class="quantity">
+                                    <span class="decrement">-</span>
+                                    <span class="intnum">01</span>
+                                    <span class="increment">+</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>                
+                    <div class="p-2 flex-shrink-1">                    
+                        <div class="d-flex align-content-center flex-wrap h-100">
+                            <button class="del-btn btn h-100">
+                                <a href="" class="x-unicode">&#128937;</a>
+                            </button>        
+                        </div>    
                     </div>
-                </div>
+                </div>                
                 <!-- end of item -->
-                <!-- item -->
-                <div class="food-item">
-                    <div class="food-img">
-                        <img src="products/tuna-roll.png" alt="food image">
-                    </div>
-                    <div class="food-content">
-                        <h2 class="food-name">Tuna Roll</h2>
-                        <h3 class="food-price">₱190.00</h3>
-                        <div class="quantity">
-                            <span class="decrement">-</span>
-                            <span class="intnum">01</span>
-                            <span class="increment">+</span>
+
+                <!-- item -->  
+                <div class="d-flex">
+                    <div class="food-item-1 w-100">
+                        <div class="d-flex align-items-center">
+                            <div class="food-img flex-shrink-0">
+                                <img src="products/tuna-roll.png" alt="food image">
+                            </div>
+                            <div class="food-content flex-grow-1 ms-3">
+                                <h2 class="food-name">Tuna Roll</h2>
+                                <!-- price should add up everytime the quantity goes up. 
+                                for example, the original price of cucumber roll is 100
+                                but the user ordered 2 of it. the total price of cucumber 
+                                roll should reflect on the food price-->
+                                <h3 class="food-price">₱190.00</h3>
+                                <div class="quantity">
+                                    <span class="decrement">-</span>
+                                    <span class="intnum">01</span>
+                                    <span class="increment">+</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>                
+                    <div class="p-2 flex-shrink-1">                    
+                        <div class="d-flex align-content-center flex-wrap h-100">
+                            <button class="del-btn btn h-100">
+                                <a href="" class="x-unicode">&#128937;</a>
+                            </button>        
+                        </div>    
                     </div>
-                </div>
-                <!-- end of item -->
-                <!-- item -->
-                <div class="food-item">
-                    <div class="food-img">
-                        <img src="products/kani-roll.png" alt="food image">
-                    </div>
-                    <div class="food-content">
-                        <h2 class="food-name">Kani Roll</h2>
-                        <h3 class="food-price">₱450.00</h3>
-                        <div class="quantity">
-                            <span class="decrement">-</span>
-                            <span class="intnum">01</span>
-                            <span class="increment">+</span>
+                </div>                
+                <!-- end of item --> 
+               
+                <!-- item -->  
+                <div class="d-flex">
+                    <div class="food-item-1 w-100">
+                        <div class="d-flex align-items-center">
+                            <div class="food-img flex-shrink-0">
+                                <img src="products/kani-roll.png" alt="food image">
+                            </div>
+                            <div class="food-content flex-grow-1 ms-3">
+                                <h2 class="food-name">Kani Roll</h2>
+                                <!-- price should add up everytime the quantity goes up. 
+                                for example, the original price of cucumber roll is 100
+                                but the user ordered 2 of it. the total price of cucumber 
+                                roll should reflect on the food price-->
+                                <h3 class="food-price">₱450.00</h3>
+                                <div class="quantity">
+                                    <span class="decrement">-</span>
+                                    <span class="intnum">01</span>
+                                    <span class="increment">+</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>                
+                    <div class="p-2 flex-shrink-1">                    
+                        <div class="d-flex align-content-center flex-wrap h-100">
+                            <button class="del-btn btn h-100">
+                                <a href="" class="x-unicode">&#128937;</a>
+                            </button>        
+                        </div>    
                     </div>
-                </div>
+                </div>                
                 <!-- end of item -->
             </div>
             <!-- end of cart -->
@@ -112,7 +156,7 @@
                 <div class="hline"></div>
 
                 <div class="checkout-btn">
-                    <a href="#">
+                    <a href="placeorder.php">
                         <button class="checkout">Checkout</button>
                     </a>
                 </div>

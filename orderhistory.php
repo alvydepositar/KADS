@@ -68,7 +68,12 @@
               <h2 class="section-title">My Orders</h2>
 
               <div class="order-container">
-                <b>December 5, 2022, 9:37 PM</b><br>
+                <div class="container">
+                  <div class="row d-flex align-items-center">
+                    <div class="col order-header">December 5, 2022, 9:37 PM</div>
+                    <div class="col-2 order-progress p-processing">Processing</div>
+                  </div>
+                </div>                
                 <div class="container order-group">
                   <div class="row">
                     <div class="col-auto">
@@ -97,7 +102,12 @@
               </div>
 
               <div class="order-container">
-                <b>December 2, 2022, 7:21 PM</b><br>
+                <div class="container">
+                  <div class="row d-flex align-items-center">
+                    <div class="col order-header">December 2, 2022, 3:25 PM</div>
+                    <div class="col-2 order-progress p-completed">Completed</div>
+                  </div>
+                </div>     
                 <div class="container order-group">
                   <div class="row">
                     <div class="col-auto">
@@ -121,7 +131,12 @@
               </div>
 
               <div class="order-container">
-                <b>November 29, 2022, 9:14 PM</b><br>
+               <div class="container">
+                  <div class="row d-flex align-items-center">
+                    <div class="col order-header">November 26, 2022, 9:14 AM</div>
+                    <div class="col-2 order-progress p-delivery">Out for Delivery</div>
+                  </div>
+                </div>     
                 <div class="container order-group">
                   <div class="row">
                     <div class="col-auto">

@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 @import url('https://fonts.googleapis.com/css?family=Readex Pro');
 
+:root {
+    --primary: #C70800;
+    --primary-dark: #8e0001;
+    --secondary: #2C2A3A;
+    --light: #E7E7E7;      
+    --processing: rgba(255,0,26,0.2);      
+    --delivery: rgba(233, 132, 0, 0.2);      
+    --completed: rgba(0, 143, 24, 0.2);      
+  }
+  
+
 body{
     background-color: #fff; 
     font-family: Inter;
@@ -48,4 +59,19 @@ body{
     margin-top:20px; 
     min-width:fit-content;  
     max-width: 60%;  
+}
+
+.order-progress {
+    width:fit-content;
+    border-radius: 5px;
+    color:#2C2A3A;    
+}
+
+.p-processing {background-color: var(--processing);}
+.p-delivery {background-color: var(--delivery);}
+.p-completed {background-color: var(--completed);}
+
+
+.order-header {
+    font-weight: bold;
 }

@@ -25,9 +25,47 @@
 </head>
 
 <body>
-    <?php
-        include 'header-user.html';
-    ?>
+    <!-- header start -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid navbar-content">
+          <a class="navbar-brand" href="/KADS">
+              <img src="images/kads_logo_1.png" alt="" height="85" id="headerlogo">
+          </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/KADS" >Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active activelink" href="menu.php">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.php">Contact Us</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="login.php">
+                  <button class="btn btn-primary" type="submit" id="sign-in">Sign In</button>
+                </a>
+                <a href="registration.php">
+                  <button class="btn btn-primary" type="submit" id="register">Register</button>     
+                </a>
+                                      
+                  <a href="login.php">
+                    <img class="cart" src="images/cart-vector-1.png" alt="cart" height="25" width="25"/>
+                  </a>                
+              </li>                               
+              <li class="nav-responsive-padding-bottom"></li>                  
+          </ul>
+        </div>
+      </div>
+    </nav>       
+    <!-- header end -->
+
     <!-- menu showcase -->
     <div class="menu_showcase">
         <div class="description_box">

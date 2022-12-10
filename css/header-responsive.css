@@ -35,7 +35,7 @@ body{
 }
 
 .nav-item > .active {
-    color:#C70800 ; 
+    color:#C70800 !important; 
 }
 
 .navbar-nav > .nav-item > .btn {    

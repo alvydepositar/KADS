@@ -111,7 +111,7 @@
         </div>
     
         <div class="left-container">
-            <img src="images/dummy-img.jpg" alt="dummy image">
+            <img src="images/sushi-login.png" alt="dummy image">
         </div>
 
     </div>

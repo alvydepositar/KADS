@@ -42,7 +42,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <img src="images/dummy-img.jpg" alt="Dummy Image">
+        <img src="images/sushi-login1.jpg" alt="Dummy Image">
       </div>
 
       <div class="col">

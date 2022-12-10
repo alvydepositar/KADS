@@ -24,13 +24,14 @@ body {
     padding: 35px 0px 25px 50px;
 }
 
-.col h6 {
+.h6 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
     color: rgba(44, 41, 58, 0.8);
+    padding-bottom: 15px;
 }
 
 .title {

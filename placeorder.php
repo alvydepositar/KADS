@@ -1,13 +1,9 @@
-<?php
-    include 'header-user.html';
-?>
-
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>KADS | Checkout</title>
+        <title>KADS | Place Order</title>
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <!-- css -->   
@@ -20,7 +16,9 @@
         <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
     </head>
     <body>      
-
+      <?php
+        include 'header-user.html';
+      ?>
         <!-------------- content start --------------->
           <div class="content-container">
             <div class="content-wrapper container-fluid">
@@ -82,90 +80,15 @@
                     Create an account for later</label>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Place Order</button>                
+                <button type="submit" class="btn-submit">Place Order</button>                
               </form>
             </div>  
                     
           </div>
           
-            <!-- Footer -->
-          <footer class="footer text-center text-lg-start">  
-            <!-- Section: Links  -->
-            <section class="">
-              <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
-                <div class="row mt-3">
-                  <!-- Grid column -->
-                  <div class="col-md-4 col-lg-5 col-xl-4 mx-auto mb-4">
-                    <!-- Content -->                    
-                    <a href="#">
-                      <img src="images/kads_logo_1.png" alt="" height="150" style="margin-left:-50px;">
-                    </a>
-                  </div>
-                  <!-- Grid column -->
-
-                  <!-- Grid column -->
-                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                      Links
-                    </h6>
-                    <p>
-                      <a href="#!" class="text-reset">Contact Us</a>
-                    </p>  
-                    <p>
-                      <a href="#!" class="text-reset">Menu</a>
-                    </p>
-                    <p>
-                      <a href="#!" class="text-reset">FAQ</a>
-                    </p>          
-                  </div>
-                  <!-- Grid column -->
-
-                  <!-- Grid column -->
-                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                      Menu Categories
-                    </h6>
-                    <p>
-                      <a href="#!" class="text-reset">Menu Category 1</a>
-                    </p>  
-                    <p>
-                      <a href="#!" class="text-reset">Menu Category 2</a>
-                    </p> 
-                    <p>
-                      <a href="#!" class="text-reset">Menu Category 3</a>
-                    </p>                   
-                  </div>
-                  <!-- Grid column -->
-
-                  <!-- Grid column -->
-                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-md-0 mb-3">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">Follow Us!</h6>
-                    <div class="socialmedia-links">
-                      <a href="#" role="button">
-                        <i class="fab fa-facebook"></i>
-                      </a>
-                      
-                      <a href="#" role="button">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      
-                      <a href="#!" role="button">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-              </div>
-            </section>
-            <!-- Section: Links  -->           
-          </footer>
-          <!-- Footer -->
+          <?php
+            include 'footer.html';
+          ?>
 
 
         <!---------------------JS-------------------->        

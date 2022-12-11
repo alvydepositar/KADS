@@ -1,7 +1,5 @@
 <?php
     require 'conn.php';
-    include 'header-guest.html';
-
     #authorization smth
     
     $email = $password =  "";

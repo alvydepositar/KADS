@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
     <style>
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Readex Pro';color: #141C07;}
         .wrapper{ width: 360px; padding: 20px; }
         .userblock{
             background-color: #fff;

@@ -12,7 +12,7 @@
     <link href="../css/pagestyles.css" rel="stylesheet">
 
     <style>    
-            body{font: 14px sans-serif; background-color:#eeeeee; font-family: 'Poppins';color: #141C07;}
+            body{font: 14px sans-serif; background-color:#eeeeee; font-family: 'Readex Pro';color: #141C07;}
 
             /* Style The Dropdown Button */
             .dropbtn {

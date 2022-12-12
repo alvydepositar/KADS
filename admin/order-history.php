@@ -13,6 +13,9 @@
 
     <style>    
         /* Style The Dropdown Button */
+        *{
+            font-family: "Readex Pro";
+        }
         .dropbtn {
         background-color: #4CAF50;
         color: white;

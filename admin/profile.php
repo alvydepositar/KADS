@@ -39,7 +39,7 @@
         .profile-card, .page-content-wrapper, .container-fluid{
             width: 600px;
         }
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #2C2A3A;}
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Readex Pro';color: #2C2A3A;}
         .wrapper{ width: 360px; padding: 20px; }
         .wrapper{
             width: 400px;

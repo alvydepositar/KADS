@@ -13,11 +13,16 @@
 
     <style>    
         /* Style The Dropdown Button */
+
+        *{
+            font-family: "Readex Pro";
+        }
         .dropbtn {
         background-color: #4CAF50;
         color: white;
         padding: 16px;
         font-size: 16px;
+        font-family: "Readex Pro";
         border: none;
         cursor: pointer;
         }
@@ -25,13 +30,16 @@
         .dropdown {
         position: relative;
         display: inline-block;
+        font-family: "Readex Pro";
         }
 
         .dropdown-content {
         display: none;
         position: absolute;
+        font-family: "Readex Pro";
         background-color: #f9f9f9;
         min-width: 160px;
+        font-family: "Readex Pro";
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
         }
@@ -40,6 +48,7 @@
         .dropdown-content a {
         color: black;
         padding: 12px 16px;
+        font-family: "Readex Pro";
         text-decoration: none;
         display: block;
         }

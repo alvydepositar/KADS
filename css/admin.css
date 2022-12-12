@@ -89,7 +89,7 @@ img{
             margin-bottom:0px;         
         }
         .btn-primary{
-            background-color: #B2D62D;
+            background-color: #C70800;
             color: #141C07;
             border: none;
             font-weight: 600;
@@ -97,13 +97,13 @@ img{
             border-radius:5px;
         }
         .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
-            background-color: #7BB12F;
+            background-color: #C70800;
             color: #141C07;
         }
         .btn-secondary{
             background-color: #fff;
-            color: #141C07;
-            border: 1px solid #B2D62D;
+            color: #fff;
+            border: 1px solid #C70800;
             font-weight: 600;
             font-size: 14px;            
             border-radius:5px;
@@ -121,6 +121,6 @@ img{
         }
         label{
             margin-bottom: 0px;
-            color:#7BB12F;
+            color:#C70800;
             font-weight:500;
         }

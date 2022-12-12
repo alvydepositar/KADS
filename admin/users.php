@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Protein Blends PH | Admin</title>
+    <title>KADS | Admin</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
@@ -219,9 +219,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Users <a href="add-user.php"><button class="btn btn-primary btn-user">
-                                Add User
-                            </button></a></h3>
+                            <h3 class="box-title">Users
+                                <a href="add-user.php">
+                                    <button class="btn btn-border">Add User</button>
+                                </a>
+                            </h3>
                             
                             <p class="text-muted"></p>
                             <div class="table-responsive">
@@ -254,15 +256,15 @@
 
                                         
                                             <td class="col-1">
-                                            <a class="btn btn-custom" href="view-user.php?id=<?php //echo $row['id']; ?>">View</a>         
+                                            <a class="btn btn-solid" href="view-user.php?id=<?php //echo $row['id']; ?>">View</a>         
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-custom" href="edit-user.php?edit=<?php //echo $row['id']; ?>">Edit</a>                                            
+                                            <a class="btn btn-solid" href="edit-user.php?edit=<?php //echo $row['id']; ?>">Edit</a>                                            
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-custom" href="delete-user.php?id=<?php //echo $row['id']; ?>">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-user.php?id=<?php //echo $row['id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php

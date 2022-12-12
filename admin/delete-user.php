@@ -36,14 +36,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Protein Blends | Delete User</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
 
     <style>
-        body{font: 14px sans-serif; background-color:#F2F9E7; font-family: 'Poppins';color: #141C07;}
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
         .wrapper{
             width: 600px;
             margin: 0 auto;
@@ -54,7 +54,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             left: -0.21%;
             right: 0%;
             top: 0px;
-            background: #FFB100;
+            background: #C70800;
         }
         h2 {
             font-weight: 700;
@@ -76,22 +76,24 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             padding: 20px;
         }
         .btn-danger{
+            background-color:#C70800;
             color:#fff;
             margin-bottom:0px;
             margin-right:10px;
+            border:none;
         }
         .btn-secondary{
             background-color: #fff;
-            color: #141C07;
-            border: 1px solid #B2D62D;
+            color: #2C2A3A;
+            border: 1px solid #C70800;
             font-weight: 600;
             font-size: 14px;            
             border-radius:5px;
             margin-bottom:0px;
         }
-        .btn-secondary:hover,.btn-secondary:focus{
-            background-color: #7BB12F;
-            color: #141C07;
+        .btn-secondary:hover,.btn-secondary:focus,.btn-danger:hover,.btn-danger:focus{
+            background-color: #8e0001;
+            color: #fff;
         }
         .back-icon img{
             width: 40px;

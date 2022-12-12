@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
 if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
     header("location: ../admin.php");
@@ -66,20 +66,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-?>
+*/?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Protein Blends | Edit User</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
 
     <style>
-        body{font: 14px sans-serif; background-color:#F2F9E7; font-family: 'Poppins';color: #141C07;}
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
         .wrapper{ width: 360px; padding: 20px; }
         .wrapper{
             width: 400px;
@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             left: -0.21%;
             right: 0%;
             top: 0px;
-            background: #FFB100;
+            background: #C70800;
         }
         .edituserblock {
             background-color:#fff;
@@ -106,21 +106,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 25px;
         }
         .btn-primary{
-            background-color: #B2D62D;
-            color: #141C07;
+            background-color: #C70800;
+            color: #fff;
             border: none;
             font-weight: 600;
             font-size: 14px;
             border-radius:5px;
         }
         .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
-            background-color: #7BB12F;
-            color: #141C07;
+            background-color: #8e0001;
+            color: #fff;
         }
         .btn-secondary{
             background-color: #fff;
-            color: #141C07;
-            border: 1px solid #B2D62D;
+            color: #C70800;
+            border: 1px solid #C70800;
             font-weight: 600;
             font-size: 14px;            
             border-radius:5px;
@@ -138,7 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         label{
             margin-bottom: 0px;
-            color:#7BB12F;
+            color:#C70800;
             font-weight:500;
         }
     </style>
@@ -153,32 +153,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>           
             <div class="edituserblock">
                 <h2>Edit User</h2>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST">
                     
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="id" value="<?php /*echo $id;*/ ?>">
 
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
-                    <span class="invalid-feedback"><?php echo $firstname_err; ?></span>
+                    <input type="text" name="firstname" class="form-control <?php /*echo (!empty($firstname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $firstname;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $firstname_err;*/ ?></span>
                 </div>    
 
                 <div class="form-group">
                     <label>Middle Name</label>
-                    <input type="text" name="middlename" class="form-control" value="<?php echo $mname; ?>">
-                    <span class="invalid-feedback"><?php echo $mname_err; ?></span>
+                    <input type="text" name="middlename" class="form-control" value="<?php /*echo $mname;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $mname_err;*/ ?></span>
                 </div>
 
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>">
-                    <span class="invalid-feedback"><?php echo $lastname_err; ?></span>
+                    <input type="text" name="lastname" class="form-control <?php /*echo (!empty($lastname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $lastname;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $lastname_err;*/ ?></span>
                 </div>    
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                    <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                    <input type="text" name="username" class="form-control <?php /*echo (!empty($username_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $username;*/ ?>">
+                    <span class="invalid-feedback"><?php /*echo $username_err;*/ ?></span>
                 </div>    
 
             
@@ -206,4 +206,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 </html>
 
-<?php } ?>
+<?php /*}*/ ?>

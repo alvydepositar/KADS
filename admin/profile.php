@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
         header("location: ../admin.php");
@@ -14,7 +14,7 @@ session_start();
     
     $query="SELECT * FROM usertable INNER JOIN roles ON usertable.roleid = roles.id WHERE username = '$username'";
     $result=mysqli_query($conn,$query);
-    $row = mysqli_fetch_assoc($result)
+    $row = mysqli_fetch_assoc($result)*/
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +23,11 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein Blends PH | Profile</title>
+    <title>KADS | Admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/customerstyle.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,900&subset=latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/png" sizes="16x16" href="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <style>
         body{
             overflow:hidden;
@@ -39,7 +39,7 @@ session_start();
         .profile-card, .page-content-wrapper, .container-fluid{
             width: 600px;
         }
-        body{font: 14px sans-serif; background-color:#F2F9E7; font-family: 'Poppins';color: #141C07;}
+        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #2C2A3A;}
         .wrapper{ width: 360px; padding: 20px; }
         .wrapper{
             width: 400px;
@@ -51,7 +51,7 @@ session_start();
             left: -0.21%;
             right: 0%;
             top: 0px;
-            background: #FFB100;
+            background: #C70800;
         }
         .edituserblock {
             background-color:#fff;
@@ -111,6 +111,111 @@ session_start();
             color:#7BB12F;
             font-weight:500;
         }
+        .title-style img{
+            position: absolute;
+            height: 70px;
+            left: calc(50% - 70px/2);
+            top: 60px;
+        }
+        .title-style h2{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;            
+            text-align: center;
+            position: absolute;
+            left: calc(50% - 125px);
+            top: 140px;
+            border-bottom: 8px solid #B2D62D;
+            height: 38px;
+        }
+        .title-style p{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 36px;
+            text-align: center;
+            position: absolute;
+            left: calc(50% - 80px);
+            top: 180px;
+        }
+        
+        #mainwrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+            position: relative;
+            margin-top: 200px;
+            margin-left: 41%;
+            padding: 15px;
+            
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+
+        .profile-card {
+            width: calc(100% + 10rem);
+            max-width: 300px;
+            background-color: white;
+            padding: 6em;
+            border-radius: 10px;
+            box-shadow: 0px 4px 16px -9px rgb(0 0 0 / 41%);
+            -webkit-box-shadow: 0px 4px 16px -9px rgb(0 0 0 / 41%);
+            -moz-box-shadow: 0px 4px 16px -9px rgba(0,0,0,0.41);
+            overflow: hidden;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-center {
+            padding-right: 2em;
+            position: relative;
+        }
+
+        .profile-hello {
+            color: #050607;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 600;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-bottom: 1.5rem;
+
+        }
+
+        .h2, h2 {
+            font-size: 2rem;
+        }
+
+        .profile-item, .first-name, .middle-name, .last-name {
+            border-bottom: 0.5px solid rgb(94, 109, 130, .2);
+            margin-bottom: 1em;
+        }
+
+        .profile-item-label {
+            text-transform: uppercase;
+            color: #C70800;
+            font-size: 0.9375rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        img{            
+            height: 180px;
+            position: absolute;
+            margin-top:-170px;
+        }
     </style>
 </head>
 
@@ -121,33 +226,33 @@ session_start();
             <a href="../admin/users.php">
                 <img src="../img/backicon.png">
             </a>
-        </div>   
-        <div class="title-style">
-            <img src="https://64.media.tumblr.com/d6d0d1956a4ed0762dc43993ef8db1f7/b19e9aa061f0ba10-6c/s1280x1920/e9cb3cff30044e1d548420877709df1c5d4b51b0.pnj">      
-        </div>            
+        </div>                    
         <div class="edituserblock">
+            <div class="d-flex justify-content-center">
+                <img src="../images/kads_icon.png">    
+            </div>
             <h2>Profile</h2>  
             <div>                                      
                 <div class="profile-item first-name flex">
                     <p class="profile-item-label">FIRST NAME</p>
-                    <p class="first-name-value"><?php echo $row['firstname'] ?></p>
+                    <p class="first-name-value">firstname<?php /*echo $row['firstname']*/ ?></p>
                 </div> 
                 <div class="profile-item middle-name flex">
                     <p class="profile-item-label">MIDDLE NAME</p>
-                    <p class="middle-name-value"><?php echo $row['middlename'] ?></p>
+                    <p class="middle-name-value">middlename<?php /*echo $row['middlename']*/ ?></p>
                 </div> 
                 <div class="profile-item last-name flex">
                     <p class="profile-item-label">LAST NAME</p>
-                    <p class="last-name-value"><?php echo $row['lastname'] ?></p>
+                    <p class="last-name-value">lastname<?php /*echo $row['lastname']*/ ?></p>
                 </div> 
 
                 <div class="profile-item username flex">
                     <p class="profile-item-label">USERNAME</p>
-                    <p class="username-value"><?php echo $row['username'] ?></p>
+                    <p class="username-value">username<?php /*echo $row['username']*/ ?></p>
                 </div> 
                 <div class="profile-item role flex">
                     <p class="profile-item-label">ROLE</p>
-                    <p class="role-value"><?php echo $row['name'] ?></p>
+                    <p class="role-value">role<?php /*echo $row['name']*/ ?></p>
                 </div>
                 
             </div>  
@@ -158,5 +263,5 @@ session_start();
 
 
 <?php 
-    }
+    /*}*/
 ?>

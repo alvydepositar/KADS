@@ -286,7 +286,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                Protein Blends PH by Positive Nutrition | EST 2010
+            KADS | EST 2022
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

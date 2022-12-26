@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroller">
   <head>
     <meta charset="utf-8" />
     <title>KADS | Password</title>
@@ -13,110 +13,128 @@
     />
     <!-- css -->
     <link rel="stylesheet" href="css/header-responsive.css" /> 
-    <link rel="stylesheet" href="css/changePass.css" />
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/footer.css" />   
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <?php
       include 'header-user.html';
     ?>
 
-    <div class="content-container container d-flex justify-content-center">
-      <div class="row content-wrapper">
-        <div class="col-4 left-content">
-          <div class="container">
-            <div class="row links-title">My Account</div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="userprofile.php">
-                  <button type="button" class="side-links">My Profile</button>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="myAddresses.php">
-                  <button type="button" class="side-links">My Addresses</button>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="changePass.php">
-                  <button type="button" class="side-links side-links-active">
-                    Change Password
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="row links-title">My Orders</div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="orderhistory.php">
-                  <button type="button" class="side-links">Order History</button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col right-content">
-          <h1 class="container-title text-center">Password</h1>
-          <div class="title-line"></div>
+    <!-------------- content start --------------->
 
-          <form class="form-style">
-            <div class="row">
-              <div class="col">
-                <label for="Password">Current Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="********"
-                />
+    <div class="content-container container d-flex justify-content-center">          
+          <div class="row content-wrapper">
+            <div class="col-4 left-content">
+              <div class="container">
+                <div class="row links-title-top">My Account</div>      
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="userprofile.php">
+                      <button type="button" class="side-links">My Profile</button>                    
+                    </a>
+                  </div>                  
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="myAddresses.php">
+                      <button type="button" class="side-links">My Addresses</button>
+                    </a>
+                  </div>                  
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="changePass.php">
+                      <button type="button" class="side-links side-links-active">
+                        Change Password
+                      </button>
+                    </a>
+                  </div>                  
+                </div>                
+                <div class="row links-title">My Orders</div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="orderhistory.php">
+                      <button type="button" class="side-links">Order History</button>
+                    </a>
+                  </div>                  
+                </div>                  
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col">
-                <label for="inputLastName">New Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="newpass"
-                  placeholder="********"
-                />
-              </div>
             </div>
+            <div class="col right-content">
+              <h1 class="container-title text-center">Password</h1>
+              <div class="title-line"></div>
 
-            <div class="row">
-              <div class="col">
-                <label for="inputEmail">Confirm Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="confirmpass"
-                  placeholder="********"
-                />
-              </div>
+              <form class="form-style">
+                <div class="row">
+                  <div class="col">
+                    <label for="Password">Current Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      placeholder="********"
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label for="inputLastName">New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newpass"
+                      placeholder="********"
+                    />
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 20px;">
+                  <div class="col">
+                    <label for="inputEmail">Confirm Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmpass"
+                      placeholder="********"
+                    />
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-save">Change Password</button>
+              </form>
+
             </div>
+          </div>                    
+        </div>     
 
-            <button type="submit" class="btn btn-save">Change Password</button>
-          </form>
-        </div>
-      </div>
-    </div>
     
-    
+    <!-- back to top button -->
+    <button
+      type="button"
+      class="btn btn-danger btn-floating btn-lg"
+      id="btn-back-to-top"
+      >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- back to top button end --> 
     
     <?php
       include 'footer.html';
     ?>
     
+    <!---------------------JS-------------------->        
+    <script src="backtotop.js"></script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

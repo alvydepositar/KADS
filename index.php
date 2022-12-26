@@ -15,6 +15,9 @@
       <!-- fontawesome -->
       <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
   </head>
+  <style>
+    
+  </style>
   <body>      
     <!-- header start -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -84,8 +87,10 @@
         <p class="text1">
           All of our menu items are inspired by Japanese cuisine and have been created by our head chef, kads, after studying authentic Japanese cuisine in japan. 
           Not only do we have fresh flown-in seafood from the northeast, but we also have a variety of handcrafted cocktails, wine, and beer to choose from.         
-        </p>     
-        <button class="button button1" a href="menu.php"> Our Menu </button> 
+        </p>
+        <div class="cta">
+          <a href="menu.php" class="btn">Our Menu</a>
+        </div>             
         <img src="images/sushi.png" alt="KADS" class="sushi_pic d-none d-sm-block" />            
       </div>
     </div>
@@ -142,7 +147,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -154,7 +159,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -166,7 +171,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -178,7 +183,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -190,7 +195,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -202,7 +207,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -214,7 +219,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <div class="item">
@@ -226,7 +231,7 @@
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
-                  <button class="button card-btn"><a href="#">Order Now</a></button>
+                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>              
               <!--items end--->                
@@ -255,7 +260,8 @@
 
     <!---------------------JS-------------------->      
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js"></script><!--carousel script-->
+    <script src="backtotop.js"></script>
   
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

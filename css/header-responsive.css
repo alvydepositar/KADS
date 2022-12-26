@@ -125,3 +125,12 @@ a {
     color: #C70800;
     transition: all 0.2s;
 }
+
+/*** links ****/
+.link-style {
+    color: #C70800;
+}
+
+.link-style:hover {
+    color: #2C293A;
+}

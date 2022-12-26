@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroller">
 
 <head>
     <meta charset="utf-8">
@@ -165,9 +165,22 @@
     </section>
     <!-- end of cart and order summary page -->
 
+    <!-- back to top button -->
+    <button
+        type="button"
+        class="btn btn-danger btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- back to top button end --> 
+
     <?php
         include 'footer.html';
     ?>
+
+    <!---------------------JS-------------------->          
+    <script src="backtotop.js"></script>
 
     <script>
         // for quantity spinner

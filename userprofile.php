@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroller">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
         <!-- css -->
         <link rel="stylesheet" href="css/header-responsive.css" />
         <link rel="stylesheet" href="css/footer.css" />
-        <link rel="stylesheet" href="css/userprofile.css" />
+        <link rel="stylesheet" href="css/user.css" />
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <!-- fontawesome -->
@@ -89,7 +89,7 @@
                   </div>
                 </div>   
                 
-                <div class="row">                  
+                <div class="row" style="margin-bottom: 20px;">                  
                   <div class="col">
                     <label for="inputEmail">Date of birth</label>
                     <input type="date" class="form-control" id="inputBday" placeholder="2000/01/01">                    
@@ -103,12 +103,23 @@
           </div>                    
         </div>     
 
+        <!-- back to top button -->
+        <button
+          type="button"
+          class="btn btn-danger btn-floating btn-lg"
+          id="btn-back-to-top"
+          >
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        <!-- back to top button end --> 
+
         
         <?php
           include 'footer.html';
         ?>
 
-        <!---------------------JS-------------------->        
+        <!---------------------JS-------------------->     
+        <script src="backtotop.js"></script>   
         <!-- bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroller">
   <head>
     <meta charset="utf-8" />
     <title>KADS | My Addresses</title>
@@ -13,62 +13,68 @@
     />
     <!-- css -->
     <link rel="stylesheet" href="css/header-responsive.css" /> 
-    <link rel="stylesheet" href="css/myAddresses.css" />
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/footer.css" />   
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <?php
       include 'header-user.html';
     ?>
 
-    <div class="content-container container d-flex justify-content-center">
-      <div class="row content-wrapper">
-        <div class="col-4 left-content">
-          <div class="container">
-            <div class="row links-title">My Account</div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="userprofile.php">
-                  <button type="button" class="side-links">My Profile</button>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="myAddresses.php">
-                  <button type="button" class="side-links side-links-active">
-                    My Addresses                  
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="changePass.php">
-                  <button type="button" class="side-links">Change Password</button>
-                </a>
-              </div>
-            </div>
-            <div class="row links-title">My Orders</div>
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-11">
-                <a href="orderhistory.php">
-                  <button type="button" class="side-links">Order History</button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col right-content">
-          <h1 class="container-title text-center">My Addresses</h1>
-          <div class="title-line"></div>
+     <!-------------- content start --------------->
 
-          <form class="form-style">
+     <div class="content-container container d-flex justify-content-center">          
+          <div class="row content-wrapper">
+            <div class="col-4 left-content">
+              <div class="container">
+                <div class="row links-title-top">My Account</div>      
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="userprofile.php">
+                      <button type="button" class="side-links">My Profile</button>                    
+                    </a>
+                  </div>                  
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="myAddresses.php">
+                    <button type="button" class="side-links side-links-active">
+                      My Addresses                  
+                    </button>
+                    </a>
+                  </div>                  
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="changePass.php">
+                      <button type="button" class="side-links">Change Password</button>
+                    </a>
+                  </div>                  
+                </div>                
+                <div class="row links-title">My Orders</div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
+                    <a href="orderhistory.php">
+                      <button type="button" class="side-links">Order History</button>
+                    </a>
+                  </div>                  
+                </div>                  
+              </div>
+
+            </div>
+            <div class="col right-content">
+              <h1 class="container-title text-center">My Addresses</h1>
+              <div class="title-line"></div>
+
+              <form class="form-style">
             <div class="row">
               <div class="col">
                 <label for="address">Billing Address</label>
@@ -127,7 +133,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" style="margin-bottom: 20px;">
               <div class="col">
                 <input type="checkbox" id="same" name="same" value="same" />
                 <label for="same">
@@ -138,16 +144,28 @@
 
             <button type="submit" class="btn btn-save">Save</button>
           </form>
-        </div>
-      </div>
-    </div>
+
+            </div>
+          </div>                    
+        </div>     
     
+    <!-- back to top button -->
+    <button
+      type="button"
+      class="btn btn-danger btn-floating btn-lg"
+      id="btn-back-to-top"
+      >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- back to top button end --> 
     
     
     <?php
       include 'footer.html';
     ?>
-      
+    
+    <!---------------------JS-------------------->          
+    <script src="backtotop.js"></script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

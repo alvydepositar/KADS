@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroller">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,12 +68,23 @@
           <p>By using our website, you hereby consent to our Privacy Policy and agree to its <a href="terms.php">Terms and Conditions</a>.</p>									
                     
         </div>
+
+        <!-- back to top button -->
+        <button
+          type="button"
+          class="btn btn-danger btn-floating btn-lg"
+          id="btn-back-to-top"
+          >
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        <!-- back to top button end --> 
           
         <?php
           include 'footer.html';
         ?>
 
         <!---------------------JS-------------------->        
+        <script src="backtotop.js"></script>
         <!-- bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>

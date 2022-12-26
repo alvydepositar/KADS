@@ -14,16 +14,22 @@
         background: #2C2A3A;
     }
 
-    /* Scrollbar */
-    .scroller {        
-        overflow-y: scroll;
-        overflow-x: hidden; 
-        scrollbar-color: #C70800 #2C2A3A;
-        scrollbar-width: thin;       
-    }
-    .scroller:hover, .scroller:focus, .scroller:active{        
-        scrollbar-color: #8e0001 #2C2A3A;     
-    }    
+    /* Scrollbar */    
+        /* width */ ::-webkit-scrollbar {width: 8px;}        
+        /* track */ ::-webkit-scrollbar-track {background: #2C2A3A;}
+        /* handle */ ::-webkit-scrollbar-thumb {background: #8e0001;}
+        /* handle on hover */ ::-webkit-scrollbar-thumb:hover {background: #C70800;} 
+
+        /* firefox scrollbar */
+        .scroller {        
+            overflow-y: scroll;
+            overflow-x: hidden; 
+            scrollbar-color: #C70800 #2C2A3A;
+            scrollbar-width: thin;       
+        }
+        .scroller:hover, .scroller:focus, .scroller:active{        
+            scrollbar-color: #8e0001 #2C2A3A;     
+        }    
 
     /* Back to Top */
     #btn-back-to-top {

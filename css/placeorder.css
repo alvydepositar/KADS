@@ -66,7 +66,8 @@ form > button[type='submit']:hover, form > button[type='submit']:focus, .btn-sub
     margin-left: calc(50% - 350px/2);
 }
 
-input {
+input, select {
     font-family: Inter !important;
     font-weight: normal;
+    margin-bottom: 10px;
 }

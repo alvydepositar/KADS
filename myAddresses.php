@@ -11,6 +11,7 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- css -->
     <link rel="stylesheet" href="css/header-responsive.css" /> 
     <link rel="stylesheet" href="css/user.css" />
@@ -77,7 +78,7 @@
               <form class="form-style">
             <div class="row">
               <div class="col">
-                <label for="address">Billing Address</label>
+                <label for="address">Delivery Address</label>
                 <input
                   type="text"
                   class="form-control"
@@ -118,28 +119,32 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row">                  
               <div class="col">
-                <label for="phone">Contact Number</label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="phone"
+                <label for="zip">ZIP Code</label>
+                <input type="text" class="form-control" id="zip" 
+                  placeholder="ZIP" 
+                  pattern="[0-9]{4}" 
+                  maxlength="4">
+              </div>
+
+              <div class="col">
+                <label for="pnumber">Phone</label>
+                <input type="text" class="form-control" id="pnumber"
                   placeholder="09*********"
                   pattern="[0-9]{4}[0-9]{3}[0-9]{4}"
                   minlength="11"
-                  maxlength="11"
-                />
+                  maxlength="11">
               </div>
-            </div>
+            </div>  
 
             <div class="row" style="margin-bottom: 20px;">
-              <div class="col">
+              <!--<div class="col">
                 <input type="checkbox" id="same" name="same" value="same" />
                 <label for="same">
                   My billing and shipping address are the same</label
                 ><br />
-              </div>
+              </div>-->
             </div>
 
             <button type="submit" class="btn btn-save">Save</button>
@@ -166,6 +171,14 @@
     
     <!---------------------JS-------------------->          
     <script src="backtotop.js"></script>
+     <!-- input mask for phone number -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+      <script>
+        $(document).ready(function() {
+            $("#pnumber").inputmask('99999999999');
+            $("#zip").inputmask('9999');
+        }); 
+      </script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

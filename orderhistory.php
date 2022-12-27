@@ -9,7 +9,7 @@
         <!-- css -->
         <link rel="stylesheet" href="css/header-responsive.css" />
         <link rel="stylesheet" href="css/footer.css" />
-        <link rel="stylesheet" href="css/userprofile.css" />
+        <link rel="stylesheet" href="css/user.css" />
         <link rel="stylesheet" href="css/orderhistory.css" />
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="favicon.ico" />

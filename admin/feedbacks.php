@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> KADS | Admin</title>
+    <title>KADS | Admin</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
@@ -13,7 +13,6 @@
 
     <style>    
         /* Style The Dropdown Button */
-
         *{
             font-family: "Readex Pro";
         }
@@ -22,7 +21,6 @@
         color: white;
         padding: 16px;
         font-size: 16px;
-        font-family: "Readex Pro";
         border: none;
         cursor: pointer;
         }
@@ -30,16 +28,13 @@
         .dropdown {
         position: relative;
         display: inline-block;
-        font-family: "Readex Pro";
         }
 
         .dropdown-content {
         display: none;
         position: absolute;
-        font-family: "Readex Pro";
         background-color: #f9f9f9;
         min-width: 160px;
-        font-family: "Readex Pro";
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
         }
@@ -48,7 +43,6 @@
         .dropdown-content a {
         color: black;
         padding: 12px 16px;
-        font-family: "Readex Pro";
         text-decoration: none;
         display: block;
         }
@@ -216,8 +210,9 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                    <h4 class="page-title">Feedbacks</h4>
                     </div>
+                    
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -229,98 +224,55 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Three charts -->
-                <!-- ============================================================== -->
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Orders</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span class="counter text-success"> <b style="color:#8e0001;">Order Count</b> </span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Sales</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash2"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span class="counter text-purple"><b style="color:#8e0001;">Total Sale</b></span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Employees</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash3"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span class="counter text-info"><b>User Count</b></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- RECENT SALES -->
+                <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-sm-12">
                         <div class="white-box">
+                            <h3 class="box-title">Feedbacks</h3>   
+
                             <div class="table-responsive">
-                                <table class="table no-wrap">
+                                <table class="table text-nowrap">
                                     <thead>
-                                        <tr>
-                                            <th class="border-top-0">Order Number</th>
-                                            <th class="border-top-0">Product</th>
-                                            <th class="border-top-0">Quantity</th>
-                                            <th class="border-top-0">Total</th>
-                                            <th class="border-top-0">Date of Order</th>
-                                            <th class="border-top-0">Status</th>
-                                            <th class="border-top-0">Server</th>
+                                        <tr>    
+                                            <th class="border-top-0">Date Submitted</th>                                        
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Email Address</th>
+                                            <th class="border-top-0">Feedback</th>                                            
                                         </tr>
                                     </thead>
-                                    <!----
+                                    
                                     <tbody>
-                                    <?php
-                                        //if(($ordercount) >= 0) {
-                                            //while($row = mysqli_fetch_assoc($resultOrder)){
-                                    ?>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td class="txt-oflo">Product Name</td>
-                                            <td>Quantity</td>
-                                            <td><span class="text-success"><b style="font-weight: 500;color:#8e0001;">Total</b></span></td>
-                                            <td>Order Date</td>
-                                            <td>Status ID</td>
-                                            <td>Employee ID</td>
+                                        <tr>  
+                                            <td>Date submitted</td>                                          
+                                            <td>Name</td>
+                                            <td>Email address</td>
+                                            <td>Feedbacks, concerns, etc.</td>                                                                                       
+                                            <td class="col-1">
+                                            <a class="btn btn-solid" href="delete-feedback.php?id=">Delete</a>         
+                                            </td>
                                         </tr>
-                                    <?php 
-                                          //  }
-                                       // }
-                                    ?> 
-                                        </tr>
-                                    </tbody>--->
+                                       
+                                            <tr>
+                                            <td colspan="3">No Records Found</td>
+                                            </tr>
+                                        
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -334,7 +286,6 @@
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
-
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
@@ -343,6 +294,9 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+    
+    	
+
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -350,18 +304,12 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app-style-switcher.js"></script>
-    <script src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
-    <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="js/pages/dashboards/dashboard1.js"></script>
 </body>
 
 </html>

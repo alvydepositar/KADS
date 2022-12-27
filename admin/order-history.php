@@ -222,6 +222,12 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
+                            <h3 class="box-title">Orders
+                                <a href="add-order.php"><button class="btn btn-border" >
+                                    Add Order
+                                </button></a>
+                            </h3>                            
+                            
                             <div class="table-responsive">
                                 <table class="table no-wrap">
                                     <thead>
@@ -234,7 +240,7 @@
                                             <th class="border-top-0">Time of Order</th>
                                             <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Customer</th>
-                                            <th class="border-top-0">Server</th>
+                                            <th class="border-top-0">Server</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -251,7 +257,13 @@
                                             <td>Order Time<?php //echo $row['ordertime']; ?></td>
                                             <td>Stat Name<?php //echo $row['statname']; ?></td>
                                             <td>Customer<?php //echo $row['customer']; ?></td>
-                                            <td>Last Name<?php //echo $row['lastname']; ?></td>
+                                            <td>Server<?php //echo $row['lastname']; ?></td>
+                                            <td class="col-1">
+                                            <a class="btn btn-solid" href="edit-order.php?edit=">Edit</a>                                            
+                                            </td>
+                                            <td class="col-1">
+                                            <a class="btn btn-solid" href="delete-order.php?id=">Delete</a>         
+                                            </td>
                                         </tr>
                                     <?php 
                                            // }

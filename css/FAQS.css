@@ -211,3 +211,11 @@ line-height: 24px;
 letter-spacing: 0.2px;
 color:#757575;
 }
+
+.q-container {
+  padding: 50px 0;
+}
+
+.left-col, .right-col {
+  padding: 25px calc(20px + 0.5vw);
+}

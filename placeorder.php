@@ -9,7 +9,7 @@
         <!-- css -->   
         <link rel="stylesheet" href="css/header-responsive.css" />             
         <link rel="stylesheet" href="css/footer.css" />
-        <link rel="stylesheet" href="css/user.css" />
+        <link rel="stylesheet" href="css/placeorder.css" />
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <!-- fontawesome -->
@@ -69,11 +69,11 @@
                   </div>
                 </div>    
                 
-                <div class="form-check">
+                <!--<div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                   <label class="form-check-label" for="defaultCheck1">
                     My billing and delivery address are the same</label>
-                </div>
+                </div>-->
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                   <label class="form-check-label" for="defaultCheck1">

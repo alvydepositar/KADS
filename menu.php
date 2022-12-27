@@ -49,14 +49,14 @@
           <ul class="navbar-nav">
               <li class="nav-item">
                 <a href="login.php">
-                  <button class="btn btn-primary" type="submit" id="sign-in">Sign In</button>
+                  <button class="btn btn-primary" type="submit" id="sign-in-menu">Sign In</button>
                 </a>
                 <a href="registration.php">
-                  <button class="btn btn-primary" type="submit" id="register">Register</button>     
+                  <button class="btn btn-primary" type="submit" id="register-menu">Register</button>     
                 </a>
                                       
                   <a href="login.php">
-                    <img class="cart" src="images/cart-vector-1.png" alt="cart" height="25" width="25"/>
+                    <img class="cart" src="images/cart-vector-menu.png" alt="cart" height="25" width="25"/>
                   </a>                
               </li>                               
               <li class="nav-responsive-padding-bottom"></li>                  
@@ -67,20 +67,20 @@
     <!-- header end -->
 
     <!-- menu showcase -->
-    <div class="menu_showcase">
-        <div class="description_box">
-            <div class="description_left">
-                <img class="town-emoji" src="images/town-emoji.png">
-                <span class="description_tagline">THE BEST SUSHI IN TOWN</span>
-                <p class="description_header">Different Types of Sushi to Choose From!</p>
-                <p class="description_text">At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus
-                    vestibulum,
-                    facilisi ac, sed facibus. At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis c</p>
-            </div>
-            <div class="description_right">
-                <img class="sushi-blob" src="images/sushi-blob.png">
-            </div>
+    <div class="d-flex content-1">
+      <div class="me-auto ml-auto left1 align-self-center">
+        <div class="description_left">
+            <img class="town-emoji" src="images/town-emoji.png">
+            <span class="description_tagline">THE BEST SUSHI IN TOWN</span>
+            <p class="description_header">Different Types of Sushi to Choose From!</p>
+            <p class="description_text">At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus
+                vestibulum,
+                facilisi ac, sed facibus. At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis c</p>
         </div>
+      </div>
+      <div class="description_right">
+        <img class="sushi-blob" src="images/sushi-blob.png">
+      </div>
     </div>
     <!-- end of menu showcase -->
 

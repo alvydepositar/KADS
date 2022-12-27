@@ -11,6 +11,7 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- css -->
     <link rel="stylesheet" href="css/header-responsive.css" /> 
     <link rel="stylesheet" href="css/user.css" />
@@ -77,10 +78,10 @@
               <form class="form-style">
                 <div class="row">
                   <div class="col">
-                    <label for="Password">Current Password</label>
+                    <label for="password">Current Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                      class="form-control showhide-password"
                       id="password"
                       placeholder="********"
                     />
@@ -89,25 +90,26 @@
 
                 <div class="row">
                   <div class="col">
-                    <label for="inputLastName">New Password</label>
+                    <label for="newpass">New Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                      class="form-control showhide-password"
                       id="newpass"
                       placeholder="********"
-                    />
+                    />                    
                   </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 20px;">
                   <div class="col">
-                    <label for="inputEmail">Confirm Password</label>
+                    <label for="confirmpass">Confirm Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                      class="form-control showhide-password"
                       id="confirmpass"
                       placeholder="********"
                     />
+                    <input type="checkbox" class="showPassword"><span class="show-pw">Show Password</span>
                   </div>
                 </div>
 
@@ -135,6 +137,7 @@
     
     <!---------------------JS-------------------->        
     <script src="backtotop.js"></script>
+    <script src="showpw.js"></script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

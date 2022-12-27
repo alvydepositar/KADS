@@ -58,6 +58,7 @@
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- css -->    
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/header-responsive.css" />      
@@ -66,56 +67,61 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>    
 </head>
-<body style="padding-bottom:0">
+<body>
   <?php
     include 'header-guest.html';
   ?>
 
-  <div class="content">
-    <div class="container">
-      <div class="row">
-        <div class="col" style="padding-bottom:100px;">
-          <img src="images/sushi-login1.jpg" alt="Dummy Image">
+<div class="d-flex flex-wrap container">
+    <div class="row w-100 content-style">
+      <div class="left-container col-5">
+        <div class="crop-img">
+          <img src="images/sushi-login1.jpg" alt="dummy image">
         </div>
+      </div>
+      <div class="right-container col align-self-center">
+        <div class="title">Sign In</div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-        <div class="col">
-          <div class="title">Sign In</div>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+          <?php 
+            if(!empty($login_err)){
+              echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            }        
+          ?>
 
-            <?php 
-              if(!empty($login_err)){
-                echo '<div class="alert alert-danger">' . $login_err . '</div>';
-              }        
-            ?>
+          <div class="col">
+            <h6 class="input-lbl">Email</h6>
+            <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" name="email" id="email" placeholder="abc@gmail.com" require>
+            <span class="invalid-feedback"><?php echo $email_err; ?></span> 
+          </div>
 
+          <div class="col">
+            <h6 class="input-lbl">Password</h6>
+            <input type="password" class="form-control showhide-password <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" name="password" id="password" placeholder="********" require>        
+            <input type="checkbox" class="showPassword"><span class="show-pw">Show Password</span>
+            <span class="invalid-feedback"><?php echo $password_err; ?></span> 
+            <!-- show/hide pw toggle icon -->
+            <!--
+            <span class="input-group-text align-self-stretch align-items-center" onclick="password_show_hide();">
+              <i class="fas fa-eye" id="show_eye"></i>
+              <i class="fas fa-eye-slash d-none" id="hide_eye"></i>                
+            </span>  
+            -->
+          </div>          
 
-              <div class="col">
-                <h6>Email</h6>
-                <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" name="email" id="email" placeholder="abc@gmail.com" require>
-                <span class="invalid-feedback"><?php echo $email_err; ?></span> 
-              </div>
+          <div class="row">
+            <div class="col">
+              <button class="btn-arrow btn" id="btn-arrow"><i class='fas fa-arrow-right'></i></button>                                                 
+            </div>
+          </div>
 
-              <div class="col">
-                <h6>Password</h6>
-                <input type="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" name="password" id="password" placeholder="********" require>
-                <span class="invalid-feedback"><?php echo $password_err; ?></span> 
-              </div>
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn-arrow btn"><i class='fas fa-arrow-right'></i></button>                                                 
-                </div>
-              </div>
-
-              <div class="row" style="margin-bottom: 40px;">
-                <div class="col">
-                  Don't have an account yet? 
-                  <a class="link-style" href="registration.php">Sign up.</a>
-                </div>
-              </div>
-
-            </form>
-        </div>
+          <div class="row" style="margin-bottom: 40px;">
+            <div class="col">
+              Don't have an account yet? 
+              <a class="link-style" href="registration.php">Sign up.</a>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -137,6 +143,6 @@
 
 <!---------------------JS-------------------->        
 <script src="backtotop.js"></script>
-    
+<script src="showpw.js"></script>
 </body>
 </html>

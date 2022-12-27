@@ -46,6 +46,32 @@
         background-color: #8e0001;
         border: none;
     }
+
+    /* show/hide pw */
+    .show-pw {
+        padding-left: 10px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    /**********show pw with icon*********/
+    /*
+    .fa-eye-slash, .fa-eye {
+        color: #2C2A3A;
+        background-color: transparent;
+        border: none;
+        display: inline-block;
+        line-height: 1.7;
+        text-align: center;    
+    }    
+
+    .input-group-text {
+        margin-left: -40px;
+        background-color: transparent;
+        border: none;
+    }
+    */
    
 /************** FOOTER *****************/
 @import url('https://fonts.googleapis.com/css?family=Inter');

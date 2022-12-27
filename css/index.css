@@ -144,7 +144,7 @@ h1 {
 }
 
 .follow {
-  font-size: calc(10px + 1vw);
+  font-size: calc(12px + 1vw);
   color: #12151c;
   font-family: Inter;
 }
@@ -158,8 +158,12 @@ h1 {
   margin: 0 50px;
 }
 
+.menutext {
+  font-size: 18px;
+}
+
 .menutext1 {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 /************************************/
@@ -177,7 +181,7 @@ h1 {
 }
 
 .ohayo-text {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .MultiCarousel { 
@@ -200,9 +204,15 @@ h1 {
 }
 .MultiCarousel .leftLst { 
   left:0; 
+  width:35px;
+  height:35px;
+  text-align: center;
 }
 .MultiCarousel .rightLst { 
   right:0; 
+  width:35px;
+  height:35px;
+  text-align: center;
 }
 .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { 
   pointer-events: none; background:var(--secondary); border: none;
@@ -217,7 +227,7 @@ h1 {
 
 .card-text {
   font-family: "Inter";
-  font-size: 10px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 10px;
 }
@@ -227,7 +237,7 @@ h1 {
   color: #fff;
   border-radius: 5px;
   font-family: Inter;
-  font-size: 12px;
+  font-size: 14px;
   border: none;
   padding: 8px 15px;
   margin-bottom: 10px;

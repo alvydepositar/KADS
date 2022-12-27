@@ -62,7 +62,7 @@
 
     <!--- content start --->
     <div class="d-flex content-1">
-      <div class="me-auto pt-100 ml-auto left1">
+      <div class="me-auto align-self-center ml-auto left1">
         <h1>This Is <br>How We <br>Roll!<span class="emoji1">&#x1F363&#x1F962</span></h1>
         <p class="text">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -236,8 +236,8 @@
               </div>              
               <!--items end--->                
           </div>
-          <button class="btn btn-primary leftLst"><</button>
-          <button class="btn btn-primary rightLst">></button>
+          <button class="btn btn-primary leftLst"><i class="fas fa-angle-left"></i></button>
+          <button class="btn btn-primary rightLst"><i class="fas fa-angle-right"></i></button>
         </div>
       </div>
       <!--carousel end--->

@@ -103,3 +103,8 @@ body{
     background-color: #8e0001;
     color: #fff;
 }
+
+/********** show/hide pw ******/
+.show-pw {
+    padding-bottom: 20px;
+}

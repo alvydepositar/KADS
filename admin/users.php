@@ -1,3 +1,23 @@
+<?php
+
+require "../conn.php";
+
+    session_start();
+
+    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+        header("location: ../login.php");
+        exit;
+    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+        header("location: ../userprofile.php");
+        exit;
+    } else {
+
+    $username = $_SESSION['username'];
+
+    $query="SELECT * FROM info_accts";
+    $result=mysqli_query($conn,$query);
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -243,37 +263,37 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            /*if(mysqli_num_rows($result) > 0) {
-                                                while($row = mysqli_fetch_assoc($result)){*/
+                                            if(mysqli_num_rows($result) > 0) {
+                                                while($row = mysqli_fetch_assoc($result)){
                                         ?>
                                         <tr>
-                                            <td>ID<?php //echo $row['id'];?></td>
-                                            <td>First Name<?php //echo $row['firstname']; ?></td>
-                                            <td>Last Name<?php //echo $row['lastname']; ?></td>
-                                            <td>Username<?php //echo $row['username']; ?></td>
-                                            <td>Role ID<?php /*if ($row['roleid'] == 1){
+                                            <td><?php echo $row['id'];?></td>
+                                            <td><?php echo $row['firstname']; ?></td>
+                                            <td><?php echo $row['lastname']; ?></td>
+                                            <td><?php echo $row['username']; ?></td>
+                                            <td><?php if ($row['role'] == 1){
                                                         echo "admin";
-                                                    }else if ($row['roleid'] == 2) {
-                                                        echo"cashier";
-                                                    }  */?>
+                                                    }else if ($row['role'] == 2) {
+                                                        echo "user";
+                                                    } ?>
                                             </td>
 
                                         
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="view-user.php?id=<?php //echo $row['id']; ?>">View</a>         
+                                            <a class="btn btn-solid" href="view-user.php?id=<?php echo $row['id']; ?>">View</a>         
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="edit-user.php?edit=<?php //echo $row['id']; ?>">Edit</a>                                            
+                                            <a class="btn btn-solid" href="edit-user.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-user.php?id=<?php //echo $row['id']; ?>">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-user.php?id=<?php echo $row['id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php
-                                               // }
-                                            //}
+                                                }
+                                            }
                                         ?>
                                     </tbody>
                                 </table>
@@ -335,5 +355,5 @@
 </html>
 
 <?php
-   // }
+   }
 ?>

@@ -1,15 +1,12 @@
 <?php
-    /*session_start();
+    /*
+    include "../conn.php";
+    session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1){
-        header("location: admin/dashboard.php");
+    if(isset($_SESSION["loggedin"])){
+        header("location: dashboard.php");
         exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: cashier/index.php");
-        exit;
-    }
-
-    include "dbconnection.php";
+    } 
 
     $username = $password = "";
     $username_err = $password_err = $login_err = "";
@@ -31,7 +28,7 @@
         }
 
         if(empty($username_err) && empty($password_err)){
-            $sql = "SELECT * FROM usertable WHERE username = '$username'";
+            $sql = "SELECT * FROM admin_account WHERE username = '$username'";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) === 1) {

@@ -1,7 +1,16 @@
 <?php
     require 'conn.php';
-    #authorization smth
-    
+
+    session_start();
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1){
+        header("location: admin/dashboard.php");
+        exit;
+    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+        header("location: userprofile.php");
+        exit;
+    }
+
     $email = $password =  "";
     $email_err = $password_err = $login_err = "";
 
@@ -22,26 +31,35 @@
       }
 
       if(empty($email_err) && empty($password_err)) {
-        $sql = "SELECT * FROM customer_account WHERE email = '$email'";
+        $sql = "SELECT * FROM accounts WHERE username = '$email'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) === 1) {
           $row = mysqli_fetch_assoc($result);
           $verifypassword = password_verify($password, $row['password']);
-            if($email === $row['email'] && $verifypassword) {
-            //insert later - role verifying (admin | customer)
-            //insert later - session variables
-            header("Location: userprofile.php");
-            exit();
+            if($email === $row['username'] && $verifypassword) {
+              if($row['role'] == 1) {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION["loggedin"] = true;
+                $_SESSION['role'] = $row['role'];
+                header("Location: admin/dashboard.php");
+                exit();
+                }
+              else if ($row['role'] == 2) {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION["loggedin"] = true;
+                $_SESSION['role'] = $row['role'];
+                header("Location: userprofile.php");
+                exit();
+                }
             } else {
-            $login_err = "Invalid username or password.";
-          }
+              $login_err = "Invalid username or password.";
+              }
         } else {
           $login_err = "User does not exist.";
         }
       }
- 
-  }
+    }
     
 ?>
 

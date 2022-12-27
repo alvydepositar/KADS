@@ -1,12 +1,22 @@
 <?php
     require 'conn.php'; 
-    #authorization smth
+
+    session_start();
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1){
+        header("location: admin/dashboard.php");
+        exit;
+    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+        header("location: userprofile.php");
+        exit;
+    }
     
     $terms = $firstname = $lastname = $email = $bday = $phone = $password = $repassword = "";
     $terms_err = $firstname_err = $lastname_err = $email_err =  $bday_err = $phone_err = $password_err = $repassword_err = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
       
+      //not working pa | need mag-agree sa terms
       if (empty($_POST['terms'])) {
         $terms_err = "You have to agree to our terms and conditions.";
       } 
@@ -33,7 +43,7 @@
       if(empty(trim($_POST["email"]))){
           $email_err = "Please enter email.";
       } else{
-        $sql = "SELECT id FROM customer_detail WHERE email = ?";
+        $sql = "SELECT id FROM accounts WHERE username = ? && role = 2";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -94,29 +104,30 @@
       if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($bday_err) && empty($phone_err) && empty($password_err) && empty($repassword_err)){
           
           // Prepare an insert statement
-          $sql = "INSERT INTO customer_detail (firstname, lastname, email, phone, birthdate) VALUES (?, ?, ?, ?, ?)";
+          $sql = "INSERT INTO info_accts (firstname, lastname, email, phone , birthday) VALUES (?, ?, ?, ?, ?)";
           
            
           if($stmt = mysqli_prepare($conn, $sql)){
               // Bind variables to the prepared statement as parameters
-              mysqli_stmt_bind_param($stmt, "sssss", $param_firstname, $param_lastname, $param_email, $param_phone, $param_birthdate);
+              mysqli_stmt_bind_param($stmt, "sssss", $param_firstname, $param_lastname, $param_email, $param_phone, $param_birthday);
               
               // Set parameters
               $param_firstname = $firstname;
               $param_lastname = $lastname;
               $param_email = $email;
               $param_phone = $phone;
-              $param_birthdate = $bday;
+              $param_birthday = $bday;
               
               // Attempt to execute the prepared statement
               if(mysqli_stmt_execute($stmt)){
                   //try to insert another sql
-                  $sql1 = "INSERT INTO customer_account (email, password) VALUES (?, ?)";
+                  $sql1 = "INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)";
                   if($stmt1 = mysqli_prepare($conn, $sql1)) {
-                    mysqli_stmt_bind_param($stmt1, "ss", $param_email1, $param_password);
+                    mysqli_stmt_bind_param($stmt1, "sss", $param_email1, $param_password, $param_role);
                     
                     $param_email1 = $email;
                     $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+                    $param_role = 2;
                     
                     if(mysqli_stmt_execute($stmt1)){
                       // Redirect to login page
@@ -129,9 +140,6 @@
             // Close statement
             mysqli_stmt_close($stmt);
           }
-
-          
-          
 
       }
       // Close connection

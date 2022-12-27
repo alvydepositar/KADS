@@ -1,3 +1,23 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+        header("location: ../login.php");
+        exit;
+    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+        header("location: ../userprofile.php");
+        exit;
+    } else {
+    include "../conn.php";
+
+    $username = $_SESSION['username'];
+    $userID = $_GET['id'];
+    
+    $query="SELECT * FROM info_accts WHERE id = $userID";
+    $result=mysqli_query($conn,$query);
+    $row = mysqli_fetch_assoc($result)
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -261,19 +281,23 @@
                         <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                             <p>
                             <div class="col p-1"><b>NAME:</b></div>
-                            <div class="col-8 p-1">firstname middlename lastname<?php //echo $row['firstname'] . ' ' . $row['middlename'] .' '. $row['lastname'] ; ?></div> 
+                            <div class="col-8 p-1"><?php echo $row['firstname'] . '  '. $row['lastname'] ; ?></div> 
                             </p>                       
                         </div>  
                         <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                             <p>
                             <div class="col p-1"><b>USERNAME:</b></div>
-                            <div class="col-8 p-1">username<?php //echo $row['username']; ?></div> 
+                            <div class="col-8 p-1"><?php echo $row['username']; ?></div> 
                             </p>                       
                         </div>  
                         <div class="row">
                             <p>
                             <div class="col p-1"><b>ROLE:</b></div>
-                            <div class="col-8 p-1">name<?php //echo $row['name']; ?></div> 
+                            <div class="col-8 p-1"><?php if ($row['role'] == 1){
+                                                        echo "admin";
+                                                    }else if ($row['role'] == 2) {
+                                                        echo "user";
+                                                    } ?></div> 
                             </p>                       
                         </div>                    
                     </div> 
@@ -324,6 +348,7 @@
 </body>
 
 </html>
-        <?php
-    //}
+
+<?php
+    }
 ?>

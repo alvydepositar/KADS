@@ -110,7 +110,7 @@
             <label class="form-check-label" for="defaultCheck1">
               Create an account for later</label>
           </div>
-          <a href="orderhistory.php">
+          <a href="ongoingorder.php">
             <button type="submit" class="btn-submit">Place Order</button>            
           </a>    
         </form>

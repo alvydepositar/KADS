@@ -4,10 +4,10 @@ require "../conn.php";
 
     session_start();
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    if (!isset($_SESSION['loggedin']) && !isset($_SESSION['role'])){
         header("location: ../login.php");
         exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+    } else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['role'] === 2) {
         header("location: ../userprofile.php");
         exit;
     } else {
@@ -142,7 +142,7 @@ require "../conn.php";
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium">Username</span></a>
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>

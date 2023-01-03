@@ -1,9 +1,26 @@
 <?php
+session_start();
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    header("location: ../login.php");
+    exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+    header("location: ../login.php");
+    exit;
+} else {
+    require_once "../conn.php";
+
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
-    require_once "../dbconnection.php";
-    
+    $id = $_POST['id'];
+
+    $query = "SELECT image FROM products WHERE id = $id";
+	$Result = mysqli_query($conn, $query);
+	$fetchRecords = mysqli_fetch_assoc($Result);
+	$fetchImgTitleName = $fetchRecords['image'];
+    $createDeletePath = "../img/menu/".$fetchImgTitleName;
+    unlink($createDeletePath);
+
     // Prepare a delete statement
     $sql = "DELETE FROM products WHERE id = ?";
     
@@ -17,7 +34,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Records deleted successfully. Redirect to landing page
-            header("location: category.php");
+            header("location: products.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -99,3 +116,5 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     </div>
 </body>
 </html>
+
+<?php } ?>

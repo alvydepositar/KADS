@@ -289,7 +289,19 @@
                             <div class="col p-1"><b>USERNAME:</b></div>
                             <div class="col-8 p-1"><?php echo $row['username']; ?></div> 
                             </p>                       
-                        </div>  
+                        </div>
+                        <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                            <p>
+                            <div class="col p-1"><b>PHONE:</b></div>
+                            <div class="col-8 p-1"><?php echo $row['phone']; ?></div> 
+                            </p>                       
+                        </div>
+                        <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                            <p>
+                            <div class="col p-1"><b>BIRTHDAY:</b></div>
+                            <div class="col-8 p-1"><?php echo $row['birthday']; ?></div> 
+                            </p>                       
+                        </div>    
                         <div class="row">
                             <p>
                             <div class="col p-1"><b>ROLE:</b></div>
@@ -307,7 +319,6 @@
                     <p> </p>
                     <p><b></b> </p>
                     
-                    <a href="edit-user.php?userID=<?php //echo $row['id'] ?>"><button class="button btn-edit">Edit</button></a>
                 </div>
             </div>    
             <!-- ============================================================== -->

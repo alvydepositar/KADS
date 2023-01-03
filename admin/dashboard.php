@@ -1,3 +1,34 @@
+<?php
+
+require "../conn.php";
+
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) && !isset($_SESSION['role'])){
+        header("location: ../login.php");
+        exit;
+    } else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['role'] === 2) {
+        header("location: ../userprofile.php");
+        exit;
+    } else {
+
+    $username = $_SESSION['username'];
+
+    $orderSQL = "SELECT * FROM user_orders INNER JOIN products ON user_orders.orders = products.id ";
+    $resultOrder = mysqli_query($conn, $orderSQL);
+    $ordercount = mysqli_num_rows($resultOrder);
+    
+    $saleSQL =  "SELECT SUM(orderTotal) AS totalsum FROM user_orders";
+    $sumSQL = mysqli_query($conn, $saleSQL);
+    $rowFetch = mysqli_fetch_assoc($sumSQL); 
+    $totalSale = $rowFetch['totalsum'];
+    
+    $userSQL = "SELECT * FROM info_accts WHERE role = 2";
+    $resultUser = mysqli_query($conn, $userSQL);
+    $usercount = mysqli_num_rows($resultUser);
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -127,7 +158,7 @@
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium">Username</span></a>
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -241,7 +272,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-success"> <b style="color:#8e0001;">Order Count</b> </span></li>
+                                <li class="ms-auto"><span class="counter text-success"> <b style="color:#8e0001;"><?php echo $ordercount; ?></b> </span></li>
                             </ul>
                         </div>
                     </div>
@@ -255,7 +286,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-purple"><b style="color:#8e0001;">Total Sale</b></span></li>
+                                <li class="ms-auto"><span class="counter text-purple"><b style="color:#8e0001;"><?php echo $totalSale; ?></b></span></li>
                             </ul>
                         </div>
                     </div>
@@ -269,7 +300,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-info"><b>User Count</b></span>
+                                <li class="ms-auto"><span class="counter text-info"><b><?php echo $usercount; ?></b></span>
                                 </li>
                             </ul>
                         </div>
@@ -365,3 +396,7 @@
 </body>
 
 </html>
+
+<?php
+   }
+?>

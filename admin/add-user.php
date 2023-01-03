@@ -9,7 +9,7 @@
     } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
         header("location: ../userprofile.php");
         exit;
-    }
+    } else {
     
     $role = $firstname = $lastname = $email = $bday = $phone = $password = $repassword = "";
     $role_err = $firstname_err = $lastname_err = $email_err =  $bday_err = $phone_err = $password_err = $repassword_err = "";
@@ -43,7 +43,7 @@
       if(empty(trim($_POST["email"]))){
           $email_err = "Please enter email.";
       } else{
-        $sql = "SELECT id FROM accounts WHERE username = ? && role = 2";
+        $sql = "SELECT id FROM info_accts WHERE username = ? && role = 2";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -319,3 +319,7 @@
     </div>    
 </body>
 </html>
+
+<?php
+   }
+?>

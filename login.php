@@ -3,13 +3,13 @@
 
     session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1){
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
         header("location: admin/dashboard.php");
         exit;
     } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
         header("location: userprofile.php");
         exit;
-    }
+    } else {
 
     $email = $password =  "";
     $email_err = $password_err = $login_err = "";
@@ -31,7 +31,7 @@
       }
 
       if(empty($email_err) && empty($password_err)) {
-        $sql = "SELECT * FROM accounts WHERE username = '$email'";
+        $sql = "SELECT * FROM info_accts WHERE username = '$email'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) === 1) {
@@ -40,23 +40,23 @@
             if($email === $row['username'] && $verifypassword) {
               if($row['role'] == 1) {
                 $_SESSION['username'] = $row['username'];
-                $_SESSION["loggedin"] = true;
+                $_SESSION['loggedin'] = true;
                 $_SESSION['role'] = $row['role'];
                 header("Location: admin/dashboard.php");
                 exit();
                 }
               else if ($row['role'] == 2) {
                 $_SESSION['username'] = $row['username'];
-                $_SESSION["loggedin"] = true;
+                $_SESSION['loggedin'] = true;
                 $_SESSION['role'] = $row['role'];
                 header("Location: userprofile.php");
                 exit();
                 }
             } else {
-              $login_err = "Invalid username or password.";
+              $login_err = "Incorrect credentials.";
               }
         } else {
-          $login_err = "User does not exist.";
+          $login_err = "Incorrect credentials.";
         }
       }
     }
@@ -109,7 +109,7 @@
 
           <div class="col">
             <h6 class="input-lbl">Email</h6>
-            <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" name="email" id="email" placeholder="abc@gmail.com" require>
+            <input type="text" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" name="email" id="email" placeholder="abc@gmail.com" require>
             <span class="invalid-feedback"><?php echo $email_err; ?></span> 
           </div>
 
@@ -164,3 +164,5 @@
 <script src="showpw.js"></script>
 </body>
 </html>
+
+<?php } ?>

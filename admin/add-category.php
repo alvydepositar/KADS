@@ -1,5 +1,5 @@
 <?php
-/*session_start();
+session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
         header("location: ../admin.php");
@@ -8,26 +8,43 @@
         header("location: ../cashier/index.php");
         exit;
     } else {
-    include "../dbconnection.php";
+    include "../conn.php";
 
     $username = $_SESSION['username'];
-    
-    $catname = $image = "";
-    $catname_err = $image_err = "";
 
-    $query="SELECT * FROM category";
+    $catname = "";    
+    $catname_err = "";
+
+    $query="SELECT * FROM categories";
     $result=mysqli_query($conn,$query);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $image = $_FILES['my_image'];
-	echo "<pre>";
-	print_r($image);
-	echo "</pre>";
+    
+    if(empty(trim($_POST["catname"]))){
+        $catname_err = "Please enter a category name.";
+    } else{
+        $sql = "SELECT id FROM categories WHERE categoryName = ?";
+        
+        if($stmt = mysqli_prepare($conn, $sql)){
+            mysqli_stmt_bind_param($stmt, "s", $param_catname);
+            
+            $param_catname = trim($_POST["catname"]);
+            
+            if(mysqli_stmt_execute($stmt)){
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $catname_err = "This category already exists.";
+                } else{
+                    $catname = trim($_POST["catname"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
 
-	$img_name = $_FILES['my_image']['name'];
-	$img_size = $_FILES['my_image']['size'];
-	$tmp_name = $_FILES['my_image']['tmp_name'];
-	$error = $_FILES['my_image']['error'];
+            mysqli_stmt_close($stmt);
+        }
+    } 
 
     if(empty(trim($_POST["catname"]))){
         $catname_err = "Please enter a first name.";
@@ -36,12 +53,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $catname = trim($_POST["catname"]);
     }
-				$sql = "INSERT INTO category (title, active) VALUES('$catname',  1)";
+				$sql = "INSERT INTO categories (categoryName) VALUES('$catname')";
 				mysqli_query($conn, $sql);
 				header("Location: category.php");
 		}
     
-}*/ 
+}
   
 
 ?>
@@ -81,17 +98,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>   
         <div class="edituserblock">
             <h2>Add Category</h2>  
-            <?php /*if (isset($_GET['error'])):*/ ?>
-                <p><?php /*echo $_GET['error'];*/ ?></p>
-            <?php /*endif*/ ?>
+            <?php if (isset($_GET['error'])): ?>
+                <p><?php echo $_GET['error']; ?></p>
+            <?php endif ?>
 
-            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="catname" class="form-control <?php /*echo (!empty($catname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $catname;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $catname_err;*/ ?></span>
+                    <input type="text" name="catname" class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $catname; ?>">
+                    <span class="invalid-feedback"><?php echo $catname_err; ?></span>
                 </div>
-                <input class="btn btn-primary btn-style" type="submit" name="submit" value="Upload">                
+                <input class="btn btn-primary btn-style" type="submit" name="submit" value="Add Category">                
             </form>
         </div>
     </div>

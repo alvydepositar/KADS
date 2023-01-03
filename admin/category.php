@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+        header("location: ../admin.php");
+        exit;
+    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+        header("location: ../cashier/index.php");
+        exit;
+    } else {
+    include "../conn.php";
+    
+    $username = $_SESSION['username'];
+
+    $query="SELECT * FROM categories";
+    $result=mysqli_query($conn,$query);
+
+    ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -126,7 +145,7 @@
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium">Username</span></a>
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -243,31 +262,30 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                        /*if(mysqli_num_rows($result) > 0) {
+                                        if(mysqli_num_rows($result) > 0) {
                                             while($row = mysqli_fetch_assoc($result)){
-                                                    */
                                         ?>
                                     <tbody>
                                         <tr>
-                                            <td>ID<?php //echo $row['id']; ?></td>
-                                            <td>Title<?php //echo $row['title']; ?></td>
+                                            <td><?php echo $row['id']; ?></td>
+                                            <td><?php echo $row['categoryName']; ?></td>
                                             <td class="col-1">
-                                            <a  class="btn btn-solid" href="edit-category.php?edit=">Edit</a>                                            
+                                            <a  class="btn btn-solid" href="edit-category.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-category.php?id=">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-category.php?id=<?php echo $row['id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php
-                                          /*  }
-                                        } else {*/
+                                            }
+                                        } else {
                                             ?>
                                             <tr>
                                             <td colspan="3">No Records Found</td>
                                             </tr>
                                         <?php
-                                        //}
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -326,3 +344,4 @@
 </body>
 
 </html>
+<?php } ?>

@@ -1,3 +1,23 @@
+<?php
+
+require "../conn.php";
+
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) && !isset($_SESSION['role'])){
+        header("location: ../login.php");
+        exit;
+    } else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['role'] === 2) {
+        header("location: ../userprofile.php");
+        exit;
+    } else {
+
+    $username = $_SESSION['username'];
+
+    $query="SELECT p.id, p.productName, p.price, p.image, p.category, c.categoryName FROM products AS p INNER JOIN categories AS c ON p.category = c.id";
+    $result=mysqli_query($conn,$query);
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -14,7 +34,7 @@
     <style>    
         /* Style The Dropdown Button */
         *{
-            font-family: "Readex Pro";
+        font-family: "Readex Pro";
         }
         .dropbtn {
         background-color: #4CAF50;
@@ -58,6 +78,11 @@
         /* Change the background color of the dropdown button when the dropdown content is shown */
         .dropdown:hover .dropbtn {
         background-color: #3e8e41;
+        }
+
+        tr img {
+        width: 50px;
+        height: 50px;
         }
     </style>
 </head>
@@ -121,7 +146,7 @@
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium">Username</span></a>
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -235,33 +260,41 @@
                                         <tr>
                                             <th class="border-top-0">Image</th>
                                             <th class="border-top-0">Name</th>
-                                            <th class="border-top-0">Description</th>
                                             <th class="border-top-0">Price</th>
                                             <th class="border-top-0">Category</th>
                                         </tr>
                                     </thead>
                                     
+                                        <?php
+                                        if(mysqli_num_rows($result) > 0) {
+                                            while($row = mysqli_fetch_assoc($result)){
+                                                    
+                                        ?>
                                     <tbody>
                                         <tr>
                                             <td><div class="alb">
-             	                                <img src="../img/<?=$row['image_url']?>">
+             	                            <img src="../img/menu/<?=$row['image']?>">
                                             </div></td>
-                                            <td>Product Name</td>
-                                            <td>Description</td>
-                                            <td>Price</td>
-                                            <td>Title</td>
+                                            <td><?php echo $row['productName']; ?></td>
+                                            <td><?php echo $row['price']; ?></td>
+                                            <td><?php echo $row['categoryName']; ?> </td>
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="edit-product.php?edit=">Edit</a>                                            
+                                            <a class="btn btn-custom" href="edit-product.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
                                             </td>
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-product.php?id=">Delete</a>         
+                                            <a class="btn btn-custom" href="delete-product.php?id=<?php echo $row['id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
-                                       
+                                        <?php
+                                            }
+                                        } else {
+                                            ?>
                                             <tr>
                                             <td colspan="3">No Records Found</td>
                                             </tr>
-                                        
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -318,3 +351,5 @@
 </body>
 
 </html>
+
+<?php } ?>

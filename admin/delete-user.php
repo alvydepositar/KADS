@@ -1,11 +1,23 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    header("location: ../login.php");
+    exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+    header("location: ../login.php");
+    exit;
+} else {
+include "../conn.php";
+
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
-    require_once "../dbconnection.php";
+    require_once "../conn.php";
     
     // Prepare a delete statement
-    $sql = "DELETE FROM usertable WHERE id = ?";
+    $sql = "DELETE FROM info_accts WHERE id = ?";
     
     if($stmt = mysqli_prepare($conn, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -142,3 +154,5 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     </div>
 </body>
 </html>
+
+<?php } ?>

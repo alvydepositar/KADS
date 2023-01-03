@@ -1,41 +1,37 @@
 <?php
-/*session_start();
+session_start();
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../admin.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../cashier/index.php");
-        exit;
-    } else {
-    include "../dbconnection.php";
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    header("location: ../login.php");
+    exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+    header("location: ../login.php");
+    exit;
+} else {
+include "../conn.php";
 
     $username = $_SESSION['username'];
     
-    $name = $desc = $price = $image =  "";
-    $name_err = $desc_err = $price_err = $image_err = "";
+    $name = $price = $image =  "";
+    $name_err = $price_err = $image_err = "";
 
     if(isset($_GET["edit"])){
         $id = $_GET['edit'];
 
-        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN category ON products.categoryid = category.id WHERE products.id = $id"));
-        
+        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN categories ON products.category = categories.id WHERE products.id = '$id'"));
             $pro = mysqli_fetch_array($sql1); 
-            $name = $pro["product_name"];
-            $desc = $pro["description"];
+            $name = $pro["productName"];
             $price = $pro["price"];
-            $image = $pro["image_url"];
-            $category = $pro["categoryid"];
+            $image = $pro["image"];
+            $category = $pro["category"];
     }
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $name = $_POST["name"];
-    $desc = $_POST["desc"];
     $price = $_POST["price"];
     $category = $_POST["category"];
-
     $image = $_FILES['my_image'];
 
 	$img_name = $_FILES['my_image']['name'];
@@ -55,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			if (in_array($img_ex_lc, $allowed_exs)) {
 				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-				$img_upload_path = '../img/'.$new_img_name;
+				$img_upload_path = '../img/menu/'.$new_img_name;
 				move_uploaded_file($tmp_name, $img_upload_path);
     
 			} else {
@@ -63,12 +59,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		        header("Location: products.php?error=$em");
 			}
 		}
-    
 	}
+    if ((empty($img_name))) {
+        mysqli_query($conn, "UPDATE products SET productName = '$name', price = '$price', category = '$category' WHERE id = $id");
+        header("Location: products.php");
+    } else {
+        $query = "SELECT image FROM products WHERE id = $id";
+	    $Result = mysqli_query($conn, $query);
+	    $fetchRecords = mysqli_fetch_assoc($Result);
+	    $fetchImgTitleName = $fetchRecords['image'];
+        $createDeletePath = "../img/menu/".$fetchImgTitleName;
+        unlink($createDeletePath);
+
+        mysqli_query($conn, "UPDATE products SET productName = '$name', price = '$price', image = '$new_img_name', category = '$category' WHERE id = $id");
+        header("Location: products.php");
+    }
     
-    mysqli_query($conn, "UPDATE products SET product_name = '$name', description = '$desc' , price = '$price', image_url = '$new_img_name', categoryid = '$category' WHERE id = $id");
-    header("Location: products.php");
-}*/  
+}
 
 ?>
 <html lang="en">
@@ -100,50 +107,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="edituserblock">
             <h2>Edit Product</h2> 
 
-            <?php /*if (isset($_GET['error'])):*/ ?>
-            <p><?php /*echo $_GET['error'];*/ ?></p>
-            <?php /*endif*/ ?>
+            <?php if (isset($_GET['error'])): ?>
+            <p><?php echo $_GET['error']; ?></p>
+            <?php endif ?>
 
-            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
 
-            <input type="hidden" name="id" value="<?php /*echo $id;*/ ?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="form-group">
-                    <input type="file" name="my_image" class="form-control <?php /*echo (!empty($image_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $image;*/ ?>">
+                    <img src="../img/menu/<?php echo $image?>">
+                    <input type="file" name="my_image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
                 </div>
 
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" name="name" class="form-control <?php /*echo (!empty($name_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $name;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $name_err;*/ ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Product Description</label>
-                    <input type="text" name="desc" class="form-control <?php /*echo (!empty($desc_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $desc;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $desc_err;*/ ?></span>
+                    <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                    <span class="invalid-feedback"><?php echo $name_err; ?></span>
                 </div>
 
                 <div class="form-group">
                     <label>Product Price</label>
-                    <input type="number" name="price" min="0"  step=".01" class="form-control <?php /*echo (!empty($price_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $price;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $price_err;*/ ?></span>
+                    <input type="number" name="price" min="0"  step=".01" class="form-control <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $price; ?>">
+                    <span class="invalid-feedback"><?php echo $price_err; ?></span>
                 </div>
 
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name ="category" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
                         <?php
-                        /*$query="SELECT * FROM category";
+                        $query="SELECT * FROM categories";
                         $result=mysqli_query($conn, $query);
                     
                             if(mysqli_num_rows($result) >= 0) {
-                                while($row = mysqli_fetch_assoc($result)){*/
+                                while($row = mysqli_fetch_assoc($result)){
 
                         ?>
-                        <option value="<?php /*echo $row['id']*/ ?>"> <?php /*echo $row['title'];*/ ?> </option>
+                        <option value="<?php echo $row['id'] ?>"> <?php echo $row['categoryName']; ?> </option>
                         <?php 
-                                /*}
-                            }*/ ?>
+                                }
+                            } ?>
                     </select> 
                 </div>
             <input class="btn btn-primary btn-style" type="submit" name="submit" value="Update">            
@@ -152,6 +154,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div> 
 </body>
 </html>
+
+
+
 <?php 
-    /*}*/
+    }
 ?>

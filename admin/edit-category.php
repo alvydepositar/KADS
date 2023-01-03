@@ -1,5 +1,5 @@
 <?php
-/*session_start();
+session_start();
 
 if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
     header("location: ../admin.php");
@@ -8,28 +8,49 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
     header("location: ../cashier/index.php");
     exit;
 } else {
-include "../dbconnection.php";
+include "../conn.php";
 
 $username = $_SESSION['username'];
 
-$catname = "";
+$id = $catname = "";
 $catname_err ="";
 
 if(isset($_GET["edit"])){
     $id = $_GET['edit'];
-    $sql1 = (mysqli_query($conn, "SELECT * FROM category WHERE id = $id"));
+    $sql1 = (mysqli_query($conn, "SELECT * FROM categories WHERE id = '$id'"));
         $pro = mysqli_fetch_array($sql1); 
-        $catname  = $pro["title"];       
+        $catname  = $pro["categoryName"];       
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-$id = $_POST['id'];
-$catname  = $_POST["catname"];
+    $id = $_POST['id'];
+    $catname  = $_POST["catname"];
 
+    $sql = "SELECT id FROM categories WHERE categoryName = ?";
+        
+    if($stmt = mysqli_prepare($conn, $sql)){
+        mysqli_stmt_bind_param($stmt, "s", $param_catname);
+        
+        $param_catname = trim($_POST["catname"]);
+        
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_store_result($stmt);
+            
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                $catname_err = "This category already exists.";
+            } else{
+                $catname = trim($_POST["catname"]);
+            }
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
 
-mysqli_query($conn, "UPDATE category SET title = '$catname' WHERE id = $id");
-header("Location: category.php");
-}*/
+        mysqli_stmt_close($stmt);
+    }
+
+    mysqli_query($conn, "UPDATE categories SET categoryName = '$catname' WHERE id = '$id'");
+    header("Location: category.php");
+}
 ?>
  
 <!DOCTYPE html>
@@ -80,12 +101,12 @@ header("Location: category.php");
         </div>   
         <div class="edituserblock" style="margin-left:100px;">
             <h2>Edit Category</h2> 
-            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php /*echo $id;*/ ?>">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="catname" class="form-control <?php /*echo (!empty($catname_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $catname;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $catname_err;*/ ?></span>
+                    <input type="text" name="catname" class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>" value=" <?php echo $catname?>">
+                    <span class="invalid-feedback"><?php echo $catname_err; ?></span>
                 </div>
                 
                 <input type="submit" class="btn btn-primary" style="margin-left:195px;" value="Update">
@@ -96,4 +117,4 @@ header("Location: category.php");
 </body>
 </html>
 
-<?php /*}*/ ?>
+<?php } ?>

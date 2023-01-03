@@ -1,21 +1,21 @@
 <?php
-/*session_start();
+session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../admin.php");
+        header("location: ../login.php");
         exit;
     } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../cashier/index.php");
+        header("location: ../login.php");
         exit;
     } else {
-    include "../dbconnection.php";
+    include "../conn.php";
 
     $username = $_SESSION['username'];
     
-    $name = $desc = $price = $image =  "";
-    $name_err = $desc_err = $price_err = $image_err = "";
+    $name = $price = $image =  "";
+    $name_err = $price_err = $image_err = "";
 
-    $query="SELECT * FROM category";
+    $query="SELECT * FROM categories";
     $result=mysqli_query($conn, $query);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -34,19 +34,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name = trim($_POST["name"]);
     }
 
-    if(empty(trim($_POST["desc"]))){
-        $desc_err = "Please enter product description.";
-    } else {
-        $desc = trim($_POST["desc"]);
-    }
-
     if(empty(trim($_POST["price"]))){
         $price_err = "Please enter product price.";
     } else {
         $price = trim($_POST["price"]);
     }
 
-    $categoryid = $_POST['category'];
+    $category = $_POST['category'];
 
 	if ($error === 0) {
 		if ($img_size > 205000) {
@@ -60,11 +54,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 			if (in_array($img_ex_lc, $allowed_exs)) {
 				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-				$img_upload_path = '../img/'.$new_img_name;
+				$img_upload_path = '../img/menu/'.$new_img_name;
 				move_uploaded_file($tmp_name, $img_upload_path);
 				
                 if(empty($name_err) && empty($desc_err) && empty($price_err)){
-                    $sql = "INSERT INTO products (product_name, description, price, image_url, active, categoryid) VALUES('$name', '$desc', '$price', '$new_img_name', 1, $categoryid)";
+                    $sql = "INSERT INTO products (productName, price, image, category) VALUES('$name', '$price', '$new_img_name', $category)";
 				    mysqli_query($conn, $sql);
 				    header("Location: products.php");
                 } else{
@@ -80,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	} 
 }   
 
-*/?>
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -109,25 +103,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>   
         <div class="edituserblock">
             <h2>Add Product</h2>  
-                <?php /*if (isset($_GET['error'])):*/ ?>
-                    <p><?php /*echo $_GET['error'];*/ ?></p>
-                <?php /*endif*/ ?>
-            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
+                <?php if (isset($_GET['error'])): ?>
+                    <p><?php echo $_GET['error']; ?></p>
+                <?php endif ?>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
-                    <input type="file" name="my_image" class="form-control <?php /*echo (!empty($image_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $image;*/ ?>">
+                    <input type="file" name="my_image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
                 </div>
 
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" name="name" class="form-control <?php /*echo (!empty($name_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $name;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $name_err;*/ ?></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Product Description</label>
-                    <input type="text" name="desc" class="form-control <?php /*echo (!empty($desc_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $desc;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $desc_err;*/ ?></span>
+                    <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                    <span class="invalid-feedback"><?php echo $name_err; ?></span>
                 </div>
 
                 <div class="form-group">
@@ -140,13 +128,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <label for="category">Category</label>
                     <select name ="category" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
                         <?php
-                            /*if(mysqli_num_rows($result) >= 0) {
-                                while($row = mysqli_fetch_assoc($result)){*/
+                            if(mysqli_num_rows($result) >= 0) {
+                                while($row = mysqli_fetch_assoc($result)){
                         ?>
-                        <option value="<?php /*echo $row['id']*/ ?>"> <?php /*echo $row['title'];*/ ?> </option>
+                        <option value="<?php echo $row['id'] ?>"> <?php echo $row['categoryName']; ?> </option>
                         <?php 
-                                /*}
-                            }*/ ?>
+                                }
+                            }
+                             ?>
                     </select> 
                 </div>
 
@@ -158,5 +147,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 </html>
 <?php 
-    /*}*/
+    }
 ?>

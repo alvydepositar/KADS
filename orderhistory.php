@@ -55,11 +55,26 @@
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
+                    <a href="ongoingorder.php">
+                      <button type="button" class="side-links">Ongoing Order</button>
+                    </a>                    
+                  </div>                  
+                </div>   
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-11">
                     <a href="orderhistory.php">
                       <button type="button" class="side-links side-links-active">Order History</button>
                     </a>                    
                   </div>                  
-                </div>                  
+                </div>     
+                <div class="row align-bottom logout-group">
+                  <a href="logout.php">
+                    <span class="fa-solid fa-power-off">
+                      <span class="logout-label">Logout</span>
+                    </span>
+                  </a>
+                </div>                 
               </div>
             </div>
 

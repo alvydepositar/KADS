@@ -7,8 +7,8 @@ body{
 }
 
 .content-container { 
-    /**margin-top:20px;**/
-    margin-bottom:140px;   
+    /**margin-top:20px;
+    margin-bottom:140px;   **/
     min-width:fit-content;  
     max-width: 60%;  
 }
@@ -20,13 +20,33 @@ body{
 }
 
 .left-content {
-    padding: 0 0 40px 0;    
+    padding: 0 0 40px 0;  
 }
 
 .right-content {
-    background-color: #fff; 
-    /**padding: 50px 0 50px 0;**/
-    border-radius: 10px;    
+    /**padding: 50px 0 50px 0;
+    border-radius: 10px;    **/
+}
+
+.logout-label {
+    font-family: Readex Pro;
+    font-weight: 600;
+    color: #2C293A;
+    font-size: 15px; 
+    padding-left: 5px;   
+}
+
+.logout-group {
+    padding-top:350px;
+}
+
+.logout-group a {
+    text-decoration: none;
+    font-family: Readex Pro;
+    font-weight: 600;
+    color: #2C293A;
+    font-size: 15px;
+    padding-left:0;
 }
 
 .links-title {

@@ -64,30 +64,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pagestyles.css" rel="stylesheet">
     <style>
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Readex Pro';color: #141C07;}
+        @import url('https://fonts.googleapis.com/css?family=Inter');
+        @import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+        body {font: 14px sans-serif; background-color: #e7e7e7; color: #141C07;}
+        .wrapper { width: 360px; padding: 20px;}
+        /*changed wrapper*/
         .wrapper{
             width: 600px;
             margin: 0 auto;
-        }
-        .btn-primary{
-            background-color: #C70800;
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius:5px;
-        }
-        .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
-            background-color: #8e0001;
-            color: #fff;
-        }
-        .btn-secondary{
-            background-color: #fff;
-            color: #C70800;
-            border: 1px solid #C70800;
-            font-weight: 600;
-            font-size: 14px;            
-            border-radius:5px;
         }
     </style>
 </head>
@@ -109,8 +94,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="invalid-feedback"><?php echo $catname_err; ?></span>
                 </div>
                 
-                <input type="submit" class="btn btn-primary" style="margin-left:195px;" value="Update">
-                <a href="category.php" class="btn btn-secondary ml-2">Cancel</a>
+                <input type="submit" class="btn btn-primary btn-style" style="margin-left:204px;" value="Update">
+                <a href="category.php" class="btn btn-secondary ml-2 btn-style2">Cancel</a>
             </form>
         </div>             
     </div>                          
@@ -118,3 +103,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php } ?>
+
+<!--style="margin-left:195px;-->

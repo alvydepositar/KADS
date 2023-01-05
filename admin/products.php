@@ -208,6 +208,14 @@ require "../conn.php";
                                 <span class="hide-menu">Order History</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="feedbacks.php"
+                                aria-expanded="false">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                <span class="hide-menu">Feedbacks</span>
+                            </a>
+                        </li>
                     </ul>
 
                 </nav>
@@ -279,10 +287,10 @@ require "../conn.php";
                                             <td><?php echo $row['price']; ?></td>
                                             <td><?php echo $row['categoryName']; ?> </td>
                                             <td class="col-1">
-                                            <a class="btn btn-custom" href="edit-product.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
+                                            <a class="btn btn-solid" href="edit-product.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
                                             </td>
                                             <td class="col-1">
-                                            <a class="btn btn-custom" href="delete-product.php?id=<?php echo $row['id']; ?>">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-product.php?id=<?php echo $row['id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php

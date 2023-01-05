@@ -183,6 +183,14 @@
                                 <span class="hide-menu">Order History</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="feedbacks.php"
+                                aria-expanded="false">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                <span class="hide-menu">Feedbacks</span>
+                            </a>
+                        </li>
                     </ul>
 
                 </nav>
@@ -232,15 +240,11 @@
                                 <table class="table no-wrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">Order Number</th>
-                                            <th class="border-top-0">Product</th>
-                                            <th class="border-top-0">Quantity</th>
-                                            <th class="border-top-0">Total</th>
-                                            <th class="border-top-0">Date of Order</th>
-                                            <th class="border-top-0">Time of Order</th>
-                                            <th class="border-top-0">Status</th>
-                                            <th class="border-top-0">Customer</th>
-                                            <th class="border-top-0">Server</th>                                            
+                                            <th class="border-top-0">ID</th>
+                                            <th class="border-top-0">Orders</th>
+                                            <th class="border-top-0">Total Order</th>
+                                            <th class="border-top-0">Date</th>
+                                            <th class="border-top-0">Order Status</th>                                          
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -251,13 +255,12 @@
                                         <tr>
                                             <td>ID<?php //echo $row['id']; ?></td>
                                             <td class="txt-oflo">Product Name<?php //echo $row['product_name']; ?></td>
-                                            <td>Quantity<?php //echo $row['quantity']; ?></td>
                                             <td>Total<span class="text-success"><?php //echo $row['total']; ?></span></td>
                                             <td>Order Date<?php //echo $row['orderdate']; ?></td>
                                             <td>Order Time<?php //echo $row['ordertime']; ?></td>
-                                            <td>Stat Name<?php //echo $row['statname']; ?></td>
-                                            <td>Customer<?php //echo $row['customer']; ?></td>
-                                            <td>Server<?php //echo $row['lastname']; ?></td>
+                                            <td class="col-1">
+                                            <a class="btn btn-solid" href="view-order.php?id=">View</a>                                            
+                                            </td>
                                             <td class="col-1">
                                             <a class="btn btn-solid" href="edit-order.php?edit=">Edit</a>                                            
                                             </td>

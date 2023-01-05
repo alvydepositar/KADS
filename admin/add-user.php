@@ -149,76 +149,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pagestyles.css" rel="stylesheet">
+
     <style>
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Readex Pro';color: #141C07;}
-        .wrapper{ width: 360px; padding: 20px; }
-        .userblock{
-            background-color: #fff;
-            height: auto;
-            width: 700px;
-            border-radius: 10px;
-            position: absolute;
-            left: calc(50% - 700px/2);
-            top: calc(50% - 500px/2);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+        @import url('https://fonts.googleapis.com/css?family=Inter');
+        @import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+        body {font: 14px sans-serif; background-color: #e7e7e7; color: #141C07;}
+        .wrapper { width: 360px; padding: 20px;}
+        /*changed wrapper*/
+        .wrapper {
+        width: 600px;
+        margin: 0 auto;
         }
-        .userblockcontent{
-            padding:20px;
+
+        .edituserblock {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        /*changed width*/
+        width: 600px;
+        margin-top: 30px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
         }
-        .userblockcontent h2{
-            font-weight: 700;
-            font-size: 25px;
-            margin-left:10px;
-            margin-bottom:20px;
+
+        .back-icon img {
+        width: 40px;
+        height: 40px;
+        top: 60px;
+        /*changed left*/
+        left: calc(50% - 700px/2);
+        position: absolute;
         }
-        .top-line{
-            position: absolute;
-            height: 8px;
-            left: -0.21%;
-            right: 0%;
-            top: 0px;
-            background: #C70800;
-        }
-        .buttonsalign{
-            margin-left:495px;  
-            margin-top:20px; 
-            margin-bottom:0px;         
-        }
-        .btn-primary{
-            background-color: #C70800;
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius:5px;
-        }
-        .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
-            background-color: #8e0001;
-            color: #fff;
-        }
-        .btn-secondary{
-            background-color: #fff;
-            color: #2C2A3A;
-            border: 1px solid #C70800;
-            font-weight: 600;
-            font-size: 14px;            
-            border-radius:5px;
-        }
-        .back-icon img{
-            width: 40px;
-            height: 40px;
-            top: 80px;
-            left: calc(45% - 700px/2);
-            position: absolute;            
-        }
-        .back-icon img:hover{
-            opacity:0.7;
-            transition: 0.25s all ease;      
-        }
-        label{
-            margin-bottom: 0px;
-            color:#C70800;
-            font-weight:500;
+
+        .btn-style {
+        margin-bottom: 0px;
+        font-family: 'Inter';
+        font-weight: 600;
+        /*margin-left added*/
+        margin-left:413px;
         }
     </style>
 </head>
@@ -230,91 +199,86 @@
                 <img src="../img/backicon.png">
             </a>
         </div>
-        <div class="userblock">
-            <div class="userblockcontent">
-                <h2>Add User</h2>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
-                                <span class="invalid-feedback"><?php echo $firstname_err; ?></span>
-                            </div>
-                        </div>
+        <div class="edituserblock">
+            <h2>Add User</h2>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="firstname" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstname; ?>">
+                            <span class="invalid-feedback"><?php echo $firstname_err; ?></span>
+                         </div>
+                    </div>
 
-                        <div class="col-sm">                                                      
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>">
-                                <span class="invalid-feedback"><?php echo $lastname_err; ?></span>
-                            </div>    
-                        </div>
+                    <div class="col-sm">                                                      
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastname; ?>">
+                            <span class="invalid-feedback"><?php echo $lastname_err; ?></span>
+                        </div>    
+                    </div>
                                                 
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                            <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                        </div>    
                     </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-                            </div>    
-                        </div>
 
-                        <div class="col-sm">                            
-                            <div class="form-group">
-                                <label for="role">Role</label>
-                                <select name ="role" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                    <option value="1">Admin</option>
-                                    <option value="2">User</option>
-                                </select> 
-                            </div> 
-                        </div>
+                    <div class="col-sm">                            
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select name ="role" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
+                            </select> 
+                        </div> 
+                    </div>
                         
+                </div>
+                 <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Birthday</label>
+                            <input type="date" name="bday" class="form-control <?php echo (!empty($bday_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $bday; ?>">
+                            <span class="invalid-feedback"><?php echo $bday_err; ?></span>
+                        </div>                                                           
                     </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="form-group">
-                                <label>Birthday</label>
-                                <input type="date" name="bday" class="form-control <?php echo (!empty($bday_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $bday; ?>">
-                                <span class="invalid-feedback"><?php echo $bday_err; ?></span>
-                            </div>                                                           
-                        </div>
 
-                        <div class="col-sm">                                                                                
-                            <div class="form-group">
-                                <label>Contact Number</label>
-                                <input type="tel" name="phone" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phone; ?>">
-                                <span class="invalid-feedback"><?php echo $phone_err; ?></span>
-                            </div>
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">                                                      
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-                            </div>
-                        </div>   
-                        <div class="col-sm">                                                                                
-                            <div class="form-group">
-                                <label>Confirm Password</label>
-                                <input type="password" name="repassword" class="form-control <?php echo (!empty($repassword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $repassword; ?>">
-                                <span class="invalid-feedback"><?php echo $repassword_err; ?></span>
-                            </div>
-                        </div>                      
-                    </div>
-                </div>   
+                    <div class="col-sm">                                                                                
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" name="phone" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phone; ?>">
+                            <span class="invalid-feedback"><?php echo $phone_err; ?></span>
+                        </div>
+                    </div>                        
+                </div>
+                <div class="row">
+                    <div class="col-sm">                                                      
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        </div>
+                    </div>   
+                    <div class="col-sm">                                                                                
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" name="repassword" class="form-control <?php echo (!empty($repassword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $repassword; ?>">
+                            <span class="invalid-feedback"><?php echo $repassword_err; ?></span>
+                        </div>
+                    </div>                      
+                </div>                    
                     
-                    
-                    <div class="form-group buttonsalign">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-                    </div>
-                </form>
-            </div>
+                <!--<div class="form-group buttonsalign">-->
+                    <input type="submit" class="btn btn-primary btn-style" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2 btn-style-2" value="Reset">
+                <!--</div>-->
+            </form>
         </div>             
     </div>    
 </body>

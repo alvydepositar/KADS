@@ -1,68 +1,69 @@
 <?php
 session_start();
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../admin.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../cashier/index.php");
-        exit;
-    } else {
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
+    header("location: ../admin.php");
+    exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
+    header("location: ../cashier/index.php");
+    exit;
+} else {
     include "../conn.php";
 
     $username = $_SESSION['username'];
 
-    $catname = "";    
+    $catname = "";
     $catname_err = "";
 
-    $query="SELECT * FROM categories";
-    $result=mysqli_query($conn,$query);
+    $query = "SELECT * FROM categories";
+    $result = mysqli_query($conn, $query);
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
-    if(empty(trim($_POST["catname"]))){
-        $catname_err = "Please enter a category name.";
-    } else{
-        $sql = "SELECT id FROM categories WHERE categoryName = ?";
-        
-        if($stmt = mysqli_prepare($conn, $sql)){
-            mysqli_stmt_bind_param($stmt, "s", $param_catname);
-            
-            $param_catname = trim($_POST["catname"]);
-            
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $catname_err = "This category already exists.";
-                } else{
-                    $catname = trim($_POST["catname"]);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        if (empty(trim($_POST["catname"]))) {
+            $catname_err = "Please enter a category name.";
+        } else {
+            $sql = "SELECT id FROM categories WHERE categoryName = ?";
+
+            if ($stmt = mysqli_prepare($conn, $sql)) {
+                mysqli_stmt_bind_param($stmt, "s", $param_catname);
+
+                $param_catname = trim($_POST["catname"]);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+
+                    if (mysqli_stmt_num_rows($stmt) == 1) {
+                        $catname_err = "This category already exists.";
+                    } else {
+                        $catname = trim($_POST["catname"]);
+                    }
+                } else {
+                    echo "Oops! Something went wrong. Please try again later.";
                 }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
+
+                mysqli_stmt_close($stmt);
             }
-
-            mysqli_stmt_close($stmt);
         }
-    } 
 
-    if(empty(trim($_POST["catname"]))){
-        $catname_err = "Please enter a first name.";
-    } elseif(!preg_match('/^[a-zA-Z ]+$/', trim($_POST["catname"]))){
-        $catname_err = "Name can only contain letters.";
-    } else {
-        $catname = trim($_POST["catname"]);
+        if (empty(trim($_POST["catname"]))) {
+            $catname_err = "Please enter a first name.";
+        } elseif (!preg_match('/^[a-zA-Z ]+$/', trim($_POST["catname"]))) {
+            $catname_err = "Name can only contain letters.";
+        } else {
+            $catname = trim($_POST["catname"]);
+        }
+        $sql = "INSERT INTO categories (categoryName) VALUES('$catname')";
+        mysqli_query($conn, $sql);
+        header("Location: category.php");
     }
-				$sql = "INSERT INTO categories (categoryName) VALUES('$catname')";
-				mysqli_query($conn, $sql);
-				header("Location: category.php");
-		}
-    
+
 }
-  
+
 
 ?>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,45 +76,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="../css/pagestyles.css" rel="stylesheet">
 </head>
 <style>
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
-        .btn-style{
-            background-color:#C70800;
-            color:#fff;
-            margin-bottom:0px;
-            margin-right:10px;
-            border:none;
-        }        
-        .btn-style:hover,.btn-style:focus{
-            background-color: #8e0001;
-            color: #fff;
-        }
-    </style>
+    @import url('https://fonts.googleapis.com/css?family=Inter');
+    @import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+    body {font: 14px sans-serif; background-color: #e7e7e7; color: #141C07;}
+
+    .btn-style {
+    margin-bottom: 0px;
+    font-family: 'Inter';
+    font-weight: 600;
+    /*margin-left added*/
+    margin-left:309px;
+    }
+</style>
+
 <body>
     <div class="wrapper">
-        <div class="top-line"></div>  
+        <div class="top-line"></div>
         <div class="back-icon">
             <a href="../admin/category.php">
                 <img src="../img/backicon.png">
             </a>
-        </div>   
+        </div>
         <div class="edituserblock">
-            <h2>Add Category</h2>  
+            <h2>Add Category</h2>
             <?php if (isset($_GET['error'])): ?>
                 <p><?php echo $_GET['error']; ?></p>
-            <?php endif ?>
+                <?php endif ?>
 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"
+                enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="catname" class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $catname; ?>">
-                    <span class="invalid-feedback"><?php echo $catname_err; ?></span>
+                    <input type="text" name="catname"
+                        class="form-control <?php echo (!empty($catname_err)) ? 'is-invalid' : ''; ?>"
+                        value="<?php echo $catname; ?>">
+                    <span class="invalid-feedback">
+                        <?php echo $catname_err; ?>
+                    </span>
                 </div>
-                <input class="btn btn-primary btn-style" type="submit" name="submit" value="Add Category">                
+                <input class="btn btn-primary btn-style" type="submit" name="submit" value="Add">
+                
             </form>
         </div>
     </div>
 
 
- 
+
 </body>
+
 </html>

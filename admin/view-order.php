@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    /*session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
         header("location: ../login.php");
@@ -15,7 +15,7 @@
     
     $query="SELECT * FROM info_accts WHERE id = $userID";
     $result=mysqli_query($conn,$query);
-    $row = mysqli_fetch_assoc($result)
+    $row = mysqli_fetch_assoc($result) */
 ?>
 
 <!DOCTYPE html>
@@ -75,46 +75,83 @@
             </a>
         </div>            
         <div class="edituserblock">
-            <h2>View User</h2> 
+            <h2>View Order</h2> 
             <div class="container">
                 <div class="row"style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Name:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['firstname'] . '  '. $row['lastname'] ; ?></div> 
+                    <div class="col p-1"><label>ID:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['firstname'] . '  '. $row['lastname'] ;*/ ?>
+                    </div> 
                     </p>                       
                 </div>  
 
                 <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Username:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['username']; ?></div> 
+                    <div class="col p-1"><label>Orders:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['username']; */?>
+                    </div> 
                     </p>                       
                 </div>
                         
                 <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Phone:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['phone']; ?></div> 
+                    <div class="col p-1"><label>Total Order:</label></div>
+                    <div class="col-8 p-1">  <?php /* echo $row['phone']; */?>
+                    </div> 
                     </p>                       
                 </div>
 
                 <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Birthday:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['birthday']; ?></div> 
+                    <div class="col p-1"><label>Date:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
+                    </div> 
                     </p>                       
                 </div>    
                 
-                <div class="row">
+                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Role:</label></div>
-                    <div class="col-8 p-1"><?php if ($row['role'] == 1){
+                    <div class="col p-1"><label>Order Status:</label></div>
+                    <div class="col-8 p-1">  <?php /*if ($row['role'] == 1){
                                                         echo "admin";
                                                     }else if ($row['role'] == 2) {
                                                         echo "user";
-                                                    } ?></div> 
+                                                    } */?>
+                    </div> 
                     </p>                       
                 </div>
+
+                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                    <p>
+                    <div class="col p-1"><label>Order Time:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
+                    </div> 
+                    </p>                       
+                </div>  
+
+                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                    <p>
+                    <div class="col p-1"><label>Order Date:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
+                    </div> 
+                    </p>                       
+                </div>  
+
+                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                    <p>
+                    <div class="col p-1"><label>User:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
+                    </div> 
+                    </p>                       
+                </div>  
+
+                <div class="row">
+                    <p>
+                    <div class="col p-1"><label>Server:</label></div>
+                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
+                    </div> 
+                    </p>                       
+                </div>  
                 
             </div>  
         </div>
@@ -124,5 +161,5 @@
 </html>
 
 <?php
-    }
+    /*}*/
 ?>

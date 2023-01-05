@@ -204,6 +204,14 @@ require "../conn.php";
                                 <span class="hide-menu">Order History</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="feedbacks.php"
+                                aria-expanded="false">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                <span class="hide-menu">Feedbacks</span>
+                            </a>
+                        </li>
                     </ul>
 
                 </nav>

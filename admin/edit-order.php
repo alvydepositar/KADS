@@ -84,10 +84,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="../css/pagestyles.css" rel="stylesheet">
 </head>
 <style>
-    body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Poppins';color: #141C07;}
-    .btn-style, .btn-style:hover{
-        color:#fff;
-    }
+    @import url('https://fonts.googleapis.com/css?family=Inter');
+    @import url('https://fonts.googleapis.com/css?family=Readex Pro');
+
+    body {font: 14px sans-serif; background-color: #e7e7e7; color: #141C07;}
 </style>
 <body>
     <div class="wrapper">
@@ -162,7 +162,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Server</label>
                     <input type="text" name="name" class="form-control">
                 </div>
-            <input class="btn btn-primary btn-style" type="submit" name="submit" value="Update">            
+            <input class="btn btn-primary btn-style" type="submit" name="submit" value="Update" style="margin-left:286px;">            
         </form>
         </div>
     </div> 

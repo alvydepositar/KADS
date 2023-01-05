@@ -233,7 +233,7 @@
 
               <div class="row">
                 <div class="col input-chckbx">
-                  <input type="checkbox" value="<?php echo $terms; ?>" id="terms" name="terms"> I have read and agreed to the terms and conditions. </input>
+                  <input type="checkbox" value="<?php echo $terms; ?>" id="terms" name="terms"> I have read and agreed to the <a href="terms.php" style="color: #C70800">terms and conditions</a>. </input>
                   <span class="invalid-feedback"><?php echo $terms_err; ?></span>  
                 </div>
               </div>

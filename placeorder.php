@@ -105,11 +105,7 @@
             <label class="form-check-label" for="defaultCheck1">
               My billing and delivery address are the same</label>
           </div>-->
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Create an account for later</label>
-          </div>
+          
           <a href="ongoingorder.php">
             <button type="submit" class="btn-submit">Place Order</button>            
           </a>    

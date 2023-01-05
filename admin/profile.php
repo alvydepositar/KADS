@@ -29,6 +29,8 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,900&subset=latin-ext' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Inter');
+        @import url('https://fonts.googleapis.com/css?family=Readex Pro');
         body{
             overflow:hidden;
         }      
@@ -110,6 +112,7 @@
         .profile-item-label{
             color:#7BB12F;
             font-weight:500;
+            font-family: 'Inter';
         }
         .title-style img{
             position: absolute;
@@ -196,6 +199,7 @@
 
         .h2, h2 {
             font-size: 2rem;
+            margin-bottom: 25px;
         }
 
         .profile-item, .first-name, .middle-name, .last-name {
@@ -204,7 +208,6 @@
         }
 
         .profile-item-label {
-            text-transform: uppercase;
             color: #C70800;
             font-size: 0.9375rem;
             padding: 0;
@@ -234,24 +237,24 @@
             <h2>Profile</h2>  
             <div>                                      
                 <div class="profile-item first-name flex">
-                    <p class="profile-item-label">FIRST NAME</p>
+                    <p class="profile-item-label">First Name:</p>
                     <p class="first-name-value">firstname<?php /*echo $row['firstname']*/ ?></p>
                 </div> 
                 <div class="profile-item middle-name flex">
-                    <p class="profile-item-label">MIDDLE NAME</p>
+                    <p class="profile-item-label">Middle Name:</p>
                     <p class="middle-name-value">middlename<?php /*echo $row['middlename']*/ ?></p>
                 </div> 
                 <div class="profile-item last-name flex">
-                    <p class="profile-item-label">LAST NAME</p>
+                    <p class="profile-item-label">Last Name:</p>
                     <p class="last-name-value">lastname<?php /*echo $row['lastname']*/ ?></p>
                 </div> 
 
                 <div class="profile-item username flex">
-                    <p class="profile-item-label">USERNAME</p>
+                    <p class="profile-item-label">Username:</p>
                     <p class="username-value">username<?php /*echo $row['username']*/ ?></p>
                 </div> 
                 <div class="profile-item role flex">
-                    <p class="profile-item-label">ROLE</p>
+                    <p class="profile-item-label">Role:</p>
                     <p class="role-value">role<?php /*echo $row['name']*/ ?></p>
                 </div>
                 

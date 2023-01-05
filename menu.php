@@ -73,9 +73,8 @@
             <img class="town-emoji" src="images/town-emoji.png">
             <span class="description_tagline">THE BEST SUSHI IN TOWN</span>
             <p class="description_header">Different Types of Sushi to Choose From!</p>
-            <p class="description_text">At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus
-                vestibulum,
-                facilisi ac, sed facibus. At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis c</p>
+            <p class="description_text">Repetitive sushi flavors are bland! It can be as bitter as reality and as repulsive as swallowing live rats. Like the same flavor emperor KADS took every day to stop himself being poisoned, fine sushi must be taken daily until the taste buds are satisfied and all flavors under the sun are  savoured.
+                No life is complete without the different sushi flavors to get your taste buds to explode!</p>
         </div>
       </div>
       <div class="description_right">

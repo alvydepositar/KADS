@@ -65,8 +65,8 @@
       <div class="me-auto align-self-center ml-auto left1">
         <h1>This Is <br>How We <br>Roll!<span class="emoji1">&#x1F363&#x1F962</span></h1>
         <p class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Delectus eius distinctio odit, magni magnam qui ex perferendis vitae!
+          We are KADS! A restaurant specializing in sushi. Every sushi is created by the best sushi chef around, 
+          so what are you waiting for? Order now and enjoy your sushi from KADS!
         </p>
         <div class="cta">
           <a href="menu.php" class="btn">Order Now</a>
@@ -127,8 +127,7 @@
         <div class="text-left ohayo-group">
           <h2 class="ohayo-title">&#128075; Ohayo!</h2>
           <p class="ohayo-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Pariatur ipsam quis dolorem deleniti tenetur magni sapiente temporibus, voluptates, odio ab sed.
+            Have a look in some of the items in our menu! Order now!
           </p>
         </div>    
       </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2023 at 04:43 AM
+-- Generation Time: Jan 12, 2023 at 06:48 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -57,16 +57,20 @@ CREATE TABLE `info_accts` (
   `username` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `role` int(11) DEFAULT NULL
+  `role` int(11) DEFAULT NULL,
+  `house` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `province` varchar(255) DEFAULT NULL,
+  `zip` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `info_accts`
 --
 
-INSERT INTO `info_accts` (`id`, `firstname`, `lastname`, `birthday`, `username`, `phone`, `password`, `role`) VALUES
-(12, 'Admin', 'Admin', '2001-08-13', 'admin', '09123456789', '$2y$10$HkVmVdmQHxyQE0ARqbPej.pmBGopjlUjj/ZQpFYLH6mFWwPn2tJ0G', 1),
-(17, 'Atasha Rich', 'Molina', '2003-03-15', 'atasharich.plm@gmail.com', '09987654323', 'atasha', 2);
+INSERT INTO `info_accts` (`id`, `firstname`, `lastname`, `birthday`, `username`, `phone`, `password`, `role`, `house`, `city`, `province`, `zip`) VALUES
+(12, 'Admin', 'Admin', '2001-08-13', 'admin', '09123456789', '$2y$10$HkVmVdmQHxyQE0ARqbPej.pmBGopjlUjj/ZQpFYLH6mFWwPn2tJ0G', 1, NULL, NULL, NULL, NULL),
+(18, 'Alvy', 'Depositar', '2001-08-13', 'aldepositar2020@plm.edu.ph', '09123456789', '$2y$10$1hvaK7LXmrV2KmhKxpKh/OTGve6h07d4HrZpEbL45l0kXP5B8nUz.', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,29 +136,6 @@ INSERT INTO `products` (`id`, `image`, `productName`, `price`, `category`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_address`
---
-
-CREATE TABLE `user_address` (
-  `id` int(11) NOT NULL,
-  `house` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `province` varchar(255) DEFAULT NULL,
-  `zip` int(11) NOT NULL,
-  `contactNum` int(11) DEFAULT NULL,
-  `info` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_address`
---
-
-INSERT INTO `user_address` (`id`, `house`, `city`, `province`, `zip`, `contactNum`, `info`) VALUES
-(12, '123 Pacheco St', 'Manila', 'Metro Manila', 1013, 2147483647, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user_orders`
 --
 
@@ -192,12 +173,6 @@ ALTER TABLE `products`
   ADD KEY `products_ibfk` (`category`);
 
 --
--- Indexes for table `user_address`
---
-ALTER TABLE `user_address`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user_orders`
 --
 ALTER TABLE `user_orders`
@@ -219,19 +194,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `info_accts`
 --
 ALTER TABLE `info_accts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT for table `user_address`
---
-ALTER TABLE `user_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_orders`

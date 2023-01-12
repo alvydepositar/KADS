@@ -88,9 +88,7 @@
           All of our menu items are inspired by Japanese cuisine and have been created by our head chef, kads, after studying authentic Japanese cuisine in japan. 
           Not only do we have fresh flown-in seafood from the northeast, but we also have a variety of handcrafted cocktails, wine, and beer to choose from.         
         </p>
-        <div class="cta">
-          <a href="menu.php" class="btn">Our Menu</a>
-        </div>             
+  
         <img src="images/sushi.png" alt="KADS" class="sushi_pic d-none d-sm-block" />            
       </div>
     </div>

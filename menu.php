@@ -135,9 +135,11 @@ include 'conn.php';
                     <img src="img/menu/<?=$row['image']?>" alt="">
                 </div>
                 <div class="text">
-                    <p><?php echo $row['productName']; ?></p>
-                    <section>₱<?php echo $row['price']; ?></section>
-                    <button>Add to Cart</button>
+                  <div class="text-info d-flex align-items-center justify-content-center">
+                    <p class="align-middle"><?php echo $row['productName']; ?></p>                    
+                  </div>
+                  <section>₱<?php echo $row['price']; ?></section>
+                  <button>Add to Cart</button>
                 </div>
             </div>
             <?php } 

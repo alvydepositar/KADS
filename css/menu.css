@@ -178,18 +178,21 @@ body {
 
 .box .text {
     text-align: center;
-    width: 100%;
+    width: 100%;       
 }
 
-.text p {
-    height: 30px;
+.text .text-info {    
+    height: 50px;
+}
+
+.text p {    
+    display: inline;
+    margin:0;    
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    /*line-height: 30px;*/
-    color: #000000;
-    padding: 0 10px;
+    font-size: 20px;    
+    color: #000000;    
 }
 
 .text .text_long {
@@ -197,15 +200,14 @@ body {
 }
 
 .text section {
-    height: 25px;
-    margin-top: 10px;
+    /*height: 25px;*/    
     margin-bottom: 15px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 17px;
-    /*line-height: 25px;*/
-    padding-top:5px;
+    /*line-height: 25px;
+    padding-top:5px;*/
     color: #000000;
 }
 

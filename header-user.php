@@ -31,8 +31,8 @@
                       <tbody>
                         <tr>
                           <td rowspan="2">
-                            <a href="userprofile.php">
-                              <img id="useravatar" src="images/avatar-1.jpg" width="50px" height="50px">                                  
+                            <a href="userprofile.php" class="useravatarfilter">
+                              <img id="useravatar" src="images/avatar-1.jpg" width="50px" height="50px">                                                               
                             </a>
                           </td>
                           <td class="rowspace"></td>
@@ -41,8 +41,8 @@
                           </a></td>
                           <td class="rowspace"></td> 
                           <td rowspan="2">
-                            <a class="nav-link" href="cart.php">
-                              <img class="cart" src="images/cart-vector-1.png" alt="cart" height="25" width="25"/>
+                            <a class="nav-link" href="cart.php">                              
+                              <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                           </td>
                         </tr>

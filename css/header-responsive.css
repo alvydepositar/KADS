@@ -94,14 +94,8 @@ body{
     padding-bottom: 20px;
 }
 
-.cart {
-    filter: drop-shadow(0px 2px 2px #00000040);
-}
-
-.cart:hover {
-    opacity: 0.7;
-    transition: all 0.2s;
-}
+.fa-cart-shopping {font-size:18px; color: #C70800; filter: drop-shadow(0px 2px 2px #00000040);}
+.fa-cart-shopping:hover {color: #8e0000; transition: all 0.2s;}  
 
 /** user **/
 .nav-item > #username {
@@ -121,6 +115,18 @@ tr > #usertitle {
 #useravatar {
     filter: drop-shadow(0px 2px 2px #00000040);
     border-radius: 100%;
+}
+
+.useravatarfilter {    
+    height:50px;
+    width:50px;
+    border-radius: 100%;
+    display: inline-block;    
+}
+
+.useravatarfilter:hover {    
+    background-color: black; 
+    transition: all 0.2s;   
 }
 
 #useravatar:hover {

@@ -70,7 +70,7 @@
     <div class="wrapper">
         <div class="top-line"></div>
         <div class="back-icon">
-            <a href="../admin/category.php">
+            <a href="../admin/order-history.php">
                 <img src="../img/backicon.png">
             </a>
         </div>            

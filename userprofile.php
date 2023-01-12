@@ -282,7 +282,7 @@ session_start();
                   </div>
                 </div>   
                 
-                <div class="row" style="margin-bottom: 20px;">                  
+                <div class="row">                  
                   <div class="col">
                     <label for="inputBday">Phone Number</label>
                     <input type="tel" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" name="phone" id="phone" value="<?php echo $row['phone'];?>">

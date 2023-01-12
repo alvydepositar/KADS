@@ -1,5 +1,10 @@
+<?php
+  $query="SELECT * FROM info_accts WHERE id = '$id'";
+  $result=mysqli_query($conn,$query);
+  $row = mysqli_fetch_assoc($result);
 
-       <!-- header -->
+?>
+      <!-- header -->
        <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid navbar-content">
             <a class="navbar-brand" href="/KADS">
@@ -33,7 +38,7 @@
                           </td>
                           <td class="rowspace"></td>
                           <td><a href="userprofile.php" class="user-name">
-                            Ansherina T. Albaros
+                            <?php echo $row['firstname'] ." ". $row['lastname']; ?>
                           </a></td>
                           <td class="rowspace"></td> 
                           <td rowspan="2">

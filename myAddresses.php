@@ -1,3 +1,63 @@
+<?php
+session_start();
+
+  if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    header("location: login.php");
+    exit;
+  } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+    header("location: admin/dashboard.php");
+    exit;
+  } else {
+    include "conn.php";
+
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id'];
+
+      $query="SELECT * FROM info_accts WHERE id = '$id'";
+      $result=mysqli_query($conn,$query);
+      $res = mysqli_fetch_assoc($result);
+
+      $house = $city = $province = $zip = "";
+      $house_err = $city_err = $province_err = $zip_err = "";
+
+      if($_SERVER["REQUEST_METHOD"] == "POST") {
+          $id = $_POST['id'];
+
+         if(empty(trim($_POST['house']))) {
+          $house_err = "Please enter your Delivery Address";
+         } else {
+          $house = trim($_POST['house']);
+         }
+         
+         if(empty(trim($_POST['city']))) {
+          $city_err = "Please select your City";
+         } else {
+          $city = trim($_POST['city']);
+         }
+
+         if(empty(trim($_POST['province']))) {
+          $province_err = "Please select your Province";
+         } else {
+          $province = trim($_POST['province']);
+         }
+        
+         if(empty(trim($_POST['zip']))) {
+          $zip_err = "Please enter your Zip code";
+         } else {
+          $zip = trim($_POST['zip']);
+         }
+
+
+        if(empty($house_err) && empty($city_err) && empty($province_err) && empty($zip_err)) {
+          
+          if(mysqli_num_rows($result) > 0) { 
+            mysqli_query($conn, "UPDATE info_accts SET house = '$house', city = '$city', province = '$province', zip = '$zip' WHERE id = '$id'");
+            header("Location: myAddresses.php");
+          }
+        }
+      }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroller">
   <head>
@@ -23,7 +83,7 @@
   </head>
   <body>
     <?php
-      include 'header-user.html';
+      include 'header-user.php';
     ?>
 
      <!-------------- content start --------------->
@@ -90,25 +150,32 @@
               <h1 class="container-title text-center">My Addresses</h1>
               <div class="title-line"></div>
 
-              <form class="form-style">
+          <form class="form-style" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+          <input type="hidden" name="id" value="<?php echo $id; ?>">
+
             <div class="row">
               <div class="col">
                 <label for="address">Delivery Address</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control <?php echo (!empty($house_err)) ? 'is-invalid' : ''; ?>"
                   id="address"
-                  placeholder="111 Somewhere Street"
+                  name="house"
+                    value="<?php echo $res['house']; ?>"
+                    placeholder="111 Somewhere Street"
                 />
+                <span class="invalid-feedback"><?php echo $house_err; ?></span>
               </div>
             </div>
 
             <div class="row">
               <div class="col">
                 <label for="city">City</label>
-                <select type="text" class="form-control" id="city">
+                <select type="text" class="form-control" id="city" name="city">
+                  <option value="<?php echo $row['city']; ?>"><?php echo $row['city']; ?></option>
                   <option value="Caloocan">Caloocan</option>
-                  <option value="LasPiñas">Las Piñas</option>
+                  <option value="Las Piñas">Las Piñas</option>
                   <option value="Makati">Makati</option>
                   <option value="Malabon">Malabon</option>
                   <option value="Mandaluyong">Mandaluyong</option>
@@ -120,8 +187,8 @@
                   <option value="Pasay">Pasay</option>
                   <option value="Pasig">Pasig</option>
                   <option value="Pateros">Pateros</option>
-                  <option value="QuezonCity">Quezon City</option>
-                  <option value="SanJuan">San Juan</option>
+                  <option value="Quezon City">Quezon City</option>
+                  <option value="San Juan">San Juan</option>
                   <option value="Taguig">Taguig</option>
                   <option value="Valenzuela">Valenzuela</option>
                 </select>
@@ -129,7 +196,7 @@
               <div class="col">
                 <label for="province">Province</label>
                 <select id="province" name="province" class="form-control">
-                  <option value="metroManila">Metro Manila</option>
+                  <option value="Metro Manila">Metro Manila</option>
                 </select>
               </div>
             </div>
@@ -137,20 +204,16 @@
             <div class="row">                  
               <div class="col">
                 <label for="zip">ZIP Code</label>
-                <input type="text" class="form-control" id="zip" 
+                <input type="text" class="form-control <?php echo (!empty($zip_err)) ? 'is-invalid' : ''; ?>" id="zip" name="zip" 
                   placeholder="ZIP" 
                   pattern="[0-9]{4}" 
-                  maxlength="4">
+                  maxlength="4"
+                  <?php if(mysqli_num_rows($result) > 0) { ?>
+                    value="<?php echo $res['zip']; ?>"
+                  <?php } ?>>
+                  <span class="invalid-feedback"><?php echo $zip_err; ?></span>
               </div>
 
-              <div class="col">
-                <label for="pnumber">Phone</label>
-                <input type="text" class="form-control" id="pnumber"
-                  placeholder="09*********"
-                  pattern="[0-9]{4}[0-9]{3}[0-9]{4}"
-                  minlength="11"
-                  maxlength="11">
-              </div>
             </div>  
 
             <div class="row" style="margin-bottom: 20px;">
@@ -202,3 +265,7 @@
     ></script>
   </body>
 </html>
+
+<?php
+  } 
+?>

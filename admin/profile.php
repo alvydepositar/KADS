@@ -1,20 +1,20 @@
 <?php
-/*session_start();
+session_start();
 
     if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../admin.php");
+        header("location: ../login.php");
         exit;
     } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../cashier/index.php");
+        header("location: ../userprofile.php");
         exit;
     } else {
-    include "../dbconnection.php";
+    include "../conn.php";
 
     $username = $_SESSION['username'];
     
-    $query="SELECT * FROM usertable INNER JOIN roles ON usertable.roleid = roles.id WHERE username = '$username'";
+    $query="SELECT * FROM info_accts WHERE username = '$username'";
     $result=mysqli_query($conn,$query);
-    $row = mysqli_fetch_assoc($result)*/
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -237,25 +237,29 @@
             <h2>Profile</h2>  
             <div>                                      
                 <div class="profile-item first-name flex">
-                    <p class="profile-item-label">First Name:</p>
-                    <p class="first-name-value">firstname<?php /*echo $row['firstname']*/ ?></p>
+                    <p class="profile-item-label">Full Name:</p>
+                    <p class="first-name-value"><?php echo $row['firstname'] .' '. $row['lastname'] ?></p>
                 </div> 
                 <div class="profile-item middle-name flex">
-                    <p class="profile-item-label">Middle Name:</p>
-                    <p class="middle-name-value">middlename<?php /*echo $row['middlename']*/ ?></p>
+                    <p class="profile-item-label">Birthday:</p>
+                    <p class="middle-name-value"><?php echo $row['birthday'] ?></p>
                 </div> 
                 <div class="profile-item last-name flex">
-                    <p class="profile-item-label">Last Name:</p>
-                    <p class="last-name-value">lastname<?php /*echo $row['lastname']*/ ?></p>
+                    <p class="profile-item-label">Phone:</p>
+                    <p class="last-name-value"><?php echo $row['phone'] ?></p>
                 </div> 
 
                 <div class="profile-item username flex">
                     <p class="profile-item-label">Username:</p>
-                    <p class="username-value">username<?php /*echo $row['username']*/ ?></p>
+                    <p class="username-value"><?php echo $row['username'] ?></p>
                 </div> 
                 <div class="profile-item role flex">
                     <p class="profile-item-label">Role:</p>
-                    <p class="role-value">role<?php /*echo $row['name']*/ ?></p>
+                    <p class="role-value"><?php if ($row['role'] == 1) {
+                                            echo "Admin";
+                                            } else {
+                                                echo "Customer";
+                                            } ?></p>
                 </div>
                 
             </div>  
@@ -266,5 +270,5 @@
 
 
 <?php 
-    /*}*/
+    }
 ?>

@@ -13,9 +13,6 @@ session_start();
     $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     
-    $firstname = $lastname = $email = $phone = $bday = "";
-    $firstname_err = $lastname_err = $email_err = $phone_err  =$bday_err = "";
-
     $query="SELECT * FROM info_accts WHERE id = '$id'";
     $result=mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result);
@@ -44,7 +41,7 @@ session_start();
       }
 
       // Validate email
-/*
+
       $sql1="SELECT * from info_accts where username='$oldusername'";
       $res=mysqli_query($conn,$sql1);
       if (mysqli_num_rows($res) > 0) {
@@ -57,7 +54,8 @@ session_start();
           $email = trim($_POST["email"]);
         }
       }
-*/
+
+      /*
       if(empty(trim($_POST["email"]))){
           $email_err = "Please enter email.";
       } else {
@@ -74,7 +72,7 @@ session_start();
                 
                 if(mysqli_stmt_num_rows($stmt) == 1) {
                     
-                    if($row['username'] = $param_email) {
+                    if($row['username'] != $param_email) {
                       $email_err = "This email is already taken.";
                     }
                 } else{
@@ -87,6 +85,7 @@ session_start();
             mysqli_stmt_close($stmt);
         }
       }
+      */
 
       // Validate birthday
       if(empty(trim($_POST["bday"]))){
@@ -284,7 +283,7 @@ session_start();
                 <div class="row" style="margin-bottom: 20px;">                  
                   <div class="col">
                     <label for="inputBday">Phone Number</label>
-                    <input type="tel" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" name="phone" id="phone" value="<?php echo $row['phone'];?>">
+                    <input type="tel" class="form-control" name="phone" id="phone" value="<?php echo $row['phone'];?>">
                     <span class="invalid-feedback"><?php echo $phone_err; ?></span>                     
                   </div>
                 </div>
@@ -292,7 +291,7 @@ session_start();
                 <div class="row" style="margin-bottom: 20px;">                  
                   <div class="col">
                     <label for="inputBday">Date of birth</label>
-                    <input type="date" class="form-control <?php echo (!empty($bday_err)) ? 'is-invalid' : ''; ?>" name="bday" id="bday" value="<?php echo $row['birthday'];?>">
+                    <input type="date" class="form-control" name="bday" id="bday" value="<?php echo $row['birthday'];?>">
                     <span class="invalid-feedback"><?php echo $bday_err; ?></span>                     
                   </div>
                 </div>    

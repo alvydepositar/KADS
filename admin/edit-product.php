@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$error = $_FILES['my_image']['error'];
 
 	if ($error === 0) {
-		if ($img_size > 125000) {
+		if ($img_size > 5000000) {
 			$em = "Sorry, your file is too large.";
 		    header("Location: products.php?error=$em");
 		} else {
@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		        header("Location: products.php?error=$em");
 			}
 		}
-	}
+	}       
     if ((empty($img_name))) {
         mysqli_query($conn, "UPDATE products SET productName = '$name', price = '$price', category = '$category' WHERE id = $id");
         header("Location: products.php");

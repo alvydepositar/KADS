@@ -1,3 +1,86 @@
+<?php
+  session_start();
+
+  if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+    header("location: login.php");
+    exit;
+  } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+    header("location: admin/dashboard.php");
+    exit;
+  } else {
+    include "conn.php";
+
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id'];
+
+    $query="SELECT * FROM info_accts WHERE id = '$id'";
+    $result=mysqli_query($conn,$query);
+    $row = mysqli_fetch_assoc($result);
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+      $old_pass = $_POST['oldpass'];
+	    $new_pass = $_POST['newpass'];
+	    $re_pass = $_POST['confirmpass'];
+
+      if(empty($oldpass_err) && empty($newpass_err) && empty($confirmpass_err)) {
+        $verifypassword = password_verify($old_pass, $row['password']);
+	      if ($verifypassword) {
+		        if ($new_pass == $re_pass) {
+              $newpass = password_hash($newpass, PASSWORD_DEFAULT);
+			        mysqli_query($conn, "UPDATE info_accts SET password='$new_pass' WHERE id='$id'");
+              header("Location: changePass.php");
+			      } else {
+              $confirmpass_err = "Password did not match.";
+			      }
+		    } else {
+          $oldpass_err = "Current password is incorrect.";		
+        }  
+      } /*else {
+        $oldpass_err = "Please input your current password.";
+        $newpass_err = "Please input your new password.";
+        $confirmpass_err = "Please confirm your new password.";
+      }
+      
+	//}
+
+/*
+      // Validate password
+      if(empty(trim($_POST["oldpass"]))){
+        $oldpass_err = "Please enter a password.";     
+      } elseif($_POST["oldpass"] != $row['password']){
+          $oldpass_err = "Current password is incorrect.";
+      } else {
+          $oldpass = trim($_POST["oldpass"]);
+      }
+    
+      if(empty(trim($_POST["newpass"]))){
+        $newpass_err = "Please enter new password.";     
+      } elseif(strlen(trim($_POST["newpass"])) < 8){
+        $newpass_err = "Password must have atleast 8 characters.";
+      } else {
+        $newpass = trim($_POST["newpass"]);
+      }
+
+      if(empty(trim($_POST["confirmpass"]))){
+        $confirmpass_err = "Please confirm password.";     
+      } else {
+        $confirmpass = trim($_POST["confirmpass"]);
+        if($newpass != $confirmpass){
+            $confirmpass_err = "Password did not match.";
+        } else{
+            $confirmpass = trim($_POST["confirmpass"]);
+        }
+      }
+
+      $newpass = password_hash($newpass, PASSWORD_DEFAULT);
+
+      mysqli_query($conn, "UPDATE info_accts SET password = '$newpass' WHERE id = '$id'");
+      header("Location: changePass.php");
+      */
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroller">
   <head>
@@ -23,7 +106,7 @@
   </head>
   <body>
     <?php
-      include 'header-user.html';
+      include 'header-user.php';
     ?>
 
     <!-------------- content start --------------->
@@ -90,16 +173,19 @@
               <h1 class="container-title text-center">Password</h1>
               <div class="title-line"></div>
 
-              <form class="form-style">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="row">
                   <div class="col">
                     <label for="password">Current Password</label>
                     <input
                       type="password"
-                      class="form-control showhide-password"
+                      class="form-control showhide-password <?php echo (!empty($oldpass_err)) ? 'is-invalid' : ''; ?>"
                       id="password"
+                      name="oldpass"
                       placeholder="********"
+                      require
                     />
+                    <span class="invalid-feedback"><?php echo $oldpass_err; ?></span>  
                   </div>
                 </div>
 
@@ -108,10 +194,13 @@
                     <label for="newpass">New Password</label>
                     <input
                       type="password"
-                      class="form-control showhide-password"
+                      class="form-control showhide-password <?php echo (!empty($newpass_err)) ? 'is-invalid' : ''; ?>"
                       id="newpass"
+                      name="newpass"
                       placeholder="********"
-                    />                    
+                      require
+                    />      
+                    <span class="invalid-feedback"><?php echo $newpass_err; ?></span>                
                   </div>
                 </div>
 
@@ -120,10 +209,13 @@
                     <label for="confirmpass">Confirm Password</label>
                     <input
                       type="password"
-                      class="form-control showhide-password"
+                      class="form-control showhide-password <?php echo (!empty($confirmpass_err)) ? 'is-invalid' : ''; ?>"
                       id="confirmpass"
+                      name="confirmpass"
                       placeholder="********"
+                      require
                     />
+                    <span class="invalid-feedback"><?php echo $confirmpass_err; ?></span>   
                     <input type="checkbox" class="showPassword"><span class="show-pw">Show Password</span>
                   </div>
                 </div>
@@ -161,3 +253,5 @@
     ></script>
   </body>
 </html>
+
+<?php } ?>

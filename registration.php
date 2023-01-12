@@ -17,7 +17,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
       
       //not working pa | need mag-agree sa terms
-      if (empty($_POST['terms'])) {
+      if (!isset($_POST['terms'])) {
         $terms_err = "You have to agree to our terms and conditions.";
       } 
 
@@ -43,7 +43,7 @@
       if(empty(trim($_POST["email"]))){
           $email_err = "Please enter email.";
       } else{
-        $sql = "SELECT id FROM accounts WHERE username = ? && role = 2";
+        $sql = "SELECT id FROM info_accts WHERE username = ? && role = 2";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -104,12 +104,12 @@
       if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($bday_err) && empty($phone_err) && empty($password_err) && empty($repassword_err)){
           
           // Prepare an insert statement
-          $sql = "INSERT INTO info_accts (firstname, lastname, email, phone , birthday) VALUES (?, ?, ?, ?, ?)";
+          $sql = "INSERT INTO info_accts (firstname, lastname, username, phone , birthday, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
           
            
           if($stmt = mysqli_prepare($conn, $sql)){
               // Bind variables to the prepared statement as parameters
-              mysqli_stmt_bind_param($stmt, "sssss", $param_firstname, $param_lastname, $param_email, $param_phone, $param_birthday);
+              mysqli_stmt_bind_param($stmt, "sssssss", $param_firstname, $param_lastname, $param_email, $param_phone, $param_birthday, $param_password, $param_role);
               
               // Set parameters
               $param_firstname = $firstname;
@@ -117,23 +117,12 @@
               $param_email = $email;
               $param_phone = $phone;
               $param_birthday = $bday;
+              $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+              $param_role = 2;
               
               // Attempt to execute the prepared statement
               if(mysqli_stmt_execute($stmt)){
-                  //try to insert another sql
-                  $sql1 = "INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)";
-                  if($stmt1 = mysqli_prepare($conn, $sql1)) {
-                    mysqli_stmt_bind_param($stmt1, "sss", $param_email1, $param_password, $param_role);
-                    
-                    $param_email1 = $email;
-                    $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-                    $param_role = 2;
-                    
-                    if(mysqli_stmt_execute($stmt1)){
-                      // Redirect to login page
-                      header("location: login.php");
-                    }
-                  }
+                 header("location: login.php");
               } else {
                   echo "Oops! Something went wrong. Please try again later.";
             }

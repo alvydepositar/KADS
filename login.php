@@ -42,6 +42,7 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['id'] = $row['id'];
                 header("Location: admin/dashboard.php");
                 exit();
                 }
@@ -49,6 +50,7 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['id'] = $row['id'];
                 header("Location: userprofile.php");
                 exit();
                 }

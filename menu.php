@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+include 'conn.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroller">
 
@@ -91,541 +98,51 @@
         </div>
 
         <!-- category buttons-->
+        
+        
         <div class="content">
             <div class="list">
                 <li data-color=".All">All</li>
-                <li data-color=".sushi">Sushi Rolls</li>
-                <li data-color=".temaki">Temaki Wraps</li>
-                <li data-color=".bento">Bento Box</li>
-                <li data-color=".platters">Platters</li>
-                <li data-color=".cakes">Cakes</li>
+                <?php 
+                $sql1 = "SELECT * FROM categories" ;
+                $result = mysqli_query($conn, $sql1);
+                if(mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)){
+                        $getFirstWord = explode(" ", $row['categoryName']);
+                        $sort = strtolower($getFirstWord[0]);
+                ?>
+                <li data-color=".<?php echo $sort; ?>"><?php echo $row['categoryName']; ?></li>
+                <?php } 
+                }?> 
             </div>
         </div>
+        
         <!-- end of category buttons-->
 
         <!-- categories -->
         <div class="menu_box">
-            <!-- sushi -->
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/cucumber-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Cucumber Roll</p>
-                    <section>₱100.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
+        <?php 
+            $sql2 = "SELECT * FROM products INNER JOIN categories ON products.category = categories.id" ;
+            $result = mysqli_query($conn, $sql2);
+                if(mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)){
+                        $getFirstWord = explode(" ", $row['categoryName']);
+                        $sort = strtolower($getFirstWord[0]);
+            ?>
 
-            <div class="box All sushi">
+            <div class="box All <?php echo $sort; ?>">
                 <div class="box_img">
-                    <img src="products/kani-roll.png" alt="">
+                    <img src="img/menu/<?=$row['image']?>" alt="">
                 </div>
                 <div class="text">
-                    <p>Kani Roll</p>
-                    <section>₱150.00</section>
+                    <p><?php echo $row['productName']; ?></p>
+                    <section>₱<?php echo $row['price']; ?></section>
                     <button>Add to Cart</button>
                 </div>
             </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/tamago-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Tamago Roll</p>
-                    <section>₱150.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/wakame-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Wakame Roll</p>
-                    <section>₱150.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/salmon-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Salmon Roll</p>
-                    <section>₱190.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/tuna-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Tuna Roll</p>
-                    <section>₱190.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/spicy-kani-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Spicy Kani Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/bonito-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Bonito Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/bny-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>BNY Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/california-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>California Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/crazy-kani-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Crazy Kani Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/okonomiyaki-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Okonomiyaki Roll</p>
-                    <section>₱230.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/fireball-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Firecracker Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/ay-caramba-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Caramba Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/sushi-dreams-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Sushi Dreams Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/ninja-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Ninja Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/chicken-winner-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Chicken Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/guardian-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Guardian Roll</p>
-                    <section>₱290.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/omg-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>OMG Roll</p>
-                    <section>₱390.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/cloud9-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Cloud 9 Roll</p>
-                    <section>₱390.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/golden-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Golden Roll</p>
-                    <section>₱390.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/og-roll.png" alt ="">
-                </div>
-                <div class="text">
-                    <p>OG Roll</p>
-                    <section>₱390.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/ss-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>SS Roll</p>
-                    <section>₱390.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/sunshine-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Sunshine Roll</p>
-                    <section>₱450.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/spicy-tuna-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Spicy Tuna Roll</p>
-                    <section>₱450.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/fireball-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Fireball Roll</p>
-                    <section>₱450.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/lava-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Lava Roll</p>
-                    <section>₱450.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/super-cali-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Super Cali Roll</p>
-                    <section>₱550.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All sushi">
-                <div class="box_img">
-                    <img src="products/godzilla-roll.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Godzilla Roll</p>
-                    <section>₱550.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- temaki wraps -->
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/california-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p>California Temaki</p>
-                    <section>₱190.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/okonomiyaki-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p class="text_long">Okonomiyaki Temaki</p>
-                    <section>₱190.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/crazy-kani-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Crazy Kani Temaki</p>
-                    <section>₱190.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/sushi-dreams-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p class="text_long">Sushi Dreams Temaki</p>
-                    <section>₱250.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/firecracker-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Firecracker Temaki</p>
-                    <section>₱250.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All temaki">
-                <div class="box_img">
-                    <img src="products/ay-caramba-temaki.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Caramba Temaki</p>
-                    <section>₱250.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- bento box -->
-            <div class="box All bento">
-                <div class="box_img">
-                    <img src="products/classic-mix-bento.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Classix Mix Bento</p>
-                    <section>₱500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All bento">
-                <div class="box_img">
-                    <img src="products/aburi-mix-bento.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Aburi Mix Bento</p>
-                    <section>₱500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All bento">
-                <div class="box_img">
-                    <img src="products/tuna-overload-bento.png" alt="">
-                </div>
-                <div class="text">
-                    <p class="text_long">Tuna Overload Bento</p>
-                    <section>₱600.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All bento">
-                <div class="box_img">
-                    <img src="products/salmon-overload-bento.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Salmon Bento</p>
-                    <section>₱600.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- platters -->
-            <div class="box All platters">
-                <div class="box_img">
-                    <img src="products/basic.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Basic Party Platter</p>
-                    <section>₱1,500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All platters">
-                <div class="box_img">
-                    <img src="products/deluxe.png" alt="">
-                </div>
-                <div class="text">
-                    <p class="text_long">Deluxe Party Platter</p>
-                    <section>₱1,900.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All platters">
-                <div class="box_img">
-                    <img src="products/poké.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Poké Party Platter</p>
-                    <section>₱2,300.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All platters">
-                <div class="box_img">
-                    <img src="products/premium.png" alt="">
-                </div>
-                <div class="text">
-                    <p class="text_long">Premium Party Platter</p>
-                    <section>₱2,500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- cakes -->
-            <div class="box All cakes">
-                <div class="box_img">
-                    <img src="products/veggie-sushi-cake.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Veggie Sushi Cake</p>
-                    <section>₱1,300.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All cakes">
-                <div class="box_img">
-                    <img src="products/classic-sushi-cake.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Classic Sushi Cake</p>
-                    <section>₱1,500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All cakes">
-                <div class="box_img">
-                    <img src="products/spicy-sushi-cake.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Spicy Sushi Cake</p>
-                    <section>₱1,500.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="box All cakes">
-                <div class="box_img">
-                    <img src="products/rose-sushi-cake.png" alt="">
-                </div>
-                <div class="text">
-                    <p>Rose Sushi Cake</p>
-                    <section>₱1,600.00</section>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
+            <?php } 
+                }?> 
+            
         </div>
         <!-- end of categories -->
     </div>

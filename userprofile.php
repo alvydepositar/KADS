@@ -12,15 +12,15 @@ session_start();
 
     $username = $_SESSION['username'];
     $id = $_SESSION['id'];
-    
-    $firstname = $lastname = $email = $phone = $bday = "";
-    $firstname_err = $lastname_err = $email_err = $phone_err  =$bday_err = "";
 
     $query="SELECT * FROM info_accts WHERE id = '$id'";
     $result=mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result);
 
     $oldusername = $row['username']; 
+
+    $firstname = $lastname = $email = $phone = $bday = "";
+    $firstname_err = $lastname_err = $email_err = $phone_err =$bday_err = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
      
@@ -58,35 +58,32 @@ session_start();
         }
       }
 */
-      if(empty(trim($_POST["email"]))){
-          $email_err = "Please enter email.";
-      } else {
-
-        $sql = "SELECT * FROM info_accts WHERE username = ? && role = 2";
+     // Validate email
+    if(empty(trim($_POST["email"]))){
+      $email_err = "Please enter email.";
+    } else {
+      $sql = "SELECT id FROM info_accts WHERE username = ? && role = 2 && NOT id = '$id' ";
+    
+        if($stmt = mysqli_prepare($conn, $sql)){
+          mysqli_stmt_bind_param($stmt, "s", $param_email);
         
-        if($stmt = mysqli_prepare($conn, $sql)) {
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
+          $param_email = trim($_POST["email"]);
+        
+          if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_store_result($stmt);
             
-            $param_email = trim($_POST["email"]);
-            
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1) {
-                    
-                    if($row['username'] = $param_email) {
-                      $email_err = "This email is already taken.";
-                    }
-                } else{
-                    $email = trim($_POST["email"]);
-                }
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                $email_err = "This email is already taken.";
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                $email = trim($_POST["email"]);
             }
-
-            mysqli_stmt_close($stmt);
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
         }
+
+        mysqli_stmt_close($stmt);
       }
+    }
 
       // Validate birthday
       if(empty(trim($_POST["bday"]))){
@@ -102,13 +99,16 @@ session_start();
         $phone = trim($_POST["phone"]);
       }
 
-      if ($email == $row['username']) {
-        mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
-        header("Location: userprofile.php");
-      } else {
-        mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', username = '$email', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
-        header("Location: userprofile.php");
+      if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($bday_err) && empty($phone_err) ) {
+        if ($email == $row['username']) {
+          mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
+          header("Location: userprofile.php");
+        } else {
+          mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', username = '$email', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
+          header("Location: userprofile.php");
+        }
       }
+      
       
     }
 ?>
@@ -257,12 +257,13 @@ session_start();
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+
                 <div class="row">
                   <div class="col">
                     <label for="inputFirstName">First Name</label>
-                    <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" name="firstname" id="firstname" value="<?php echo $row['firstname'];?>">
-                    <span class="invalid-feedback"><?php echo $firstname_err; ?></span>  
-                  </div>                  
+                    <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="firstname" name="firstname" value="<?php echo $row['firstname']; ?>"/>
+                    <span class ="invalid-feedback"><?php echo $firstname_err; ?></span>
+                  </div>
                 </div>
 
                 <div class="row">                  

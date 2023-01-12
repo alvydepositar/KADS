@@ -42,7 +42,7 @@
       // Validate email
       if(empty(trim($_POST["email"]))){
           $email_err = "Please enter email.";
-      } else{
+      } else {
         $sql = "SELECT id FROM info_accts WHERE username = ? && role = 2";
         
         if($stmt = mysqli_prepare($conn, $sql)){

@@ -17,67 +17,44 @@
     $result=mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result);
 
+    $oldpass = $newpass = $confirmpass = "";
+    $oldpass_err = $newpass_err = $confirmpass_err = "";
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-      $old_pass = $_POST['oldpass'];
-	    $new_pass = $_POST['newpass'];
-	    $re_pass = $_POST['confirmpass'];
-
-      if(empty($oldpass_err) && empty($newpass_err) && empty($confirmpass_err)) {
-        $verifypassword = password_verify($old_pass, $row['password']);
-	      if ($verifypassword) {
-		        if ($new_pass == $re_pass) {
-              $newpass = password_hash($newpass, PASSWORD_DEFAULT);
-			        mysqli_query($conn, "UPDATE info_accts SET password='$new_pass' WHERE id='$id'");
-              header("Location: changePass.php");
-			      } else {
-              $confirmpass_err = "Password did not match.";
-			      }
-		    } else {
-          $oldpass_err = "Current password is incorrect.";		
-        }  
-      } /*else {
-        $oldpass_err = "Please input your current password.";
-        $newpass_err = "Please input your new password.";
-        $confirmpass_err = "Please confirm your new password.";
-      }
-      
-	//}
-
-/*
-      // Validate password
-      if(empty(trim($_POST["oldpass"]))){
-        $oldpass_err = "Please enter a password.";     
-      } elseif($_POST["oldpass"] != $row['password']){
-          $oldpass_err = "Current password is incorrect.";
+      if(!password_verify($_POST['oldpass'], $row['password'])) {
+        $oldpass_err = "Current password is incorrect.";
       } else {
-          $oldpass = trim($_POST["oldpass"]);
+        $oldpass = trim($_POST['oldpass']);
       }
-    
+
       if(empty(trim($_POST["newpass"]))){
-        $newpass_err = "Please enter new password.";     
+        $newpass_err = "Please enter your new password.";     
       } elseif(strlen(trim($_POST["newpass"])) < 8){
         $newpass_err = "Password must have atleast 8 characters.";
-      } else {
+      } else{
         $newpass = trim($_POST["newpass"]);
+        if($newpass == $oldpass) {
+          $newpass_err = "New password must not be the same as your current password.";
+          }
       }
 
       if(empty(trim($_POST["confirmpass"]))){
         $confirmpass_err = "Please confirm password.";     
       } else {
-        $confirmpass = trim($_POST["confirmpass"]);
-        if($newpass != $confirmpass){
-            $confirmpass_err = "Password did not match.";
-        } else{
-            $confirmpass = trim($_POST["confirmpass"]);
-        }
+          $confirmpass = trim($_POST["confirmpass"]);
+            if($newpass != $confirmpass){
+              $confirmpass_err = "Password did not match.";
+            } else{
+              $confirmpass = trim($_POST["confirmpass"]);
+            }
+      } 
+
+      if(empty($oldpass_err) && empty($newpass_err) && empty($confirmpass_err)) {
+        $newpassword = password_hash($newpass, PASSWORD_DEFAULT);
+        mysqli_query($conn, "UPDATE info_accts SET password='$newpassword' WHERE id='$id'");
+        header("Location: changePass.php");
       }
-
-      $newpass = password_hash($newpass, PASSWORD_DEFAULT);
-
-      mysqli_query($conn, "UPDATE info_accts SET password = '$newpass' WHERE id = '$id'");
-      header("Location: changePass.php");
-      */
     }
 ?>
 

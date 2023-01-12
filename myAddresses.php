@@ -49,11 +49,8 @@ session_start();
 
 
         if(empty($house_err) && empty($city_err) && empty($province_err) && empty($zip_err)) {
-          
-          if(mysqli_num_rows($result) > 0) { 
             mysqli_query($conn, "UPDATE info_accts SET house = '$house', city = '$city', province = '$province', zip = '$zip' WHERE id = '$id'");
             header("Location: myAddresses.php");
-          }
         }
       }
 ?>
@@ -208,9 +205,7 @@ session_start();
                   placeholder="ZIP" 
                   pattern="[0-9]{4}" 
                   maxlength="4"
-                  <?php if(mysqli_num_rows($result) > 0) { ?>
-                    value="<?php echo $res['zip']; ?>"
-                  <?php } ?>>
+                    value="<?php echo $res['zip']; ?>">
                   <span class="invalid-feedback"><?php echo $zip_err; ?></span>
               </div>
 

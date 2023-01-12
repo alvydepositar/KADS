@@ -2,7 +2,6 @@
   $query="SELECT * FROM info_accts WHERE id = '$id'";
   $result=mysqli_query($conn,$query);
   $row = mysqli_fetch_assoc($result);
-
 ?>
       <!-- header -->
        <nav class="navbar navbar-expand-lg navbar-light">

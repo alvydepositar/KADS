@@ -2,7 +2,7 @@
 session_start();
 
 include 'conn.php';
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +30,19 @@ include 'conn.php';
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
 </head>
-
+<style>
+  
+</style>
 <body>
-    <!-- header start -->
+  <?php if(!isset($_SESSION['loggedin'])) {
+          include 'header-guest.html';
+        } else {
+          $username = $_SESSION['username'];
+          $id = $_SESSION['id'];
+          include 'header-user.php';
+        }
+  ?>
+    <!-- header start 
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid navbar-content">
           <a class="navbar-brand" href="/KADS">
@@ -71,7 +81,7 @@ include 'conn.php';
         </div>
       </div>
     </nav>       
-    <!-- header end -->
+     header end -->
 
     <!-- menu showcase -->
     <div class="d-flex content-1">

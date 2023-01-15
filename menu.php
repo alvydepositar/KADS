@@ -164,7 +164,8 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
                         <a href="menu.php?p_id=<?php echo $row['p_id']; ?>&
                         p_image=<?php echo $row['image']; ?>&
                         p_price=<?php echo $row['price']; ?>&
-                        p_name=<?php echo $row['productName']; ?>"> Add to Cart </a>                    
+                        p_name=<?php echo $row['productName']; ?>"
+                        class="btnAddToCart"> Add to Cart </a>                    
                 </div>
             </div>
             

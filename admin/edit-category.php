@@ -17,7 +17,7 @@ $catname_err ="";
 
 if(isset($_GET["edit"])){
     $id = $_GET['edit'];
-    $sql1 = (mysqli_query($conn, "SELECT * FROM categories WHERE id = '$id'"));
+    $sql1 = (mysqli_query($conn, "SELECT * FROM categories WHERE c_id = '$id'"));
         $pro = mysqli_fetch_array($sql1); 
         $catname  = $pro["categoryName"];       
 }
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $catname  = $_POST["catname"];
 
-    $sql = "SELECT id FROM categories WHERE categoryName = ?";
+    $sql = "SELECT c_id FROM categories WHERE categoryName = ?";
         
     if($stmt = mysqli_prepare($conn, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $param_catname);
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_close($stmt);
     }
 
-    mysqli_query($conn, "UPDATE categories SET categoryName = '$catname' WHERE id = '$id'");
+    mysqli_query($conn, "UPDATE categories SET categoryName = '$catname' WHERE c_id = '$id'");
     header("Location: category.php");
 }
 ?>

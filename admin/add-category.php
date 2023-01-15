@@ -23,7 +23,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
         if (empty(trim($_POST["catname"]))) {
             $catname_err = "Please enter a category name.";
         } else {
-            $sql = "SELECT id FROM categories WHERE categoryName = ?";
+            $sql = "SELECT c_id FROM categories WHERE categoryName = ?";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($stmt, "s", $param_catname);

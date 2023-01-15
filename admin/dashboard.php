@@ -14,7 +14,7 @@ require "../conn.php";
 
     $username = $_SESSION['username'];
 
-    $orderSQL = "SELECT * FROM user_orders INNER JOIN products ON user_orders.orders = products.id ";
+    $orderSQL = "SELECT * FROM user_orders INNER JOIN products ON user_orders.orders = products.p_id ";
     $resultOrder = mysqli_query($conn, $orderSQL);
     $ordercount = mysqli_num_rows($resultOrder);
     

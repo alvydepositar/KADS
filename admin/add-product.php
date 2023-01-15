@@ -151,7 +151,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
                             if (mysqli_num_rows($result) >= 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     ?>
-                                    <option value="<?php echo $row['id'] ?>">
+                                    <option value="<?php echo $row['c_id'] ?>">
                                         <?php echo $row['categoryName']; ?>
                                     </option>
                                     <?php

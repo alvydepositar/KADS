@@ -10,10 +10,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
 } else {
   include "conn.php";
 
-//UNSET($_SESSION['cart']);
-
-    $cartBtn = "Add to Cart";
-
     if (isset($_GET['p_id'])) {
         $product_id = $_GET['p_id'];
         // If session cart is not empty

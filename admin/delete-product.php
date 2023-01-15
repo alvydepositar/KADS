@@ -14,7 +14,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
         // Include config file
         $id = $_POST['id'];
 
-        $query = "SELECT image FROM products WHERE id = $id";
+        $query = "SELECT image FROM products WHERE p_id = $id";
         $Result = mysqli_query($conn, $query);
         $fetchRecords = mysqli_fetch_assoc($Result);
         $fetchImgTitleName = $fetchRecords['image'];
@@ -22,7 +22,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
         unlink($createDeletePath);
 
         // Prepare a delete statement
-        $sql = "DELETE FROM products WHERE id = ?";
+        $sql = "DELETE FROM products WHERE p_id = ?";
 
         if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters

@@ -14,7 +14,7 @@ require "../conn.php";
 
     $username = $_SESSION['username'];
 
-    $query="SELECT p.id, p.productName, p.price, p.image, p.category, c.categoryName FROM products AS p INNER JOIN categories AS c ON p.category = c.id";
+    $query="SELECT p.p_id, p.productName, p.price, p.image, p.category, c.categoryName FROM products AS p INNER JOIN categories AS c ON p.category = c.c_id";
     $result=mysqli_query($conn,$query);
 ?>
 
@@ -287,10 +287,10 @@ require "../conn.php";
                                             <td><?php echo $row['price']; ?></td>
                                             <td><?php echo $row['categoryName']; ?> </td>
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="edit-product.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
+                                            <a class="btn btn-solid" href="edit-product.php?edit=<?php echo $row['p_id']; ?>">Edit</a>                                            
                                             </td>
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-product.php?id=<?php echo $row['id']; ?>">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-product.php?id=<?php echo $row['p_id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php

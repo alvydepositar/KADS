@@ -275,14 +275,14 @@ session_start();
                                         ?>
                                     <tbody>
                                         <tr>
-                                            <td><?php echo $row['id']; ?></td>
+                                            <td><?php echo $row['c_id']; ?></td>
                                             <td><?php echo $row['categoryName']; ?></td>
                                             <td class="col-1">
-                                            <a  class="btn btn-solid" href="edit-category.php?edit=<?php echo $row['id']; ?>">Edit</a>                                            
+                                            <a  class="btn btn-solid" href="edit-category.php?edit=<?php echo $row['c_id']; ?>">Edit</a>                                            
                                             </td>
                                             
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-category.php?id=<?php echo $row['id']; ?>">Delete</a>         
+                                            <a class="btn btn-solid" href="delete-category.php?id=<?php echo $row['c_id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
                                         <?php

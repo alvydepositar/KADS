@@ -18,7 +18,7 @@ include "../conn.php";
     if(isset($_GET["edit"])){
         $id = $_GET['edit'];
 
-        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN categories ON products.category = categories.id WHERE products.id = '$id'"));
+        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN categories ON products.category = categories.c_id WHERE products.p_id = '$id'"));
             $pro = mysqli_fetch_array($sql1); 
             $name = $pro["productName"];
             $price = $pro["price"];
@@ -61,10 +61,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}       
     if ((empty($img_name))) {
-        mysqli_query($conn, "UPDATE products SET productName = '$name', price = '$price', category = '$category' WHERE id = $id");
+        mysqli_query($conn, "UPDATE products SET productName = '$name', price = '$price', category = '$category' WHERE p_id = $id");
         header("Location: products.php");
     } else {
-        $query = "SELECT image FROM products WHERE id = $id";
+        $query = "SELECT image FROM products WHERE p_id = $id";
 	    $Result = mysqli_query($conn, $query);
 	    $fetchRecords = mysqli_fetch_assoc($Result);
 	    $fetchImgTitleName = $fetchRecords['image'];
@@ -142,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 while($row = mysqli_fetch_assoc($result)){
 
                         ?>
-                        <option value="<?php echo $row['id'] ?>"> <?php echo $row['categoryName']; ?> </option>
+                        <option value="<?php echo $row['c_id'] ?>"> <?php echo $row['categoryName']; ?> </option>
                         <?php 
                                 }
                             } ?>

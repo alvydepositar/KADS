@@ -5,7 +5,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     require_once "../conn.php";
 
     // Prepare a delete statement
-    $sql = "DELETE FROM categories WHERE id = ?";
+    $sql = "DELETE FROM categories WHERE c_id = ?";
 
     if ($stmt = mysqli_prepare($conn, $sql)) {
         // Bind variables to the prepared statement as parameters

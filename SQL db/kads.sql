@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2023 at 06:48 AM
+-- Generation Time: Jan 15, 2023 at 09:42 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
   `categoryName` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -36,7 +36,7 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `categoryName`) VALUES
+INSERT INTO `categories` (`c_id`, `categoryName`) VALUES
 (1, 'Sushi Rolls'),
 (2, 'Bento Box'),
 (3, 'Temaki Wraps'),
@@ -70,7 +70,7 @@ CREATE TABLE `info_accts` (
 
 INSERT INTO `info_accts` (`id`, `firstname`, `lastname`, `birthday`, `username`, `phone`, `password`, `role`, `house`, `city`, `province`, `zip`) VALUES
 (12, 'Admin', 'Admin', '2001-08-13', 'admin', '09123456789', '$2y$10$HkVmVdmQHxyQE0ARqbPej.pmBGopjlUjj/ZQpFYLH6mFWwPn2tJ0G', 1, NULL, NULL, NULL, NULL),
-(18, 'Alvy', 'Depositar', '2001-08-13', 'aldepositar2020@plm.edu.ph', '09123456789', '$2y$10$1hvaK7LXmrV2KmhKxpKh/OTGve6h07d4HrZpEbL45l0kXP5B8nUz.', 2, NULL, NULL, NULL, NULL);
+(18, 'Alvy', 'Depositar', '2001-08-13', 'aldepositar2020@plm.edu.ph', '09123456789', '$2y$10$1hvaK7LXmrV2KmhKxpKh/OTGve6h07d4HrZpEbL45l0kXP5B8nUz.', 2, '1215 Mithi St., Tondo', 'Manila', 'Metro Manila', 1012);
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ INSERT INTO `info_accts` (`id`, `firstname`, `lastname`, `birthday`, `username`,
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL,
   `image` varchar(400) DEFAULT NULL,
   `productName` varchar(255) DEFAULT NULL,
   `price` int(11) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `image`, `productName`, `price`, `category`) VALUES
+INSERT INTO `products` (`p_id`, `image`, `productName`, `price`, `category`) VALUES
 (7, 'IMG-63b85f281dfd45.78622008.png', 'Cucumber Roll', 100, 1),
 (8, 'IMG-63b85f55e30814.16050105.png', 'Salmon Roll', 190, 1),
 (10, 'IMG-63b85f6e7ab867.21949032.png', 'Kani Roll', 150, 1),
@@ -157,7 +157,7 @@ CREATE TABLE `user_orders` (
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`c_id`);
 
 --
 -- Indexes for table `info_accts`
@@ -169,7 +169,7 @@ ALTER TABLE `info_accts`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`p_id`),
   ADD KEY `products_ibfk` (`category`);
 
 --
@@ -188,7 +188,7 @@ ALTER TABLE `user_orders`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `info_accts`
@@ -200,7 +200,7 @@ ALTER TABLE `info_accts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `user_orders`
@@ -216,13 +216,13 @@ ALTER TABLE `user_orders`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk` FOREIGN KEY (`category`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_ibfk` FOREIGN KEY (`category`) REFERENCES `categories` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  ADD CONSTRAINT `orders_ibfk` FOREIGN KEY (`orders`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk` FOREIGN KEY (`orders`) REFERENCES `products` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_orders_ibfk` FOREIGN KEY (`user`) REFERENCES `info_accts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

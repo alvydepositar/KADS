@@ -1,8 +1,54 @@
 <?php
 session_start();
 
-include 'conn.php';
-  
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+  header("location: login.php");
+  exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+  header("location: admin/dashboard.php");
+  exit;
+} else {
+  include "conn.php";
+
+//UNSET($_SESSION['cart']);
+
+    $cartBtn = "Add to Cart";
+
+    if (isset($_GET['p_id'])) {
+        $product_id = $_GET['p_id'];
+        // If session cart is not empty
+        if (!empty($_SESSION['cart'])) {
+          // Using "array_column() function" we get the product id existing in session cart array
+          $acol = array_column($_SESSION['cart'], $product_id);
+          // now we compare whther id already exist with "in_array() function"
+          if (in_array($product_id, $acol)) {
+            // Updating quantity if item already exist
+            $_SESSION['cart'][$product_id]['qty'] += 1;
+          } else {
+            // If item doesn't exist in session cart array, we add a new item
+            $item = [
+              'product_id' => $_GET['p_id'],
+              'qty' => 1,
+              'product_image' => $_GET['p_image'],
+              'product_name' => $_GET['p_name'],
+              'product_price' => $_GET['p_price']
+            ];
+            $_SESSION['cart'][$product_id] = $item;
+          }
+        } else {
+          // If cart is completely empty, then store item in session cart
+          $item = [
+            'product_id' => $_GET['p_id'],
+            'qty' => 1,
+            'product_image' => $_GET['p_image'],
+            'product_name' => $_GET['p_name'],
+            'product_price' => $_GET['p_price']
+          ];
+          $_SESSION['cart'][$product_id] = $item;
+        }
+      }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,46 +94,6 @@ include 'conn.php';
           include 'header-user.php';
         }
   ?>
-    <!-- header start 
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid navbar-content">
-          <a class="navbar-brand" href="/KADS">
-              <img src="images/kads_logo_1.png" alt="" height="85" id="headerlogo">
-          </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/KADS" >Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active activelink" href="menu.php">Menu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.php">Contact Us</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="login.php">
-                  <button class="btn btn-primary" type="submit" id="sign-in-menu">Sign In</button>
-                </a>
-                <a href="registration.php">
-                  <button class="btn btn-primary" type="submit" id="register-menu">Register</button>     
-                </a>
-                                      
-                  <a href="login.php">
-                    <img class="cart" src="images/cart-vector-menu.png" alt="cart" height="25" width="25"/>
-                  </a>                
-              </li>                               
-              <li class="nav-responsive-padding-bottom"></li>                  
-          </ul>
-        </div>
-      </div>
-    </nav>       
-     header end -->
 
     <!-- menu showcase -->
     <div class="d-flex content-1">
@@ -135,35 +141,45 @@ include 'conn.php';
         
         <!-- end of category buttons-->
 
-        <!-- categories -->
-        <div class="menu_box">
-        <?php 
-            $sql2 = "SELECT * FROM products INNER JOIN categories ON products.category = categories.id" ;
-            $result = mysqli_query($conn, $sql2);
-                if(mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)){
-                        $getFirstWord = explode(" ", $row['categoryName']);
-                        $sort = strtolower($getFirstWord[0]);
-            ?>
+        <?php
+        $sql2 = "SELECT * FROM products INNER JOIN categories ON products.category = categories.c_id" ;
+        $result = mysqli_query($conn, $sql2);
+        if(mysqli_num_rows($result) > 0) {
+        ?>
 
-            <div class="box All <?php echo $sort; ?>">
-                <div class="box_img">
-                    <img src="img/menu/<?=$row['image']?>" alt="">
-                </div>
-                <div class="text">
-                  <div class="text-info d-flex align-items-center justify-content-center">
-                    <p class="align-middle"><?php echo $row['productName']; ?></p>                    
-                  </div>
-                  <section>₱<?php echo $row['price']; ?></section>
-                  <button>Add to Cart</button>
+        <!-- categories -->
+        <form class="form-style" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <div class="menu_box">
+                <?php 
+                            while($row = mysqli_fetch_assoc($result)){
+                                $getFirstWord = explode(" ", $row['categoryName']);
+                                $sort = strtolower($getFirstWord[0]);
+                ?>
+
+                <div class="box All <?php echo $sort; ?>">
+                    <div class="box_img">
+                        <img src="img/menu/<?=$row['image']?>" alt="">
+                    </div>
+                    <div class="text">
+                    <div class="text-info d-flex align-items-center justify-content-center">
+                        <p class="align-middle"><?php echo $row['productName']; ?></p>                    
+                    </div>
+                    <section>₱<?php echo $row['price']; ?></section>
+                        <a href="menu.php?p_id=<?php echo $row['p_id']; ?>&
+                        p_image=<?php echo $row['image']; ?>&
+                        p_price=<?php echo $row['price']; ?>&
+                        p_name=<?php echo $row['productName']; ?>"> Add to Cart </a>                    
                 </div>
             </div>
+            
+        </form>
+        <!-- end of categories -->
+
             <?php } 
                 }?> 
-            
-        </div>
-        <!-- end of categories -->
-    </div>
+                
+         </div>
+     </div>
     <!-- end of menu-->
 
     <!-- back to top button -->
@@ -205,3 +221,5 @@ include 'conn.php';
 </body>
 
 </html>
+
+<?php } ?>

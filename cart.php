@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+include 'conn.php';
+    
+    
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="scroller">
 
@@ -25,7 +35,13 @@
 
 <body>
     <?php
-        include 'header-user.html';
+        if(!isset($_SESSION['loggedin'])) {
+            include 'header-guest.html';
+          } else {
+            $username = $_SESSION['username'];
+            $id = $_SESSION['id'];
+            include 'header-user.php';
+          }
     ?>
     
     <!-- cart and order summary page -->    
@@ -33,101 +49,93 @@
       <div class="row">
         <div class="col-lg-6 col-12 left-col left-side justify-content-center">
             <p>My Cart</p>
+            <a href="userFunctions/emptycart.php"> Empty Cart </a>
+            <?php
+            $total = 0;
+            if(!empty($_SESSION['cart'])) {
+                foreach($_SESSION['cart'] as $cart) {
+               ?>
             <!-- item -->  
             <div class="d-flex">
                 <div class="food-item-1 w-100">
                     <div class="d-flex align-items-center">
                         <div class="food-img flex-shrink-0">
-                            <img src="products/cucumber-roll.png" alt="food image">
+                            <img src="img/menu/<?php echo $cart['product_image'] ?>" alt="food image">
                         </div>
+
                         <div class="food-content flex-grow-1 ms-3">
-                            <h2 class="food-name">Cucumber Roll</h2>
+                            <h2 class="food-name"><?php echo $cart['product_name'] ?></h2>
                             <!-- price should add up everytime the quantity goes up. 
                             for example, the original price of cucumber roll is 100
                             but the user ordered 2 of it. the total price of cucumber 
                             roll should reflect on the food price-->
-                            <h3 class="food-price">₱200.00</h3>
-                            <div class="quantity">
-                                <span class="decrement">-</span>
-                                <span class="intnum">01</span>
-                                <span class="increment">+</span>
-                            </div>
+                            <?php
+                            /*
+                            if(isset($_POST['decrement'])){
+        
+                                $product_id = $_GET['p_id'];
+                                $_SESSION['cart'][$product_id]['qty'] -= 1;
+                                
+                            }
+                            if(isset($_POST['increment'])) {
+                                
+                                $product_id = $_GET['p_id'];
+                                $_SESSION['cart'][$product_id]['qty'] += 1;
+                            }
+                            */
+                            ?>
+                            <h3 class="food-price">₱<?php echo $cart['product_price'] * $cart['qty']; ?></h3>
+                            <form method="post">
+                                <div class="quantity">
+                                <!--
+                                    <a href="cart.php?p_id=<?=$cart['product_id'];?>&qty=<?=$cart['qty'];?>">
+                                    <button type="submit" class="decrement" name="decrement"> 
+                                    -
+                                    </button>
+                                    </a> 
+                                    
+                                    <span class="intnum"><?php //echo $cart['qty']; ?></span>
+                                    <a href="cart.php?p_id=<?=$cart['product_id'];?>&qty=<?=$cart['qty'];?>">
+                                    <button type="submit" class="increment" name="increment"> 
+                                    + 
+                                    </button>
+                                    </a>
+                                
+                                    <span class="decrement"> - </span>
+                                    <span class="intnum" id="quantity"><?php //echo $cart['qty']; ?></span>
+                                    <span class="increment"> + </span>
+                                -->
+                                
+                                    <input type="button" onclick="decrementValue()" value="-" />
+                                    <input type="text" name="quantity" value="<?php echo $cart['qty']; ?>" maxlength="2" max="10" size="1" id="number" />
+                                    <input type="button" onclick="incrementValue()" value="+" />
+                                    
+                                    <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
+                                    <input type="hidden" name="quantity" value="<?php echo $cart['qty']; ?>">
+                                    
+                                </div> 
+                            </form>
+                            <?php $total += ($cart['product_price'] * $cart['qty']); ?>
                         </div>
                     </div>
                 </div>                
                 <div class="p-2 flex-shrink-1">                    
                     <div class="d-flex align-content-center flex-wrap h-100">
                         <button class="del-btn h-100">
-                            <a href="" class="x-unicode">&#128937;</a>
+                            <a href="userFunctions/removeitem.php?id=<?= $cart['product_id']; ?>" class="x-unicode">&#128937;</a>
                         </button>        
                     </div>    
                 </div>
             </div>                
             <!-- end of item -->
-
-            <!-- item -->  
-            <div class="d-flex">
-                <div class="food-item-1 w-100">
-                    <div class="d-flex align-items-center">
-                        <div class="food-img flex-shrink-0">
-                            <img src="products/tuna-roll.png" alt="food image">
-                        </div>
-                        <div class="food-content flex-grow-1 ms-3">
-                            <h2 class="food-name">Tuna Roll</h2>
-                            <!-- price should add up everytime the quantity goes up. 
-                            for example, the original price of cucumber roll is 100
-                            but the user ordered 2 of it. the total price of cucumber 
-                            roll should reflect on the food price-->
-                            <h3 class="food-price">₱190.00</h3>
-                            <div class="quantity">
-                                <span class="decrement">-</span>
-                                <span class="intnum">01</span>
-                                <span class="increment">+</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div class="p-2 flex-shrink-1">                    
-                    <div class="d-flex align-content-center flex-wrap h-100">
-                        <button class="del-btn btn h-100">
-                            <a href="" class="x-unicode">&#128937;</a>
-                        </button>        
-                    </div>    
-                </div>
-            </div>                
-            <!-- end of item --> 
             
-            <!-- item -->  
-            <div class="d-flex">
-                <div class="food-item-1 w-100">
-                    <div class="d-flex align-items-center">
-                        <div class="food-img flex-shrink-0">
-                            <img src="products/kani-roll.png" alt="food image">
-                        </div>
-                        <div class="food-content flex-grow-1 ms-3">
-                            <h2 class="food-name">Kani Roll</h2>
-                            <!-- price should add up everytime the quantity goes up. 
-                            for example, the original price of cucumber roll is 100
-                            but the user ordered 2 of it. the total price of cucumber 
-                            roll should reflect on the food price-->
-                            <h3 class="food-price">₱450.00</h3>
-                            <div class="quantity">
-                                <span class="decrement">-</span>
-                                <span class="intnum">01</span>
-                                <span class="increment">+</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div class="p-2 flex-shrink-1">                    
-                    <div class="d-flex align-content-center flex-wrap h-100">
-                        <button class="del-btn btn h-100">
-                            <a href="" class="x-unicode">&#128937;</a>
-                        </button>        
-                    </div>    
-                </div>
-            </div>                
-            <!-- end of item -->                    
+            <?php
+                    }
+                } 
+            ?>
+
+            
+                     
         </div>   
         
         <div class="col-vline d-none d-lg-block">
@@ -138,7 +146,7 @@
             <p>Order Summary</p>
             <div class="subtotal">
                 <h2 class="subtotal-label">Subtotal</h2>
-                <span class="subtotal-price">₱840.00</span>
+                <span class="subtotal-price">₱<?php echo $total; ?></span>
             </div>
             <div class="df">
                 <h2 class="df-label">Delivery Fee</h2>
@@ -149,7 +157,7 @@
 
             <div class="total">
                 <h2 class="total-label">Total</h2>
-                <span class="total-price">₱900.00</span>
+                <span class="total-price">₱<?php echo $total+60; ?></span>
             </div>
 
             <div class="hline"></div>
@@ -183,24 +191,45 @@
 
     <script>
         // for quantity spinner
+        /*
         const increment = document.querySelector(".increment"),
             decrement = document.querySelector(".decrement"),
             intnum = document.querySelector(".intnum");
         let a = 1;
         increment.addEventListener("click", () => {
             a++;
-            a = (a < 10) ? "0" + a : a;
+            a = (a < 10) ? a : a;
             intnum.innerText = a;
         });
 
         decrement.addEventListener("click", () => {
             if (a > 1) {
                 a--;
-                a = (a < 10) ? "0" + a : a;
+                a = (a < 10) ? a : a;
                 intnum.innerText = a;
             }
         });
+        */
+
+        function incrementValue() {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<10){
+                value++;
+                document.getElementById('number').value = value;
+            }
+        }
+    function decrementValue() {
+        var value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value>1){
+            value--;
+            document.getElementById('number').value = value;
+        }
+    }
+        
     </script>
+    
 </body>
 
 </html>

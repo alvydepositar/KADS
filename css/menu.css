@@ -211,7 +211,7 @@ body {
     color: #000000;
 }
 
-.text button {
+form .text a {
     width: 150px;
     height: 45px;
     border-radius: 10px;
@@ -225,7 +225,7 @@ body {
     color: #ffffff;
 }
 
-.text button:hover {
+form .text a:hover {
     cursor: pointer;
     background-color: #c70800;
 }
@@ -275,7 +275,7 @@ body {
     max-width: 400px;  
   }
   
-  .cta .btn, .button1 {
+  .cta .btn, .button1, form a {
     background-color: var(--primary);
     border: none;  
     color: white;
@@ -290,7 +290,7 @@ body {
     cursor: pointer;
   }
   
-  .cta .btn:hover,.button1:hover {
+  .cta .btn:hover,.button1:hover, form a:hover {
     background: var(--primary);
     color: #ffffff;
     background-color: var(--primary-dark);

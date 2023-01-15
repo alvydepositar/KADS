@@ -100,16 +100,16 @@ include 'conn.php';
                                     + 
                                     </button>
                                     </a>
-                                
-                                    <span class="decrement"> - </span>
-                                    <span class="intnum" id="quantity"><?php //echo $cart['qty']; ?></span>
-                                    <span class="increment"> + </span>
                                 -->
+                                    <span class="decrement"> - </span>
+                                    <span class="intnum" id="quantity"><?php echo $cart['qty']; ?></span>
+                                    <span class="increment"> + </span>
                                 
+                                <!--
                                     <input type="button" onclick="decrementValue()" value="-" />
                                     <input type="text" name="quantity" value="<?php echo $cart['qty']; ?>" maxlength="2" max="10" size="1" id="number" />
                                     <input type="button" onclick="incrementValue()" value="+" />
-                                    
+                                -->
                                     <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
                                     <input type="hidden" name="quantity" value="<?php echo $cart['qty']; ?>">
                                     
@@ -191,7 +191,7 @@ include 'conn.php';
 
     <script>
         // for quantity spinner
-        /*
+        
         const increment = document.querySelector(".increment"),
             decrement = document.querySelector(".decrement"),
             intnum = document.querySelector(".intnum");
@@ -209,8 +209,10 @@ include 'conn.php';
                 intnum.innerText = a;
             }
         });
-        */
 
+        
+        
+/*
         function incrementValue() {
             var value = parseInt(document.getElementById('number').value, 10);
             value = isNaN(value) ? 0 : value;
@@ -227,7 +229,7 @@ include 'conn.php';
             document.getElementById('number').value = value;
         }
     }
-        
+*/   
     </script>
     
 </body>

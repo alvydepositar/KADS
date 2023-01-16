@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-  header("location: login.php");
-  exit;
-} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
   header("location: admin/dashboard.php");
   exit;
 } else {
@@ -43,8 +40,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
           $_SESSION['cart'][$product_id] = $item;
         }
       }
-
-
 ?>
 
 <!DOCTYPE html>

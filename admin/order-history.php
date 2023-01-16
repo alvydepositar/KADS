@@ -1,3 +1,16 @@
+<?php
+
+require "../conn.php";
+
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || !isset($_SESSION['role']) || !$_SESSION['role']==1) {
+        header("Location: ../login.php");
+        exit();
+    }
+    $username = $_SESSION['username'];
+    
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -235,50 +248,65 @@
                                     Add Order
                                 </button></a>
                             </h3>                            
-                            
-                            <div class="table-responsive">
-                                <table class="table no-wrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Orders</th>
-                                            <th class="border-top-0">Total Order</th>
-                                            <th class="border-top-0">Date</th>
-                                            <th class="border-top-0">Order Status</th>                                          
-                                        </tr>
-                                    </thead>
-                                    <tbody>
                                     <?php
-                                       /* if(($ordercount) >= 0) {
-                                            while($row = mysqli_fetch_assoc($resultOrder)){*/
+                                        $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
+                                        $result=mysqli_query($conn,$query);
+                                        $order_by_date = array();
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $date = date('Y-m-d H:i:s', strtotime($row['date']));
+                                                if (!isset($order_by_date[$date])) {
+                                                    $order_by_date[$date] = array();
+                                                    $order_by_date[$date]['total'] = 0;
+                                                    $order_by_date[$date]['order_number'] = $row['order_number'];
+                                                    $order_by_date[$date]['status'] = $row['status'];
+                                                }
+                                                $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
+                                                array_push($order_by_date[$date], $row);
+                                            }
+                        
+                                        foreach ($order_by_date as $date => $orders) {
                                     ?>
-                                        <tr>
-                                            <td>ID<?php //echo $row['id']; ?></td>
-                                            <td class="txt-oflo">Product Name<?php //echo $row['product_name']; ?></td>
-                                            <td>Total<span class="text-success"><?php //echo $row['total']; ?></span></td>
-                                            <td>Order Date<?php //echo $row['orderdate']; ?></td>
-                                            <td>Order Time<?php //echo $row['ordertime']; ?></td>
-                                            <td class="col-1">
-                                            <a class="btn btn-solid" href="view-order.php?id=">View</a>                                            
+                                            <div class="col order-header"><?php echo $date; ?></div>
+                                            <?php
+                                            if ($orders['status'] == 1) { 
+                                                echo "<div class='order-progress p-processing'>Preparing</div>";
+                                            } elseif($orders['status'] == 2) {
+                                                echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
+                                            } elseif($orders['status'] == 3){
+                                                echo "<div class='order-progress p-completed'>Completed</div>";
+                                            }  
+                                            ?>
                                             </td>
-                                            <td class="col-1">
-                                            <a class="btn btn-solid" href="edit-order.php?edit=">Edit</a>                                            
-                                            </td>
-                                            <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-order.php?id=">Delete</a>         
-                                            </td>
-                                        </tr>
-                                    <?php 
-                                           // }
-                                       // }
-                                    ?> 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <div class="container order-group">
+                                                <div class="row">
+                                                <div class="col">
+                                            <?php 
+                                                foreach ($orders as $row) {
+                                                    if (is_array($row)) {
+                                            ?> 
+                                                <div class="row order-item">                        
+                                                <div class="col"><b><?php echo $row['quantity']?>x</b></div>
+                                                <div class="col-8"><?php echo $row['productName']?></div>
+                                                <div class="col order-price">P<?php echo $row['price']?></div> 
+                                                <br>
+                                            <?php 
+                                                } 
+                                            }  ?>
+                        
+                                            <div class="row">                        
+                                                <div class="col"></div>
+                                                <div class="col-8 total-text"><b>Total</b></div>
+                                                <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total']; ?></b></div>
+                                                <div class="col"><a class="btn btn-solid" href="view-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">View </a></div>                                            
+                                                <div class="col"><a class="btn btn-solid" href="edit-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Edit</a></div>                                   
+                                                <div class="col"><a class="btn btn-solid" href="delete-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Delete</a></div>
+                                                <br> <br> <br>
+                                            </div>
+                                        <?php } ?>
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

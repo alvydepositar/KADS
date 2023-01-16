@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2023 at 09:42 AM
+-- Generation Time: Jan 16, 2023 at 05:23 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -70,7 +70,8 @@ CREATE TABLE `info_accts` (
 
 INSERT INTO `info_accts` (`id`, `firstname`, `lastname`, `birthday`, `username`, `phone`, `password`, `role`, `house`, `city`, `province`, `zip`) VALUES
 (12, 'Admin', 'Admin', '2001-08-13', 'admin', '09123456789', '$2y$10$HkVmVdmQHxyQE0ARqbPej.pmBGopjlUjj/ZQpFYLH6mFWwPn2tJ0G', 1, NULL, NULL, NULL, NULL),
-(18, 'Alvy', 'Depositar', '2001-08-13', 'aldepositar2020@plm.edu.ph', '09123456789', '$2y$10$1hvaK7LXmrV2KmhKxpKh/OTGve6h07d4HrZpEbL45l0kXP5B8nUz.', 2, '1215 Mithi St., Tondo', 'Manila', 'Metro Manila', 1012);
+(18, 'Alvy', 'Depositar', '2001-08-13', 'aldepositar2020@plm.edu.ph', '09123456789', '$2y$10$1hvaK7LXmrV2KmhKxpKh/OTGve6h07d4HrZpEbL45l0kXP5B8nUz.', 2, '1215 Mithi St., Tondo', 'Caloocan', 'Metro Manila', 1012),
+(19, 'Cheska Louisse', 'Francisco', '2002-12-12', 'clafrancisco2020@plm.edu.ph', '09123456789', '$2y$10$2YrgJi3eoLrpCAcpdW7zGe2cIWTjfE2KuJaC5KrLf/V9fddQOa5Gu', 2, '123 MOA St', 'Caloocan', 'Metro Manila', 1013);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`p_id`, `image`, `productName`, `price`, `category`) VALUES
-(7, 'IMG-63b85f281dfd45.78622008.png', 'Cucumber Roll', 100, 1),
 (8, 'IMG-63b85f55e30814.16050105.png', 'Salmon Roll', 190, 1),
 (10, 'IMG-63b85f6e7ab867.21949032.png', 'Kani Roll', 150, 1),
 (11, 'IMG-63b85f8b343056.80089378.png', 'BNY Roll', 230, 1),
@@ -131,7 +131,8 @@ INSERT INTO `products` (`p_id`, `image`, `productName`, `price`, `category`) VAL
 (45, 'IMG-63b866b2916cc6.42531744.png', 'Veggie Sushi Cake', 1300, 7),
 (46, 'IMG-63b866edf05e79.94782112.png', 'Classic Sushi Cake', 1500, 7),
 (47, 'IMG-63b8670fbf3a23.47768244.png', 'Rose Sushi Cake', 1500, 7),
-(48, 'IMG-63b8672ad3c850.20096925.png', 'Spicy Sushi Cake', 1500, 7);
+(48, 'IMG-63b8672ad3c850.20096925.png', 'Spicy Sushi Cake', 1500, 7),
+(49, 'IMG-63c3e0dd99cdc1.47704691.png', 'Cucumber Roll', 100, 1);
 
 -- --------------------------------------------------------
 
@@ -141,13 +142,24 @@ INSERT INTO `products` (`p_id`, `image`, `productName`, `price`, `category`) VAL
 
 CREATE TABLE `user_orders` (
   `id` int(11) NOT NULL,
-  `orders` int(255) NOT NULL,
-  `orderTotal` int(11) NOT NULL,
-  `timeOrder` time DEFAULT NULL,
-  `dateOrder` date DEFAULT NULL,
-  `statusOrder` varchar(255) DEFAULT NULL,
-  `user` int(11) DEFAULT NULL
+  `order_number` int(11) NOT NULL,
+  `product_id` int(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_orders`
+--
+
+INSERT INTO `user_orders` (`id`, `order_number`, `product_id`, `quantity`, `date`, `status`, `user_id`) VALUES
+(1, 1, 11, 2, '2023-01-16 01:22:56', 3, 18),
+(2, 1, 8, 1, '2023-01-16 01:22:56', 3, 18),
+(7, 2, 11, 1, '2023-01-16 03:44:49', 1, 18),
+(8, 3, 11, 1, '2023-01-16 06:57:36', 1, 19),
+(9, 3, 12, 1, '2023-01-16 06:57:36', 1, 19);
 
 --
 -- Indexes for dumped tables
@@ -177,8 +189,8 @@ ALTER TABLE `products`
 --
 ALTER TABLE `user_orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_orders_ibfk` (`user`),
-  ADD KEY `orders_ibfk` (`orders`);
+  ADD KEY `user_orders_ibfk` (`user_id`),
+  ADD KEY `orders_ibfk` (`product_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -188,25 +200,25 @@ ALTER TABLE `user_orders`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `info_accts`
 --
 ALTER TABLE `info_accts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -222,8 +234,8 @@ ALTER TABLE `products`
 -- Constraints for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  ADD CONSTRAINT `orders_ibfk` FOREIGN KEY (`orders`) REFERENCES `products` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_orders_ibfk` FOREIGN KEY (`user`) REFERENCES `info_accts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk` FOREIGN KEY (`product_id`) REFERENCES `products` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_orders_ibfk` FOREIGN KEY (`user_id`) REFERENCES `info_accts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

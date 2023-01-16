@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+  header("location: login.php");
+  exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+  header("location: admin/dashboard.php");
+  exit;
+} else {
+    include 'conn.php';
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id'];
+
+?>
+
 <!doctype html>
 <html lang="en" class="scroller">
     <head>
@@ -18,7 +34,7 @@
     </head>
     <body>
       <?php
-        include 'header-user.html';
+        include 'header-user.php';
       ?>
         <!-------------- content start --------------->
 
@@ -82,11 +98,39 @@
             <div class="col right-content-2">
               <h2 class="section-title">My Orders</h2>
 
+              <?php 
+                $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id WHERE user_id = '$id' ORDER BY date" ;
+                $result=mysqli_query($conn,$query);
+                $order_by_date = array();
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $date = date('Y-m-d H:i:s', strtotime($row['date']));
+                  if (!isset($order_by_date[$date])) {
+                      $order_by_date[$date] = array();
+                      $order_by_date[$date]['total'] = 0;
+                      $order_by_date[$date]['status'] = $row['status'];
+                  }
+                  $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
+                  array_push($order_by_date[$date], $row);
+                }
+                
+              foreach ($order_by_date as $date => $orders) {
+              ?>
+
               <div class="order-container">
                 <div class="container">
                   <div class="row d-flex align-items-center">
-                    <div class="col order-header">December 5, 2022, 9:37 PM</div>
-                    <div class="col-2 order-progress p-processing">Processing</div>
+                    <div class="col order-header"><?php echo $date; ?></div>
+                    <?php
+                        if ($orders['status'] == 1) { 
+                            echo "<div class='order-progress p-processing'>Preparing</div>";
+                        } elseif($orders['status'] == 2) {
+                            echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
+                        } elseif($orders['status'] == 3){
+                          echo "<div class='order-progress p-completed'>Completed</div>";
+                        } 
+                      
+                     ?>
+
                   </div>
                 </div>                
                 <div class="container order-group">
@@ -95,20 +139,22 @@
                       <img src="images/order-icon.png" class="order-icon">
                     </div>
                     <div class="col">
+                      <?php 
+                        foreach ($orders as $row) {
+                          if (is_array($row)) {
+                      ?> 
                       <div class="row order-item">                        
-                        <div class="col"><b>1x</b></div>
-                        <div class="col-8">Salmon Roll</div>
-                        <div class="col order-price">P150.00</div>
+                        <div class="col"><b><?php echo $row['quantity']?>x</b></div>
+                        <div class="col-8"><?php echo $row['productName']?></div>
+                        <div class="col order-price">P<?php echo $row['price']?></div>
                       </div>
-                      <div class="row order-item">                        
-                        <div class="col"><b>3x</b></div>
-                        <div class="col-8">Cucumber Roll</div>
-                        <div class="col order-price">P450.00</div>
-                      </div>
+                      <?php 
+                        } 
+                      }?>
                       <div class="row">                        
                         <div class="col"></div>
                         <div class="col-8 total-text"><b>Total</b></div>
-                        <div class="col order-total order-price"><b>P600.00</b></div>
+                        <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total'] + 60; ?></b></div>
                       </div>
                     </div>
                     
@@ -116,69 +162,8 @@
                 </div>
               </div>
 
-              <div class="order-container">
-                <div class="container">
-                  <div class="row d-flex align-items-center">
-                    <div class="col order-header">December 2, 2022, 3:25 PM</div>
-                    <div class="col-2 order-progress p-completed">Completed</div>
-                  </div>
-                </div>     
-                <div class="container order-group">
-                  <div class="row">
-                    <div class="col-auto">
-                      <img src="images/order-icon.png" class="order-icon">
-                    </div>
-                    <div class="col">                      
-                      <div class="row order-item">                        
-                        <div class="col"><b>3x</b></div>
-                        <div class="col-8">Cucumber Roll</div>
-                        <div class="col order-price">P450.00</div>
-                      </div>
-                      <div class="row">                        
-                        <div class="col"></div>
-                        <div class="col-8 total-text"><b>Total</b></div>
-                        <div class="col order-total order-price"><b>P450.00</b></div>
-                      </div>
-                    </div>
-                    
-                  </div>                  
-                </div>
-              </div>
+              <?php } ?>
 
-              <div class="order-container">
-               <div class="container">
-                  <div class="row d-flex align-items-center">
-                    <div class="col order-header">November 26, 2022, 9:14 AM</div>
-                    <div class="col-2 order-progress p-delivery">Out for Delivery</div>
-                  </div>
-                </div>     
-                <div class="container order-group">
-                  <div class="row">
-                    <div class="col-auto">
-                      <img src="images/order-icon.png" class="order-icon">
-                    </div>
-                    <div class="col">
-                      <div class="row order-item">                        
-                        <div class="col"><b>1x</b></div>
-                        <div class="col-8">Salmon Roll</div>
-                        <div class="col order-price">P150.00</div>
-                      </div>
-                      <div class="row order-item">                        
-                        <div class="col"><b>3x</b></div>
-                        <div class="col-8">Cucumber Roll</div>
-                        <div class="col order-price">P450.00</div>
-                      </div>
-                      <div class="row order-item">                        
-                        <div class="col"><b>1x</b></div>
-                        <div class="col-8">Salmon Roll</div>
-                        <div class="col order-price">P150.00</div>
-                      </div>
-                      <div class="row">                        
-                        <div class="col"></div>
-                        <div class="col-8 total-text"><b>Total</b></div>
-                        <div class="col order-total order-price"><b>P750.00</b></div>
-                      </div>
-                    </div>
                     
                   </div>                  
                 </div>
@@ -208,3 +193,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>
+
+<?php } ?>

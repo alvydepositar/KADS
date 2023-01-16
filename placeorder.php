@@ -1,3 +1,61 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
+  header("location: login.php");
+  exit;
+} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+  header("location: admin/dashboard.php");
+  exit;
+} else {
+    include 'conn.php';
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id'];
+
+      $query="SELECT * FROM info_accts WHERE id = '$id'";
+      $result=mysqli_query($conn,$query);
+      $res = mysqli_fetch_assoc($result);
+
+      $house = $city = $province = $zip = "";
+      $house_err = $city_err = $province_err = $zip_err = "";
+
+      if($_SERVER["REQUEST_METHOD"] == "POST") {
+          $id = $_POST['id'];
+
+         if(empty(trim($_POST['house']))) {
+          $house_err = "Please enter your Delivery Address";
+         } else {
+          $house = trim($_POST['house']);
+         }
+         
+         if(empty(trim($_POST['city']))) {
+          $city_err = "Please select your City";
+         } else {
+          $city = trim($_POST['city']);
+         }
+
+         if(empty(trim($_POST['province']))) {
+          $province_err = "Please select your Province";
+         } else {
+          $province = trim($_POST['province']);
+         }
+        
+         if(empty(trim($_POST['zip']))) {
+          $zip_err = "Please enter your Zip code";
+         } else {
+          $zip = trim($_POST['zip']);
+         }
+
+
+        if(empty($house_err) && empty($city_err) && empty($province_err) && empty($zip_err)) {
+            mysqli_query($conn, "UPDATE info_accts SET house = '$house', city = '$city', province = '$province', zip = '$zip' WHERE id = '$id'");
+            header("Location: ongoingorder.php");
+        }
+      }
+
+?>
+
+
 <!doctype html>
 <html lang="en" class="scroller">
   <head>
@@ -18,9 +76,13 @@
   </head>
   <body>      
     <?php
-      include 'header-user.html';
+      include 'header-user.php';
     ?>
     <!-------------- content start --------------->
+  <form class="form-style" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+
     <div class="content-container">
       <div class="content-wrapper container-fluid">
         <h1 class="content-title">Place Order</h1>
@@ -29,31 +91,32 @@
           <div class="row">
             <div class="col">
               <label for="firstname">First Name</label>
-              <input type="text" class="form-control" id="firstname" placeholder="First name">
+              <input type="text" class="form-control" id="firstname" value="<?php echo $res['firstname'] ?>" placeholder="First name">
             </div>
 
             <div class="col">
               <label for="lastname">Last Name</label>
-              <input type="text" class="form-control" id="lastname" placeholder="Last name">
+              <input type="text" class="form-control" id="lastname" value="<?php echo $res['lastname'] ?>" placeholder="Last name">
             </div>
           </div>
           
           <div class="row">                  
             <div class="col">
               <label for="email">Email Address</label>
-              <input type="email" class="form-control" id="email" placeholder="name@example.com">                    
+              <input type="email" class="form-control" id="email" value="<?php echo $res['username'] ?>" placeholder="name@example.com">                    
             </div>
           </div>     
 
           <div class="form-group">
             <label for="address">Delivery Address</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+            <input type="text" class="form-control" name="house" value="<?php echo $res['house'] ?>" placeholder="1234 Main St">
           </div>  
           
           <div class="row">
             <div class="col">
               <label for="city">City</label>
-              <select type="text" class="form-control" id="city">
+              <select type="text" class="form-control" name="city">
+              <option value="Caloocan" value="<?php echo $res['city'] ?>"><?php echo $res['city'] ?></option>
                 <option value="Caloocan">Caloocan</option>
                 <option value="LasPiñas">Las Piñas</option>
                 <option value="Makati">Makati</option>
@@ -76,7 +139,7 @@
             <div class="col">
               <label for="province">Province</label>
               <select id="province" name="province" class="form-control">
-                <option value="metroManila">Metro Manila</option>
+                <option value="<?php echo $res['province'] ?>">Metro Manila</option>
               </select>
             </div>
           </div>
@@ -84,9 +147,10 @@
           <div class="row">                  
             <div class="col lblstyle">
               <label for="zip">ZIP Code</label>
-              <input type="text" class="form-control" id="zip" 
+              <input type="text" class="form-control" name="zip" 
                 placeholder="ZIP" 
-                pattern="[0-9]{4}" 
+                pattern="[0-9]{4}"
+                value="<?php echo $res['zip'] ?>"
                 maxlength="4">
             </div>
 
@@ -95,6 +159,7 @@
               <input type="text" class="form-control" id="pnumber"
                 placeholder="09*********"
                 pattern="[0-9]{4}[0-9]{3}[0-9]{4}"
+                value="<?php echo $res['phone'] ?>"
                 minlength="11"
                 maxlength="11">
             </div>
@@ -106,12 +171,11 @@
               My billing and delivery address are the same</label>
           </div>-->
           
-          <a href="ongoingorder.php">
             <button type="submit" class="btn-submit">Place Order</button>            
-          </a>    
         </form>
       </div>                 
     </div>
+    </form>
 
     <!-- back to top button -->
     <button
@@ -141,3 +205,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+<?php } ?>

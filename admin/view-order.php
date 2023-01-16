@@ -1,23 +1,15 @@
 <?php
-    /*session_start();
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../login.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../userprofile.php");
-        exit;
-    } else {
-    include "../conn.php";
+require "../conn.php";
 
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || !isset($_SESSION['role']) || !$_SESSION['role']==1) {
+        header("Location: ../login.php");
+        exit();
+    }
     $username = $_SESSION['username'];
-    $userID = $_GET['id'];
-    
-    $query="SELECT * FROM info_accts WHERE id = $userID";
-    $result=mysqli_query($conn,$query);
-    $row = mysqli_fetch_assoc($result) */
 ?>
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -77,83 +69,75 @@
         <div class="edituserblock">
             <h2>View Order</h2> 
             <div class="container">
-                <div class="row"style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>ID:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['firstname'] . '  '. $row['lastname'] ;*/ ?>
-                    </div> 
-                    </p>                       
-                </div>  
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Orders:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['username']; */?>
-                    </div> 
-                    </p>                       
+                <div class="status">
+                    <h2 class="status-label">Status</h2>
+                    <?php
+                    $id = $_GET['o_id'];
+                    $query = "SELECT * FROM user_orders JOIN products ON user_orders.product_id = products.p_id WHERE order_number = $id";
+                    $result=mysqli_query($conn,$query);
+                    $row = mysqli_fetch_assoc($result);
+                    if ($row['status'] = 1) { 
+                           echo "<div class='order-progress p-preparing'>Preparing</div>";
+                        } elseif($row['status'] = 2) {
+                           echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
+                        } else {
+                            echo "<div class='order-progress p-none'>No ongoing order</div>";
+                        } 
+                    ?>
                 </div>
-                        
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Total Order:</label></div>
-                    <div class="col-8 p-1">  <?php /* echo $row['phone']; */?>
-                    </div> 
-                    </p>                       
-                </div>
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Date:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
-                    </div> 
-                    </p>                       
-                </div>    
-                
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Order Status:</label></div>
-                    <div class="col-8 p-1">  <?php /*if ($row['role'] == 1){
-                                                        echo "admin";
-                                                    }else if ($row['role'] == 2) {
-                                                        echo "user";
-                                                    } */?>
-                    </div> 
-                    </p>                       
-                </div>
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Order Time:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
-                    </div> 
-                    </p>                       
-                </div>  
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Order Date:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
-                    </div> 
-                    </p>                       
-                </div>  
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>User:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
-                    </div> 
-                    </p>                       
-                </div>  
-
-                <div class="row">
-                    <p>
-                    <div class="col p-1"><label>Server:</label></div>
-                    <div class="col-8 p-1">  <?php /*echo $row['birthday']; */?>
-                    </div> 
-                    </p>                       
-                </div>  
-                
+                <div class="hline"></div>
+                <?php
+                    $query = "SELECT * FROM user_orders JOIN products ON user_orders.product_id = products.p_id WHERE order_number = $id";
+                    $result=mysqli_query($conn,$query);
+                $subTotal = 0;
+                while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <!-- item -->  
+                <div class="d-flex">
+                    <div class="food-item-1 w-100">
+                        <div class="d-flex align-items-center">
+                            <div class="food-img flex-shrink-0">
+                                <img src="../img/menu/<?php echo $row['image'] ?>" alt="food image">
+                            </div>
+                            <div class="food-content flex-grow-1 ms-3">
+                                <div class="fn">
+                                    <h2 class="food-name"><?php echo $row['productName'] ?></h2>
+                                    <span class="fn-quantity">x <?php echo $row['quantity'] ?></span>
+                                </div> 
+                                <!-- price should add up everytime the quantity goes up. 
+                                for example, the original price of cucumber roll is 100
+                                but the user ordered 2 of it. the total price of cucumber 
+                                roll should reflect on the food price-->
+                                <span class="food-price">₱<?php echo $row['price'] ?></span>                            
+                            </div>
+                        </div>
+                    </div>                
+                </div>                
+                <!-- end of item -->
+                <?php 
+                    $subTotal += $row['price'] * $row['quantity'];
+                } ?> 
+                <div class="col-vline d-none d-lg-block"></div>        
+               
+               <div class="col-lg-4 col-12 right-col right-side justify-content-center align-self-stretch">
+                   <p>Order Summary</p>
+                   <div class="subtotal">
+                       <h2 class="subtotal-label">Subtotal</h2>
+                       <span class="subtotal-price">₱<?php echo $subTotal; ?></span>
+                   </div>
+                   <div class="df">
+                       <h2 class="df-label">Delivery Fee</h2>
+                       <span class="df-price">₱60.00</span>
+                   </div>
+       
+                   <div class="hline"></div>
+       
+                   <div class="total">
+                       <h2 class="total-label">Total</h2>
+                       <span class="total-price">₱<?php echo $subTotal + 60; ?></span>
+                   </div>
             </div>  
+            
         </div>
     </div>
 </body>

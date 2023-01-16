@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
+  header("location: admin/dashboard.php");
+  exit;
+} else {
+  include "conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroller">
   <head>
@@ -22,7 +32,13 @@
   </head>
   <body>
     <?php
-      include 'header-user.html';
+      if(!isset($_SESSION['loggedin'])) {
+        include 'header-guest.html';
+      } else {
+        $username = $_SESSION['username'];
+        $id = $_SESSION['id'];
+        include 'header-user.php';
+      }
     ?>
   
   <section class="body-ctn">
@@ -89,3 +105,5 @@
   
 </body>
 </html>
+
+<?php } ?>

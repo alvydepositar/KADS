@@ -212,7 +212,7 @@ body {
 }
 
 form .text a {
-    width: 150px;
+    width: fit-content;
     height: 45px;
     border-radius: 10px;
     border: none;
@@ -223,6 +223,7 @@ form .text a {
     font-weight: 500;
     font-size: 15   px;
     color: #ffffff;
+    padding-top:10px;
 }
 
 form .text a:hover {
@@ -275,7 +276,7 @@ form .text a:hover {
     max-width: 400px;  
   }
   
-  .cta .btn, .button1, form a {
+  .cta .btn, .button1, form a, .btnAddToCart {
     background-color: var(--primary);
     border: none;  
     color: white;
@@ -289,8 +290,8 @@ form .text a:hover {
     border-radius: 5px;
     cursor: pointer;
   }
-  
-  .cta .btn:hover,.button1:hover, form a:hover {
+
+  .cta .btn:hover,.button1:hover, form a:hover, .btnAddToCart {
     background: var(--primary);
     color: #ffffff;
     background-color: var(--primary-dark);

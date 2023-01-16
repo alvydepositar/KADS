@@ -72,6 +72,28 @@ require "../conn.php";
         .dropdown:hover .dropbtn {
         background-color: #3e8e41;
         }
+
+        /*********************/
+        .order-group {
+            padding-left:0;
+            padding-right: 50px;    
+            overflow-x: hidden;  
+        }
+        .total-row {
+            padding-top:10px;
+        }
+        .order-total {
+            color:#8e0001;    
+        }
+        .order-price, .total-text {
+            text-align: right;
+        }
+        .col-btn {    
+            padding:0;    
+        }
+        .managebtns{
+            overflow:hidden;
+        }
     </style>
 </head>
 
@@ -243,16 +265,28 @@ require "../conn.php";
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
+                            
                             <h3 class="box-title">Orders
                                 <a href="add-order.php"><button class="btn btn-border" >
                                     Add Order
                                 </button></a>
-                            </h3>                            
-                                    <?php
-                                        $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
-                                        $result=mysqli_query($conn,$query);
-                                        $order_by_date = array();
-                                            while ($row = mysqli_fetch_assoc($result)) {
+                            </h3>     
+                            <div class="table-responsive">                              
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0" style="width:220px;">Date</th>
+                                            <th class="border-top-0" style="width:200px;">Status</th>
+                                            <th class="border-top-0">Order Details</th>    
+                                            <th class="border-top-0" style="width:250px;">Manage</th>                                 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
+                                            $result=mysqli_query($conn,$query);
+                                            $order_by_date = array();
+                                                while ($row = mysqli_fetch_assoc($result)) {
                                                 $date = date('Y-m-d H:i:s', strtotime($row['date']));
                                                 if (!isset($order_by_date[$date])) {
                                                     $order_by_date[$date] = array();
@@ -263,46 +297,56 @@ require "../conn.php";
                                                 $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
                                                 array_push($order_by_date[$date], $row);
                                             }
-                        
-                                        foreach ($order_by_date as $date => $orders) {
-                                    ?>
-                                            <div class="col order-header"><?php echo $date; ?></div>
-                                            <?php
-                                            if ($orders['status'] == 1) { 
-                                                echo "<div class='order-progress p-processing'>Preparing</div>";
-                                            } elseif($orders['status'] == 2) {
-                                                echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
-                                            } elseif($orders['status'] == 3){
-                                                echo "<div class='order-progress p-completed'>Completed</div>";
-                                            }  
-                                            ?>
+                                            foreach ($order_by_date as $date => $orders) {
+                                        ?>                                    
+                                        <tr>
+                                            <td><?php echo $date; ?></td>
+                                            <td>
+                                                <?php
+                                                    if ($orders['status'] == 1) { 
+                                                        echo "<div class='order-progress p-processing'>Preparing</div>";
+                                                    } elseif($orders['status'] == 2) {
+                                                        echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
+                                                    } elseif($orders['status'] == 3){
+                                                        echo "<div class='order-progress p-completed'>Completed</div>";
+                                                    }  
+                                                ?>
                                             </td>
-                                            <div class="container order-group">
-                                                <div class="row">
-                                                <div class="col">
-                                            <?php 
-                                                foreach ($orders as $row) {
-                                                    if (is_array($row)) {
-                                            ?> 
-                                                <div class="row order-item">                        
-                                                <div class="col"><b><?php echo $row['quantity']?>x</b></div>
-                                                <div class="col-8"><?php echo $row['productName']?></div>
-                                                <div class="col order-price">P<?php echo $row['price']?></div> 
-                                                <br>
-                                            <?php 
-                                                } 
-                                            }  ?>
-                        
-                                            <div class="row">                        
-                                                <div class="col"></div>
-                                                <div class="col-8 total-text"><b>Total</b></div>
-                                                <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total']; ?></b></div>
-                                                <div class="col"><a class="btn btn-solid" href="view-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">View </a></div>                                            
-                                                <div class="col"><a class="btn btn-solid" href="edit-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Edit</a></div>                                   
-                                                <div class="col"><a class="btn btn-solid" href="delete-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Delete</a></div>
-                                                <br> <br> <br>
-                                            </div>
-                                        <?php } ?>
+                                            <td>
+                                                <div class="container order-group">                            
+                                                    <?php 
+                                                        foreach ($orders as $row) {
+                                                            if (is_array($row)) {
+                                                    ?> 
+                                                        <div class="row">                        
+                                                            <div class="col-1"><?php echo $row['quantity']?>x</div>
+                                                            <div class="col-9"><?php echo $row['productName']?></div>
+                                                            <div class="col order-price">P<?php echo $row['price']?></div>
+                                                        </div>
+                                                    <?php 
+                                                        } 
+                                                    }  ?>
+                                                        <div class="row total-row">                        
+                                                            <div class="col-1"></div>
+                                                            <div class="col-9 total-text"><b>Total</b></div>
+                                                            <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total']+60; ?></b></div>                                                           
+                                                        </div>
+                                                </div>
+                                            </td>      
+                                            <td class="managebtns">
+                                                <div class="row row-btn">
+                                                    <div class="col col-btn">
+                                                        <a class="btn btn-solid" href="view-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">View </a>
+                                                        <a class="btn btn-solid" href="edit-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Edit</a>
+                                                        <a class="btn btn-solid" href="delete-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Delete</a>
+                                                    </div>  
+                                                </div>
+                                            </td>                                      
+                                        </tr>
+                                        <?php } ?>                                        
+                                    </tbody>
+                                </table>                        
+                            </div>  
                         </div>
                     </div>
                 </div>

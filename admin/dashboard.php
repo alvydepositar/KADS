@@ -93,6 +93,28 @@ require "../conn.php";
         .dropdown:hover .dropbtn {
         background-color: #3e8e41;
         }
+
+         /*********************/
+        .order-group {
+            padding-left:0;
+            padding-right: 50px;    
+            overflow-x: hidden;  
+        }
+        .total-row {
+            padding-top:10px;
+        }
+        .order-total {
+            color:#8e0001;    
+        }
+        .order-price, .total-text {
+            text-align: right;
+        }
+        .col-btn {    
+            padding:0;    
+        }
+        .managebtns{
+            overflow:hidden;
+        }
     </style>
 </head>
 
@@ -293,8 +315,10 @@ require "../conn.php";
                             <h3 class="box-title">Employees</h3>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <li>
-                                    <div id="sparklinedash3"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    <div id="sparklinedash3">
+                                        <canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;">
+                                        </canvas>
                                     </div>
                                 </li>
                                 <li class="ms-auto"><span class="counter text-info"><b><?php echo $usercount; ?></b></span>
@@ -309,73 +333,75 @@ require "../conn.php";
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
-                            <div class="table-responsive">
-                                <?php 
-                                $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
-                                $result=mysqli_query($conn,$query);
-                                $order_by_date = array();
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $date = date('Y-m-d H:i:s', strtotime($row['date']));
-                                        if (!isset($order_by_date[$date])) {
-                                            $order_by_date[$date] = array();
-                                            $order_by_date[$date]['total'] = 0;
-                                            $order_by_date[$date]['status'] = $row['status'];
-                                        }
-                                        $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
-                                        array_push($order_by_date[$date], $row);
-                                    }
-                
-                                foreach ($order_by_date as $date => $orders) {
-                                ?>
-
-                                <div class="order-container">
-                                <div class="container">
-                                <div class="row d-flex align-items-center">
-                                <div class="col order-header"><?php echo $date; ?></div>
-                                <?php
-                                    if ($orders['status'] == 1) { 
-                                        echo "<div class='order-progress p-processing'>Preparing</div>";
-                                    } elseif($orders['status'] == 2) {
-                                        echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
-                                    } elseif($orders['status'] == 3){
-                                        echo "<div class='order-progress p-completed'>Completed</div>";
-                                    }  
-                                ?>
-
+                            <div class="table-responsive">                              
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0" style="width:300px">Date</th>
+                                            <th class="border-top-0" style="width:250px">Status</th>
+                                            <th class="border-top-0" >Order Details</th>                                 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
+                                            $result=mysqli_query($conn,$query);
+                                            $order_by_date = array();
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $date = date('Y-m-d H:i:s', strtotime($row['date']));
+                                                    if (!isset($order_by_date[$date])) {
+                                                        $order_by_date[$date] = array();
+                                                        $order_by_date[$date]['total'] = 0;
+                                                        $order_by_date[$date]['status'] = $row['status'];
+                                                    }
+                                                    $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
+                                                    array_push($order_by_date[$date], $row);
+                                                }
+                            
+                                            foreach ($order_by_date as $date => $orders) {
+                                        ?>                                    
+                                        <tr>
+                                            <td><?php echo $date; ?></td>
+                                            <td>
+                                                <?php
+                                                    if ($orders['status'] == 1) { 
+                                                        echo "<div class='order-progress p-processing'>Preparing</div>";
+                                                    } elseif($orders['status'] == 2) {
+                                                        echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
+                                                    } elseif($orders['status'] == 3){
+                                                        echo "<div class='order-progress p-completed'>Completed</div>";
+                                                    }  
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <div class="container order-group">                            
+                                                    <?php 
+                                                        foreach ($orders as $row) {
+                                                            if (is_array($row)) {
+                                                    ?> 
+                                                        <div class="row">                        
+                                                            <div class="col-1"><?php echo $row['quantity']?>x</div>
+                                                            <div class="col-9"><?php echo $row['productName']?></div>
+                                                            <div class="col order-price">P<?php echo $row['price']?></div>
+                                                        </div>
+                                                    <?php 
+                                                        } 
+                                                    }  ?>
+                                                        <div class="row total-row">                        
+                                                            <div class="col-1"></div>
+                                                            <div class="col-9 total-text"><b>Total</b></div>
+                                                            <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total']+60; ?></b></div>
+                                                        </div>
+                                                </div>
+                                            </td>                                            
+                                        </tr>
+                                        <?php } ?>                                        
+                                    </tbody>
+                                </table>                        
                             </div>
-                        </div>                
-                        <div class="container order-group">
-                        <div class="row">
-                        <div class="col">
-                        <?php 
-                            foreach ($orders as $row) {
-                                if (is_array($row)) {
-                        ?> 
-                            <div class="row order-item">                        
-                            <div class="col"><b><?php echo $row['quantity']?>x</b></div>
-                            <div class="col-8"><?php echo $row['productName']?></div>
-                            <div class="col order-price">P<?php echo $row['price']?></div>
-                        </div>
-                        <?php 
-                            } 
-                        }  ?>
-                        
-                        <div class="row">                        
-                            <div class="col"></div>
-                            <div class="col-8 total-text"><b>Total</b></div>
-                            <div class="col order-total order-price"><b>P<?php echo $order_by_date[$date]['total']+60; ?></b></div>
-                        </div>
+                         </div>                  
                     </div>
-                </div>                  
-            </div>
-        </div>
-
-              <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+                </div>    
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

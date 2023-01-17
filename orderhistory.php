@@ -9,9 +9,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
   exit;
 } else {
     include 'conn.php';
-    $username = $_SESSION['username'];
-    $id = $_SESSION['id'];
-
 ?>
 
 <!doctype html>
@@ -34,6 +31,8 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
     </head>
     <body>
       <?php
+      $username = $_SESSION['username'];
+      $id = $_SESSION['id'];
         include 'header-user.php';
       ?>
         <!-------------- content start --------------->

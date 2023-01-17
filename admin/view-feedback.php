@@ -15,9 +15,9 @@
     include "../conn.php";
 
     $username = $_SESSION['username'];
-    $userID = $_GET['id'];
+    $f_id = $_GET['id'];
     
-    $query="SELECT * FROM info_accts WHERE id = $userID";
+    $query="SELECT * FROM feedbacks WHERE f_id = $f_id";
     $result=mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result)
 ?>
@@ -74,51 +74,40 @@
     <div class="wrapper">
         <div class="top-line"></div>
         <div class="back-icon">
-            <a href="../admin/users.php">
+            <a href="../admin/feedbacks.php">
                 <img src="../img/backicon.png">
             </a>
         </div>            
         <div class="edituserblock">
-            <h2>View User</h2> 
+            <h2>View Feedback</h2> 
             <div class="container">
+                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
+                    <p>
+                    <div class="col p-1"><label>Date Submitted:</label></div>
+                    <div class="col-8 p-1"><?php echo $row['date']; ?></div> 
+                    </p>                       
+                </div>
+
                 <div class="row"style="border-bottom: 1px solid #ECEFD7;">
                     <p>
                     <div class="col p-1"><label>Name:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['firstname'] . '  '. $row['lastname'] ; ?></div> 
+                    <div class="col-8 p-1"><?php echo $row['name']; ?></div> 
                     </p>                       
                 </div>  
 
                 <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Username:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['username']; ?></div> 
+                    <div class="col p-1"><label>Email:</label></div>
+                    <div class="col-8 p-1"><?php echo $row['email']; ?></div> 
                     </p>                       
                 </div>
                         
                 <div class="row" style="border-bottom: 1px solid #ECEFD7;">
                     <p>
-                    <div class="col p-1"><label>Phone:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['phone']; ?></div> 
+                    <div class="col p-1"><label>Message:</label></div>
+                    <div class="col-8 p-1"><?php echo $row['message']; ?></div> 
                     </p>                       
-                </div>
-
-                <div class="row" style="border-bottom: 1px solid #ECEFD7;">
-                    <p>
-                    <div class="col p-1"><label>Birthday:</label></div>
-                    <div class="col-8 p-1"><?php echo $row['birthday']; ?></div> 
-                    </p>                       
-                </div>    
-                
-                <div class="row">
-                    <p>
-                    <div class="col p-1"><label>Role:</label></div>
-                    <div class="col-8 p-1"><?php if ($row['role'] == 1){
-                                                        echo "admin";
-                                                    }else if ($row['role'] == 2) {
-                                                        echo "user";
-                                                    } ?></div> 
-                    </p>                       
-                </div>
+                </div> 
                 
             </div>  
         </div>

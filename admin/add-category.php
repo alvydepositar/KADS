@@ -1,13 +1,18 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
-    header("location: ../admin.php");
-    exit;
-} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-    header("location: ../cashier/index.php");
-    exit;
-} else {
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
     include "../conn.php";
 
     $username = $_SESSION['username'];
@@ -53,12 +58,11 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])) {
         } else {
             $catname = trim($_POST["catname"]);
         }
+        
         $sql = "INSERT INTO categories (categoryName) VALUES('$catname')";
         mysqli_query($conn, $sql);
         header("Location: category.php");
     }
-
-}
 
 
 ?>

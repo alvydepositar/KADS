@@ -1,11 +1,25 @@
 <?php
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
+
+ // Include config file
+ include "../conn.php";
+
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
-    // Include config file
-    require_once "../dbconnection.php";
-    
     // Prepare a delete statement
-    $sql = "DELETE FROM products WHERE id = ?";
+    $sql = "DELETE FROM feedbacks WHERE f_id = ?";
     
     if($stmt = mysqli_prepare($conn, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -17,7 +31,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Records deleted successfully. Redirect to landing page
-            header("location: category.php");
+            header("location: feedbacks.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";

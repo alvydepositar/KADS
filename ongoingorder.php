@@ -61,13 +61,16 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
                     $query="SELECT * FROM user_orders INNER JOIN products ON products.p_id = user_orders.product_id WHERE user_orders.user_id = '$id' AND (user_orders.status=1 OR user_orders.status=2)";
                     $result=mysqli_query($conn,$query);
                     $row = mysqli_fetch_assoc($result);
-                    if ($row['status'] = 1) { 
+                    if(mysqli_num_rows($result) < 1) {
+                        echo "<div class='order-progress p-none'>No ongoing order</div>";
+                        exit();
+                    } else {
+                    if ($row['status'] == 1) { 
                            echo "<div class='order-progress p-preparing'>Preparing</div>";
-                        } elseif($row['status'] = 2) {
+                        } elseif($row['status'] == 2) {
                            echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
-                        } else {
-                            echo "<div class='order-progress p-none'>No ongoing order</div>";
-                        } 
+                        }
+                    }
                     ?>
                 </div>
                 <div class="hline"></div>
@@ -75,6 +78,10 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
                 $query="SELECT * FROM user_orders INNER JOIN products ON products.p_id = user_orders.product_id WHERE user_orders.user_id = '$id' AND (user_orders.status=1 OR user_orders.status=2)";
                 $result=mysqli_query($conn,$query);
                 $subTotal = 0;
+                if(mysqli_num_rows($result) < 1) {
+                    echo "<div class='order-progress p-none'>No ongoing order</div>";
+                    exit();
+                } else {
                 while($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <!-- item -->  
@@ -101,7 +108,8 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
                 <!-- end of item -->
                 <?php 
                     $subTotal += $row['price'] * $row['quantity'];
-                } ?>
+                } 
+            }?>
         </div>   
         
         <div class="col-vline d-none d-lg-block"></div>        

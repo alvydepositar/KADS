@@ -1,15 +1,19 @@
 <?php
-    require '../conn.php'; 
-
     session_start();
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../login.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../userprofile.php");
-        exit;
-    } else {
+    // check if user is logged in
+    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+        //user is not logged in, redirect to login page
+        header("Location: login.php");
+        exit();
+    }
+
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+        //user has role 2, redirect to userprofile.php
+        header("Location: ../userprofile.php");
+        exit();
+    }
+
     
     $role = $firstname = $lastname = $email = $bday = $phone = $password = $repassword = "";
     $role_err = $firstname_err = $lastname_err = $email_err =  $bday_err = $phone_err = $password_err = $repassword_err = "";
@@ -283,7 +287,3 @@
     </div>    
 </body>
 </html>
-
-<?php
-   }
-?>

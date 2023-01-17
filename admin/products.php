@@ -1,17 +1,20 @@
 <?php
 
-require "../conn.php";
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
 
-    session_start();
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
 
-    if (!isset($_SESSION['loggedin']) && !isset($_SESSION['role'])){
-        header("location: ../login.php");
-        exit;
-    } else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['role'] === 2) {
-        header("location: ../userprofile.php");
-        exit;
-    } else {
-
+    include '../conn.php';
     $username = $_SESSION['username'];
 
     $query="SELECT p.p_id, p.productName, p.price, p.image, p.category, c.categoryName FROM products AS p INNER JOIN categories AS c ON p.category = c.c_id";
@@ -359,5 +362,3 @@ require "../conn.php";
 </body>
 
 </html>
-
-<?php } ?>

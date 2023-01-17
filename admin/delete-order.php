@@ -1,11 +1,24 @@
 <?php
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
 // Process delete operation after confirmation
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
     // Include config file
-    require_once "../dbconnection.php";
+    require_once "../conn.php";
 
     // Prepare a delete statement
-    $sql = "DELETE FROM products WHERE id = ?";
+    $sql = "DELETE FROM user_orders WHERE order_number = ?";
 
     if ($stmt = mysqli_prepare($conn, $sql)) {
         // Bind variables to the prepared statement as parameters
@@ -17,7 +30,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Records deleted successfully. Redirect to landing page
-            header("location: category.php");
+            header("location: order-history.php");
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
@@ -101,7 +114,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <h2>Delete Order</h2>
-                            <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
+                            <input type="hidden" name="id" value="<?php echo trim($_GET["o_id"]); ?>"/>
                             <p>Are you sure you want to delete this order?</p>
                             <p class=buttonsalign2>
                                 <input type="submit" value="Yes" class="btn btn-danger btn-style">

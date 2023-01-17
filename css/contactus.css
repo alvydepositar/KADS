@@ -124,8 +124,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 26.375em;
-  height: 26.375em;
+  width: 30.375em;
+  height: 30.375em;
 }
 
 .col2ctn {
@@ -174,7 +174,6 @@
   line-height: 22px;
 }
 
-<<<<<<< Updated upstream
 .Address{
 font-family: 'Inter';
 font-style: normal;
@@ -183,7 +182,6 @@ font-size: 18px;
 line-height: 22px;
 color: #0F001A;
 }
-=======
 .emailbox {
   font-family: "Inter";
   font-style: normal;
@@ -305,4 +303,3 @@ h6 {
     transition: all 0.5s ease;
   }
 }
->>>>>>> Stashed changes

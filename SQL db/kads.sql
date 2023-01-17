@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2023 at 05:23 AM
+-- Generation Time: Jan 16, 2023 at 11:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -42,6 +42,20 @@ INSERT INTO `categories` (`c_id`, `categoryName`) VALUES
 (3, 'Temaki Wraps'),
 (6, 'Platters'),
 (7, 'Cakes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedbacks`
+--
+
+CREATE TABLE `feedbacks` (
+  `f_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -155,11 +169,21 @@ CREATE TABLE `user_orders` (
 --
 
 INSERT INTO `user_orders` (`id`, `order_number`, `product_id`, `quantity`, `date`, `status`, `user_id`) VALUES
-(1, 1, 11, 2, '2023-01-16 01:22:56', 3, 18),
-(2, 1, 8, 1, '2023-01-16 01:22:56', 3, 18),
-(7, 2, 11, 1, '2023-01-16 03:44:49', 1, 18),
-(8, 3, 11, 1, '2023-01-16 06:57:36', 1, 19),
-(9, 3, 12, 1, '2023-01-16 06:57:36', 1, 19);
+(7, 2, 11, 1, '2023-01-16 03:44:49', 3, 18),
+(8, 3, 11, 1, '2023-01-16 06:57:36', 3, 19),
+(9, 3, 12, 6, '2023-01-16 06:57:36', 3, 19),
+(10, 4, 11, 5, '2023-01-17 02:57:30', 3, 19),
+(11, 4, 8, 1, '2023-01-17 02:57:30', 3, 19),
+(12, 4, 12, 1, '2023-01-17 02:57:30', 3, 19),
+(13, 4, 48, 1, '2023-01-17 02:57:30', 3, 19),
+(14, 5, 48, 4, '2023-01-17 03:04:44', 3, 18),
+(15, 6, 48, 1, '2023-01-17 03:05:35', 3, 18),
+(16, 7, 8, 3, '2023-01-17 03:06:32', 3, 18),
+(17, 8, 12, 4, '2023-01-17 03:10:08', 3, 18),
+(18, 9, 17, 1, '2023-01-17 03:14:42', 3, 18),
+(19, 9, 18, 1, '2023-01-17 03:14:42', 3, 18),
+(20, 10, 16, 1, '2023-01-17 03:21:35', 3, 18),
+(21, 10, 13, 1, '2023-01-17 03:21:35', 3, 18);
 
 --
 -- Indexes for dumped tables
@@ -170,6 +194,12 @@ INSERT INTO `user_orders` (`id`, `order_number`, `product_id`, `quantity`, `date
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`c_id`);
+
+--
+-- Indexes for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  ADD PRIMARY KEY (`f_id`);
 
 --
 -- Indexes for table `info_accts`
@@ -200,7 +230,13 @@ ALTER TABLE `user_orders`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `info_accts`
@@ -218,7 +254,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

@@ -1,17 +1,19 @@
 <?php
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
 
-require "../conn.php";
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
 
-    session_start();
-
-    if (!isset($_SESSION['loggedin']) && !isset($_SESSION['role'])){
-        header("location: ../login.php");
-        exit;
-    } else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['role'] === 2) {
-        header("location: ../userprofile.php");
-        exit;
-    } else {
-
+    include "../conn.php";
     $username = $_SESSION['username'];
 
     $query="SELECT * FROM info_accts";
@@ -361,7 +363,3 @@ require "../conn.php";
 </body>
 
 </html>
-
-<?php
-   }
-?>

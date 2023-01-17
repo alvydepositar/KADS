@@ -108,108 +108,69 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION[
           </p>
         </div>    
       </div>
+
+      <?php
+        //retrieve the quantity sold of all products
+        $query = "SELECT product_id, SUM(quantity) as total_sold FROM user_orders GROUP BY product_id";
+        $result = mysqli_query($conn, $query);
+
+          //check if there's no result from the query
+          if(!$result) {
+            echo "Error: " . mysqli_error($conn);
+            exit();
+          }
+          if(mysqli_num_rows($result) < 1) {
+            echo "No best seller products found.";
+            exit();
+          }
+
+          //store the result in an associative array
+          $sales = array();
+          while ($row = mysqli_fetch_assoc($result)) {
+            $sales[$row['product_id']] = $row['total_sold'];
+          }
+
+          //check the sales array if its empty or has less than 5 elements
+          if(count($sales)<5) {
+            echo "Not enough data to display best sellers.";
+            exit();
+          }
+
+          //sort the associative array in descending order by value
+          arsort($sales);
+
+          //get the top 5 best seller products
+          $best_seller_ids = array_keys(array_slice($sales, 0, 5, true));
+
+          //retrieve the best seller products
+          $best_seller_products = array();
+          foreach($best_seller_ids as $id) {
+            $query = "SELECT * FROM products WHERE p_id = $id";
+            $result = mysqli_query($conn, $query);
+            $best_seller_products[] = mysqli_fetch_assoc($result);
+          }
+
+      ?>
       <!--carousel start--->
       <div class="container" style="padding-bottom: 150px;">
         <div class="row">
           <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel"  data-interval="1000">
             <div class="MultiCarousel-inner">
               <!--items start--->
+              <?php foreach($best_seller_products as $product) { ?>
               <div class="item">
                 <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
+                  <div class="card-img">
+                    <img src="img/menu/<?php echo $product['image']; ?>" class="d-block w-100" alt="<?php echo $product['productName']; ?>">
                   </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
+                  <h5 class="card-title"><?php echo $product['productName']; ?></h5>
                   <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                   </p>
                   <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>
-              <div class="item">
-                <div class="pad15">
-                  <div class="card-img  ">
-                    <img src="images/Basic-Sushi-Cucumber.png" class="d-block w-100" alt="...">
-                  </div>
-                  <h5 class="card-title">Cucumber Sushi</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="menu.php"><button class="button card-btn">Order Now</button></a>
-                </div>
-              </div>              
+              <?php } ?>
               <!--items end--->                
           </div>
           <button class="btn btn-primary leftLst"><i class="fas fa-angle-left"></i></button>
@@ -233,6 +194,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION[
     <?php
       include 'footer.html';
     ?>
+
 
     <!---------------------JS-------------------->      
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

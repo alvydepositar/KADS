@@ -4,8 +4,16 @@ require "../conn.php";
 
     session_start();
 
-    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || !isset($_SESSION['role']) || !$_SESSION['role']==1) {
-        header("Location: ../login.php");
+    // check if user is logged in
+    if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+        //user is not logged in, redirect to login page
+        header("Location: login.php");
+        exit();
+    }
+
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+        //user has role 2, redirect to userprofile.php
+        header("Location: ../userprofile.php");
         exit();
     }
 
@@ -13,11 +21,15 @@ require "../conn.php";
     $total = 0;
     $orderSQL = "SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ";
     $resultOrder = mysqli_query($conn, $orderSQL);
-    $ordercount = mysqli_num_rows($resultOrder);
+    
     while ($row = mysqli_fetch_assoc($resultOrder)) {
         $total += $row['price'] * $row['quantity'];
     }
     
+    $fetchOrderNum = "SELECT COUNT(DISTINCT date) as total_orders FROM user_orders";
+    $result = mysqli_query($conn, $fetchOrderNum);
+    $ordercount = mysqli_fetch_assoc($result)['total_orders'];
+
     $userSQL = "SELECT * FROM info_accts WHERE role = 2";
     $resultUser = mysqli_query($conn, $userSQL);
     $usercount = mysqli_num_rows($resultUser);
@@ -312,7 +324,7 @@ require "../conn.php";
 
                     <div class="col-lg-4 col-md-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Employees</h3>
+                            <h3 class="box-title">Customers</h3>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <li>
                                     <div id="sparklinedash3">
@@ -333,6 +345,7 @@ require "../conn.php";
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
+                            <h3 class="box-title">Today's Orders</h3>
                             <div class="table-responsive">                              
                                 <table class="table no-wrap">
                                     <thead>
@@ -344,7 +357,8 @@ require "../conn.php";
                                     </thead>
                                     <tbody>
                                         <?php 
-                                            $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
+                                            $current_date = date('Y-m-d');
+                                            $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id WHERE DATE(date) = '$current_date' ORDER BY date DESC" ;
                                             $result=mysqli_query($conn,$query);
                                             $order_by_date = array();
                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -446,7 +460,3 @@ require "../conn.php";
 </body>
 
 </html>
-
-<?php
-   //}
-?>

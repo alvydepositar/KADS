@@ -1,4 +1,19 @@
 <?php
+session_start();
+
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
+
 // Process delete operation after confirmation
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
     // Include config file

@@ -1,11 +1,8 @@
 <?php
 session_start();
-
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
-  header("location: admin/dashboard.php");
-  exit;
-} else {
   include "conn.php";
+
+  if
 ?>
 
 <!DOCTYPE html>

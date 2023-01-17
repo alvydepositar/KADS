@@ -1,11 +1,39 @@
 <?php
 session_start();
-
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
-  header("location: admin/dashboard.php");
-  exit;
-} else {
   include "conn.php";
+
+  $name = $email = $message = "";
+  $name_err = $email_err = $message_err = "";
+
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate Name
+    if(empty(trim($_POST["name"]))){
+      $name_err = "Please enter your Name.";     
+    } elseif(!preg_match('/^[a-zA-Z ]+$/', trim($_POST["name"]))){
+      $name_err = "Name can only contain letters.";
+    } else { 
+      $name = trim($_POST["name"]);
+    }
+
+    if(empty(trim($_POST["email"]))){
+      $email_err = "Please enter your Email.";     
+    } else { 
+      $email = trim($_POST["email"]);
+    }
+
+    if(empty(trim($_POST["message"]))){
+      $message_err = "Please enter your message, concerns, feedback, etc.";     
+    } else { 
+      $message = trim($_POST["message"]);
+    }
+
+    if(empty($name_err) && empty($email_err) && empty($message_err)) {
+        $sql = "INSERT INTO feedbacks (name, email, message) VALUES('$name', '$email', '$message')";
+        mysqli_query($conn, $sql);
+        header("Location: contact.php");
+    }
+
+  }
 ?>
 
 <!DOCTYPE html>
@@ -51,19 +79,24 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION[
 
     <div class="col1">
       <p class="intro">Leave us a message!</p>
-      <div class="textinputs">
-        <div class="namebox">
-          <input type="text" class="form-control" id="name" placeholder="Name" /><br>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="textinputs">
+          <div class="namebox">
+            <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" placeholder="Name" />
+            <span class="invalid-feedback"><?php echo $name_err; ?></span>
+          </div> <br>
+          <div class="emailbox">
+            <input type="text" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" name="email" placeholder="Email Address" />
+            <span class="invalid-feedback"><?php echo $email_err; ?></span> 
+          </div> <br>
+          <div class="textareabox">
+            <textarea class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>" rows="8" cols="40" name="message"
+              placeholder="Send us your concerns, feedbacks, etc."></textarea>
+              <span class="invalid-feedback"><?php echo $message_err; ?></span>
+          </div><br>
+          <button type="submit" class="btn btn-send">Send</button>
         </div>
-        <div class="emailbox">
-          <input type="text" class="form-control" id="email" placeholder="Email Address" /><br>
-        </div>
-        <div class="textareabox">
-          <textarea class="form-control" rows="8" cols="40"
-            placeholder="Send us your concerns, feedbacks, etc."></textarea>
-        </div><br><br>
-        <button type="submit" class="btn btn-send">Send</button>
-      </div>
+    </form>
     </div>
 
     <div class="col2ctn">
@@ -111,5 +144,3 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION[
 </body>
 
 </html>
-
-<?php } ?>

@@ -1,74 +1,39 @@
 <?php
-/*session_start();
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
 
-    if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-        header("location: ../admin.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: ../cashier/index.php");
-        exit;
-    } else {
-    include "../dbconnection.php";
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+} 
 
-    $username = $_SESSION['username'];
-    
-    $name = $desc = $price = $image =  "";
-    $name_err = $desc_err = $price_err = $image_err = "";
+    include '../conn.php';
 
-    if(isset($_GET["edit"])){
-        $id = $_GET['edit'];
+    $order_number = $_GET['o_id'];
 
-        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN category ON products.categoryid = category.id WHERE products.id = $id"));
-        
-            $pro = mysqli_fetch_array($sql1); 
-            $name = $pro["product_name"];
-            $desc = $pro["description"];
-            $price = $pro["price"];
-            $image = $pro["image_url"];
-            $category = $pro["categoryid"];
+    // fetch the order details from the database
+    $query = "SELECT * FROM user_orders JOIN products ON user_orders.product_id = products.p_id WHERE user_orders.order_number = '$order_number'";
+    $result = mysqli_query($conn, $query);
+
+    // create an empty array to store the order details
+    $order = array();
+
+    // fetch each row and store it in the array
+    while ($row = mysqli_fetch_assoc($result)) {
+        $order[] = $row;
     }
 
+    // close the connection
+    mysqli_close($conn);
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $name = $_POST["name"];
-    $desc = $_POST["desc"];
-    $price = $_POST["price"];
-    $category = $_POST["category"];
-
-    $image = $_FILES['my_image'];
-
-	$img_name = $_FILES['my_image']['name'];
-	$img_size = $_FILES['my_image']['size'];
-	$tmp_name = $_FILES['my_image']['tmp_name'];
-	$error = $_FILES['my_image']['error'];
-
-	if ($error === 0) {
-		if ($img_size > 125000) {
-			$em = "Sorry, your file is too large.";
-		    header("Location: products.php?error=$em");
-		} else {
-			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-			$img_ex_lc = strtolower($img_ex);
-
-			$allowed_exs = array("jpg", "jpeg", "png"); 
-
-			if (in_array($img_ex_lc, $allowed_exs)) {
-				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-				$img_upload_path = '../img/'.$new_img_name;
-				move_uploaded_file($tmp_name, $img_upload_path);
-    
-			} else {
-				$em = "You can't upload files of this type";
-		        header("Location: products.php?error=$em");
-			}
-		}
-    
-	}
-    
-    mysqli_query($conn, "UPDATE products SET product_name = '$name', description = '$desc' , price = '$price', image_url = '$new_img_name', categoryid = '$category' WHERE id = $id");
-    header("Location: products.php");
-}*/  
+    // print the order details
+    print_r($order);
 
 ?>
 <html lang="en">
@@ -104,24 +69,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><?php /*echo $_GET['error'];*/ ?></p>
             <?php /*endif*/ ?>
 
-            <form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]);*/ ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
 
-            <input type="hidden" name="id" value="<?php /*echo $id;*/ ?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="form-group">
                     <label>Order Number</label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control" value="<?php echo $id; ?>" disabled>
                 </div>
 
+                <?php
+                $query1 = "SELECT * FROM products WHERE p_id = "
+                //while($order = mysqli_fetch_assoc($result)){ ?>
                 <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" name="name" class="form-control <?php /*echo (!empty($name_err)) ? 'is-invalid' : '';*/ ?>" value="<?php /*echo $name;*/ ?>">
-                    <span class="invalid-feedback"><?php /*echo $name_err;*/ ?></span>
+                    <label>Orders</label>
+                    <input type="number" value="<?php echo $order['quantity'] ?>" name="qty" min="0" value="0" step=".01" class="form-control">
                 </div>
-
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="number" name="qty" min="0" value="0" step=".01" class="form-control">
-                </div>
+                <?php //} ?>
 
                 <div class="form-group">
                     <label>Total</label>
@@ -168,6 +131,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div> 
 </body>
 </html>
-<?php 
-    /*}*/
-?>

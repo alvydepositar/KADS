@@ -1,3 +1,23 @@
+<?php
+session_start();
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: ../userprofile.php");
+    exit();
+}
+
+    include '../conn.php';
+    $username = $_SESSION['username'];
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -121,7 +141,7 @@
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium">Username</span></a>
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username; ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -241,22 +261,35 @@
                                             <th class="border-top-0">Feedback</th>                                            
                                         </tr>
                                     </thead>
-                                    
+                                    <?php
+                                        $query = "SELECT * FROM feedbacks";
+                                        $result = mysqli_query($conn, $query);
+                                        if(mysqli_num_rows($result) > 0) {
+                                            while($row = mysqli_fetch_assoc($result)){
+                                        ?>
                                     <tbody>
                                         <tr>  
-                                            <td>Date submitted</td>                                          
-                                            <td>Name</td>
-                                            <td>Email address</td>
-                                            <td>Feedbacks, concerns, etc.</td>                                                                                       
+                                            <td><?php echo $row['date']; ?></td>                                          
+                                            <td><?php echo $row['name']; ?></td>
+                                            <td><?php echo $row['email']; ?></td>
+                                            <td><?php echo substr($row['message'], 0, 50); ?>...</td>  
                                             <td class="col-1">
-                                            <a class="btn btn-solid" href="delete-feedback.php?id=">Delete</a>         
+                                            <a class="btn btn-solid" href="view-feedback.php?id=<?php echo $row['f_id']; ?>">View</a>                                            
+                                            </td>                                                                                     
+                                            <td class="col-1">
+                                            <a class="btn btn-solid" href="delete-feedback.php?id=<?php echo $row['f_id']; ?>">Delete</a>         
                                             </td>
                                         </tr>
-                                       
+                                        <?php
+                                            }
+                                        } else {
+                                            ?>
                                             <tr>
                                             <td colspan="3">No Records Found</td>
                                             </tr>
-                                        
+                                            <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

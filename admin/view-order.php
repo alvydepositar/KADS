@@ -251,7 +251,7 @@ $username = $_SESSION['username'];
                     <h2>Order Summary</h2>
                     <div class="subtotal">
                         <h2 class="subtotal-label">Subtotal</h2>
-                        <span class="subtotal-price">₱<?php echo $fTotal; ?></span>
+                        <span class="subtotal-price">₱<?php echo $subTotal; ?></span>
                     </div>
                     <div class="df">
                         <h2 class="df-label">Delivery Fee</h2>
@@ -262,7 +262,7 @@ $username = $_SESSION['username'];
 
                     <div class="total">
                         <h2 class="total-label">Total</h2>
-                        <span class="total-price">₱<?php echo $fTotal; ?></span>
+                        <span class="total-price">₱<?php echo $subTotal+60; ?></span>
                     </div>
                 </div>
             </div>

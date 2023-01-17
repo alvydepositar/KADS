@@ -125,7 +125,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 30.375em;
-  height: 30.375em;
 }
 
 .col2ctn {
@@ -174,13 +173,13 @@
   line-height: 22px;
 }
 
-.Address{
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 22px;
-color: #0F001A;
+.Address {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0f001a;
 }
 .emailbox {
   font-family: "Inter";

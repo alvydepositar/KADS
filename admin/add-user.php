@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include '../conn.php';
 
     // check if user is logged in
     if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
@@ -237,8 +238,8 @@
                         <div class="form-group">
                             <label for="role">Role</label>
                             <select name ="role" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
+                                <option value=1>Admin</option>
+                                <option value=2>User</option>
                             </select> 
                         </div> 
                     </div>

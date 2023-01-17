@@ -3,12 +3,16 @@
 
     session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1){
-        header("location: admin/dashboard.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: userprofile.php");
-        exit;
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+      //user has role 2, redirect to userprofile.php
+      header("Location: admin/dashboard.php");
+      exit();
+    }
+
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+      //user has role 2, redirect to userprofile.php
+      header("Location: userprofile.php");
+      exit();
     }
     
     $terms = $firstname = $lastname = $email = $bday = $phone = $password = $repassword = "";
@@ -16,10 +20,9 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
       
-      //not working pa | need mag-agree sa terms
-      if (!isset($_POST['terms'])) {
+      if(empty($_POST['terms']) || $_POST['terms'] !== 'on') {
         $terms_err = "You have to agree to our terms and conditions.";
-      } 
+      }
 
       // Validate firstname
       if(empty(trim($_POST["firstname"]))){
@@ -222,7 +225,7 @@
 
               <div class="row">
                 <div class="col input-chckbx">
-                  <input type="checkbox" value="<?php echo $terms; ?>" id="terms" name="terms"> I have read and agreed to the <a href="terms.php" style="color: #C70800">terms and conditions</a>. </input>
+                  <input type="checkbox" id="terms" name="terms" required> I have read and agreed to the <a href="terms.php" style="color: #C70800">terms and conditions</a>. </input>
                   <span class="invalid-feedback"><?php echo $terms_err; ?></span>  
                 </div>
               </div>

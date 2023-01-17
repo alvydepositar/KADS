@@ -272,9 +272,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                         <div class="white-box">
                             
                             <h3 class="box-title">Orders
-                                <a href="add-order.php"><button class="btn btn-border" >
-                                    Add Order
-                                </button></a>
                             </h3>     
                             <div class="table-responsive">                              
                                 <table class="table no-wrap">
@@ -288,31 +285,35 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                                     </thead>
                                     <tbody>
                                         <?php 
-                                            $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id ORDER BY date" ;
+                                            $query="SELECT * FROM user_orders JOIN products ON user_orders.product_id = products.p_id ORDER BY date DESC" ;
                                             $result=mysqli_query($conn,$query);
                                             $order_by_date = array();
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                 $date = date('Y-m-d H:i:s', strtotime($row['date']));
-                                                if (!isset($order_by_date[$date])) {
-                                                    $order_by_date[$date] = array();
-                                                    $order_by_date[$date]['total'] = 0;
-                                                    $order_by_date[$date]['order_number'] = $row['order_number'];
-                                                    $order_by_date[$date]['status'] = $row['status'];
+                                                    if (!isset($order_by_date[$date])) {
+                                                        $order_by_date[$date] = array();
+                                                        $order_by_date[$date]['total'] = 0;
+                                                        $order_by_date[$date]['order_number'] = $row['order_number'];
+                                                        $order_by_date[$date]['status'] = $row['status'];
+                                                    }
+                                                    $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
+                                                    array_push($order_by_date[$date], $row);
                                                 }
-                                                $order_by_date[$date]['total'] += $row['price'] * $row['quantity'];
-                                                array_push($order_by_date[$date], $row);
-                                            }
                                             foreach ($order_by_date as $date => $orders) {
                                         ?>                                    
                                         <tr>
                                             <td><?php echo $date; ?></td>
-                                            <td>
+                                            <td> 
                                                 <?php
-                                                    if ($orders['status'] == 1) { 
-                                                        echo "<div class='order-progress p-processing'>Preparing</div>";
-                                                    } elseif($orders['status'] == 2) {
-                                                        echo "<div class='order-progress p-delivery'>Out for Delivery</div>";
-                                                    } elseif($orders['status'] == 3){
+                                                    if ($orders['status'] == 1 || $orders['status'] == 2) {
+                                                ?>
+                                                <select name="status[<?php echo $orders['status']; ?>]" onchange="updateStatus(this, <?php echo $orders['order_number']; ?>)" >
+                                                    <option value=1 <?php if($orders['status'] == 1) echo 'selected'; ?>>Preparing</option>
+                                                    <option value=2 <?php if($orders['status'] == 2) echo 'selected'; ?>>Out for Delivery</option>
+                                                    <option value=3 <?php if($orders['status'] == 3) echo 'selected'; ?>>Completed</option>
+                                                </select>
+                                                <?php
+                                                    } elseif ($orders['status'] == 3) {
                                                         echo "<div class='order-progress p-completed'>Completed</div>";
                                                     }  
                                                 ?>
@@ -391,20 +392,25 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app-style-switcher.js"></script>
-    <!--Wave Effects -->
-    <script src="js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="js/custom.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-</body>
+    <script>
+    function updateStatus(statusSelect, orderId) {
+    var newStatus = statusSelect.value;
+        $.ajax({
+            type: "POST",
+            url: "edit-order.php",
+            data: { order_id: orderId, status: newStatus },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+        location.reload();
+    }
+</script>
 
+</body>
 </html>

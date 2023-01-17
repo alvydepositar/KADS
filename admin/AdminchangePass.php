@@ -8,13 +8,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   exit();
 }
 
-if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
   //user has role 2, redirect to userprofile.php
-  header("Location: admin/dashboard.php");
+  header("Location: ../userprofile.php");
   exit();
 }
 
-    include "conn.php";
+    include "../conn.php";
 
     $username = $_SESSION['username'];
     $id = $_SESSION['id'];
@@ -59,7 +59,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
       if(empty($oldpass_err) && empty($newpass_err) && empty($confirmpass_err)) {
         $newpassword = password_hash($newpass, PASSWORD_DEFAULT);
         mysqli_query($conn, "UPDATE info_accts SET password='$newpassword' WHERE id='$id'");
-        header("Location: changePass.php");
+        header("Location: AdminchangePass.php");
       }
     }
 ?>
@@ -79,18 +79,130 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
     />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- css -->
-    <link rel="stylesheet" href="css/header-responsive.css" /> 
-    <link rel="stylesheet" href="css/user.css" />
-    <link rel="stylesheet" href="css/footer.css" />   
+    <link rel="stylesheet" href="../css/header-responsive.css" /> 
+    <link rel="stylesheet" href="../css/user.css" />
+    <link rel="stylesheet" href="../css/footer.css" />   
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
+    <style>    
+        /* Style The Dropdown Button */
+        *{
+            font-family: "Readex Pro";
+        }
+        .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        font-family: "Readex Pro";
+        border: none;
+        cursor: pointer;
+        }
+
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+        display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+        }
+    </style>
   </head>
   <body>
-    <?php
-      include 'header-user.php';
-    ?>
+  <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+
+                <!-- ============================================================== -->
+                <!-- Logo | Uncomment na lang kapag meron na -->
+                <!-- ============================================================== -->
+
+                   <!-- <a class="navbar-brand" href="dashboard.php">
+                        <b class="logo-icon">
+                            <img src="../plugins/images/logo-icon.png" alt="homepage" />
+                        </b>
+                        <span class="logo-text">
+                            <img src="../plugins/images/logo-text.png" alt="homepage" />
+                        </span>
+                    </a> -->
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                   
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                            <a class="profile-pic" href="#">
+                            <div class="dropdown">
+                            <img src="../img/logo.png" alt="user-img" width="36"
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
+                                <div class="dropdown-content">
+                                    <a href="profile.php">Profile</a>
+                                    <a href="../logout.php">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
     <!-------------- content start --------------->
 
@@ -102,53 +214,23 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <a href="userprofile.php">
+                    <a href="profile.php">
                       <button type="button" class="side-links">My Profile</button>                    
                     </a>
                   </div>                  
                 </div>
+                
                 <div class="row">
                   <div class="col-1"></div>
                   <div class="col-11">
-                    <a href="myAddresses.php">
-                      <button type="button" class="side-links">My Addresses</button>
-                    </a>
-                  </div>                  
-                </div>
-                <div class="row">
-                  <div class="col-1"></div>
-                  <div class="col-11">
-                    <a href="changePass.php">
+                    <a href="AdminchangePass.php">
                       <button type="button" class="side-links side-links-active">
                         Change Password
                       </button>
                     </a>
                   </div>                  
                 </div>                
-                <div class="row links-title">My Orders</div>
-                <div class="row">
-                  <div class="col-1"></div>
-                  <div class="col-11">
-                    <a href="ongoingorder.php">
-                      <button type="button" class="side-links">Ongoing Order</button>
-                    </a>                    
-                  </div>                  
-                </div>   
-                <div class="row">
-                  <div class="col-1"></div>
-                  <div class="col-11">
-                    <a href="orderhistory.php">
-                      <button type="button" class="side-links">Order History</button>
-                    </a>
-                  </div>                  
-                </div>  
-                <div class="row align-bottom logout-group">
-                  <a href="logout.php">
-                    <span class="fa-solid fa-power-off">
-                      <span class="logout-label">Logout</span>
-                    </span>
-                  </a>
-                </div>                     
+                                     
               </div>
 
             </div>
@@ -220,10 +302,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
       <i class="fas fa-arrow-up"></i>
     </button>
     <!-- back to top button end --> 
-    
-    <?php
-      include 'footer.html';
-    ?>
     
     <!---------------------JS-------------------->        
     <script src="backtotop.js"></script>

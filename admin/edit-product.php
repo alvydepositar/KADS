@@ -22,12 +22,17 @@ include "../conn.php";
     if(isset($_GET["edit"])){
         $id = $_GET['edit'];
 
-        $sql1 = (mysqli_query($conn, "SELECT * FROM products INNER JOIN categories ON products.category = categories.c_id WHERE products.p_id = '$id'"));
+        $sql1 = (mysqli_query($conn, "SELECT * FROM products JOIN categories ON products.category = categories.c_id WHERE products.p_id = '$id'"));
             $pro = mysqli_fetch_array($sql1); 
             $name = $pro["productName"];
             $price = $pro["price"];
             $image = $pro["image"];
             $category = $pro["category"];
+                $query2="SELECT * FROM categories WHERE c_id = $category";
+                $result=mysqli_query($conn, $query2);
+                $row = mysqli_fetch_assoc($result);
+                $categoryName = $row['categoryName'];
+
     }
 
 
@@ -138,6 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name ="category" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                        <option value="<?php echo $category ?>"> <?php echo $categoryName; ?> </option>
                         <?php
                         $query="SELECT * FROM categories";
                         $result=mysqli_query($conn, $query);

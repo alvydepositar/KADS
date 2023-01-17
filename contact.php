@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+  //user has role 2, redirect to userprofile.php
+  header("Location: admin/dashboard.php");
+  exit();
+}
+
   include "conn.php";
 
   $name = $email = $message = "";

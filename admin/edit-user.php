@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } 
 
-    mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname',  lastname= '$lastname', username= '$email', phone = '$phone', birthday = '$bday' WHERE id= '$id'");
+    mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname',  lastname= '$lastname', username= '$email', phone = '$phone', birthday = '$bday', role = '$role' WHERE id= '$id'");
     header("Location: users.php");
 }
 
@@ -169,8 +169,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="form-group">
                                         <label for="role">Role</label>
                                         <select name ="role" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                            <option value="1">Admin</option>
-                                            <option value="2">User</option>
+                                            <option value=<?php echo $role; ?>><?php 
+                                                if ($role == 1) {
+                                                    echo "Admin";
+                                                } elseif ($role == 2) {
+                                                    echo "User";
+                                                }
+                                                ?></option>
+                                            <option value=1>Admin</option>
+                                            <option value=2>User</option>
                                         </select> 
                                     </div> 
                                 </div>

@@ -3,14 +3,18 @@
 
     session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
-        header("location: admin/dashboard.php");
-        exit;
-    } else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 2) {
-        header("location: userprofile.php");
-        exit;
-    } else {
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+      //user has role 2, redirect to userprofile.php
+      header("Location: admin/dashboard.php");
+      exit();
+    }
 
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+      //user has role 2, redirect to userprofile.php
+      header("Location: userprofile.php");
+      exit();
+    }
+    
     $email = $password =  "";
     $email_err = $password_err = $login_err = "";
 
@@ -166,5 +170,3 @@
 <script src="showpw.js"></script>
 </body>
 </html>
-
-<?php } ?>

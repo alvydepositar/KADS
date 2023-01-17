@@ -1,10 +1,13 @@
 <?php
 session_start();
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
-  header("location: admin/dashboard.php");
-  exit;
-} else {
+if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+  //user has role 2, redirect to userprofile.php
+  header("Location: admin/dashboard.php");
+  exit();
+}
+
+
   include "conn.php";
 ?>
 
@@ -105,5 +108,3 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION[
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>
-
-<?php } ?>

@@ -2,7 +2,12 @@
 session_start();
   include "conn.php";
 
-  if
+  if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: admin/dashboard.php");
+    exit();
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -102,5 +107,3 @@ session_start();
   
 </body>
 </html>
-
-<?php } ?>

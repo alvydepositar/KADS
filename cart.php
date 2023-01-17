@@ -1,13 +1,18 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loggedin"]) && !isset($_SESSION['role'])){
-  header("location: login.php");
-  exit;
-} else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["role"] === 1) {
-  header("location: admin/dashboard.php");
-  exit;
-} else {
+// check if user is logged in
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    //user is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
+    //user has role 2, redirect to userprofile.php
+    header("Location: admin/dashboard.php");
+    exit();
+}
 
 include 'conn.php';
 
@@ -47,7 +52,6 @@ include 'conn.php';
 
 <!DOCTYPE html>
 <html lang="en" class="scroller">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -102,11 +106,11 @@ include 'conn.php';
                                     for example, the original price of cucumber roll is 100
                                     but the user ordered 2 of it. the total price of cucumber 
                                     roll should reflect on the food price-->
-                                    <h3 class="food-price" value="<?php echo $cart['product_price']; ?>">₱<?php echo $cart['product_price']; ?></h3>
+                                    <h3 class="food-price" value="<?php echo $cart['product_price']; ?>">₱<?php echo $cart['product_price'] * $cart['qty']; ?></h3>
                                     <div class="quantity">
-                                        <span class="decrement"> - </span>
-                                        <span class="intnum" id="quantity" onchange="calc()"><?php echo $cart['qty']; ?></span>
-                                        <span class="increment"> + </span>
+                                        <span class="decrement" onclick="decrement(<?php echo $cart['product_id']; ?>)"> - </span>
+                                        <span class="intnum" id="quantity-<?php echo $cart['product_id']; ?>"><?php echo $cart['qty']; ?></span>
+                                        <span class="increment" onclick="increment(<?php echo $cart['product_id']; ?>)"> + </span>
                                     </div>
                                     <?php $total += ($cart['product_price'] * $cart['qty']); ?>
                                 </div>
@@ -180,32 +184,42 @@ include 'conn.php';
     <script src="backtotop.js"></script>
 
     <script>
-        
+    function increment(productId) {
+        var intnum = document.querySelector('#quantity-'+productId);
+        var currentQuantity = parseInt(intnum.innerHTML);
+        intnum.innerHTML = currentQuantity + 1;
+        updateCart(productId, currentQuantity+1);
+    }
 
-        // for quantity spinner
-        const increment = document.querySelector(".increment"),
-            decrement = document.querySelector(".decrement"),
-            intnum = document.querySelector(".intnum");
-        let a = 1;
-        increment.addEventListener("click", () => {
-            a++;
-            a = (a < 10) ? a : a;
-            intnum.innerText = a;
-            
-        });
+    function decrement(productId) {
+        var intnum = document.querySelector('#quantity-'+productId);
+        var currentQuantity = parseInt(intnum.innerHTML);
+        if(currentQuantity > 0){
+            intnum.innerHTML = currentQuantity - 1;
+            updateCart(productId, currentQuantity-1);
+        }
+    }
 
-        decrement.addEventListener("click", () => {
-            if (a > 1) {
-                a--;
-                a = (a < 10) ? a : a;
-                intnum.innerText = a;
-                
+    function updateCart(productId, quantity) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "userFunctions/updatecart.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                    if(data.status) {
+                        location.reload();
+                    } else {
+                console.log(data.message);
+                }
             }
-        });
-    </script>
+        };
+        xhr.send("product_id="+productId+"&quantity="+quantity);
+        location.reload();
+    }
+</script>
+
     
 </body>
 
 </html>
-
-<?php }

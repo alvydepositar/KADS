@@ -12,262 +12,340 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
     header("Location: ../userprofile.php");
     exit();
 }
-    include "../conn.php";
+include '../conn.php';
 
-    $username = $_SESSION['username'];
+$username = $_SESSION['username'];
+$id = $_SESSION['id'];
+
+$query="SELECT * FROM info_accts WHERE id = '$id'";
+$result=mysqli_query($conn,$query);
+$row = mysqli_fetch_assoc($result);
+
+$oldusername = $row['username']; 
+
+$firstname = $lastname = $email = $phone = $bday = "";
+$firstname_err = $lastname_err = $email_err = $phone_err =$bday_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+  $id = $_POST['id'];
+ 
+  if(empty(trim($_POST["firstname"]))){
+    $firstname_err = "Please enter your First Name.";     
+  } elseif(!preg_match('/^[a-zA-Z ]+$/', trim($_POST["firstname"]))){
+    $firstname_err = "Name can only contain letters.";
+  } else { 
+    $firstname = trim($_POST["firstname"]);
+  }
+
+  // Validate lastname
+  if(empty(trim($_POST["lastname"]))){
+    $lastname_err = "Please enter your Last Name.";     
+  } elseif(!preg_match('/^[a-zA-Z ]+$/', trim($_POST["lastname"]))){
+    $lastname_err = "Name can only contain letters.";
+  } else {
+    $lastname = trim($_POST["lastname"]);
+  }
+
+  // Validate email
+/*
+  $sql1="SELECT * from info_accts where username='$oldusername'";
+  $res=mysqli_query($conn,$sql1);
+  if (mysqli_num_rows($res) > 0) {
+    $row = mysqli_fetch_assoc($res);
+    if($oldusername != $email){
+      if($email==$row['username']) {
+       $email_err[] ='Email alredy exists.';
+      }
+    } else {
+      $email = trim($_POST["email"]);
+    }
+  }
+*/
+ // Validate email
+if(empty(trim($_POST["email"]))){
+  $email_err = "Please enter email.";
+} else {
+  $sql = "SELECT id FROM info_accts WHERE username = ? && role = 1 && NOT id = '$id' ";
+
+    if($stmt = mysqli_prepare($conn, $sql)){
+      mysqli_stmt_bind_param($stmt, "s", $param_email);
     
-    $query="SELECT * FROM info_accts WHERE username = '$username'";
-    $result=mysqli_query($conn,$query);
-    $row = mysqli_fetch_assoc($result);
+      $param_email = trim($_POST["email"]);
+    
+      if(mysqli_stmt_execute($stmt)){
+        mysqli_stmt_store_result($stmt);
+        
+        if(mysqli_stmt_num_rows($stmt) == 1){
+            $email_err = "This email is already taken.";
+        } else{
+            $email = trim($_POST["email"]);
+        }
+    } else{
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+
+    mysqli_stmt_close($stmt);
+  }
+}
+
+  // Validate birthday
+  if(empty(trim($_POST["bday"]))){
+    $bday_err = "Please enter your Birthday.";     
+  } else {
+    $bday = trim($_POST["bday"]);
+  }
+
+  // Validate phone
+  if(empty(trim($_POST["phone"]))){
+    $phone_err = "Please enter your Contact Number.";     
+  } else {
+    $phone = trim($_POST["phone"]);
+  }
+
+  if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($bday_err) && empty($phone_err) ) {
+    if ($email == $row['username']) {
+      mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
+      header("Location: profile.php");
+    } else {
+      mysqli_query($conn, "UPDATE info_accts SET firstname = '$firstname', lastname = '$lastname', username = '$email', birthday = '$bday', phone = '$phone' WHERE id = '$id'");
+      header("Location: profile.php");
+    }
+  }
+  
+  
+}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+
+<!Doctype html>
+<html lang="en" class="scroller">
 <head>
-    <meta charset="UTF-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KADS | Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/customerstyle.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,900&subset=latin-ext' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Inter');
-        @import url('https://fonts.googleapis.com/css?family=Readex Pro');
-        body{
-            overflow:hidden;
-        }      
-        a, a:hover {
-          text-decoration:none;
-          color:#141C07;
-        }  
-        .profile-card, .page-content-wrapper, .container-fluid{
-            width: 600px;
+    <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
+    <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pagestyles.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/header-responsive.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+
+    <style>    
+        /* Style The Dropdown Button */
+        *{
+            font-family: "Readex Pro";
         }
-        body{font: 14px sans-serif; background-color:#e7e7e7; font-family: 'Readex Pro';color: #2C2A3A;}
-        .wrapper{ width: 360px; padding: 20px; }
-        .wrapper{
-            width: 400px;
-            margin: 0 auto;
-        }
-        .top-line{
-            position: absolute;
-            height: 8px;
-            left: -0.21%;
-            right: 0%;
-            top: 0px;
-            background: #C70800;
-        }
-        .edituserblock {
-            background-color:#fff;
-            border-radius:10px;
-            padding:20px;
-            width: 400px;
-            margin-top:30px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-        }
-        .edituserblock h2{
-            font-weight: 700;
-            font-size: 25px;
-        }
-        .btn-primary{
-            background-color: #B2D62D;
-            color: #141C07;
-            border: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius:5px;
-        }
-        .btn-primary:hover,.btn-secondary:hover,.btn-primary:focus,.btn-secondary:focus{
-            background-color: #7BB12F;
-            color: #141C07;
-        }
-        .btn-secondary{
-            background-color: #fff;
-            color: #141C07;
-            border: 1px solid #B2D62D;
-            font-weight: 600;
-            font-size: 14px;            
-            border-radius:5px;
-        }
-        .back-icon img{
-            width: 40px;
-            height: 40px;
-            top: 60px;
-            left: calc(50% - 500px/2);
-            position: absolute;            
-        }
-        .back-icon img:hover{
-            opacity:0.7;
-            transition: 0.25s all ease;      
-        }
-        label{
-            margin-bottom: 0px;
-            color:#7BB12F;
-            font-weight:500;
-        }
-        .edituserblock{
-            margin-top:150px;
-        }
-        .back-icon img{
-            margin-top:110px;
-        }
-        .profile-item-label{
-            color:#7BB12F;
-            font-weight:500;
-            font-family: 'Inter';
-        }
-        .title-style img{
-            position: absolute;
-            height: 70px;
-            left: calc(50% - 70px/2);
-            top: 60px;
-        }
-        .title-style h2{
-            font-style: normal;
-            font-weight: 700;
-            font-size: 32px;            
-            text-align: center;
-            position: absolute;
-            left: calc(50% - 125px);
-            top: 140px;
-            border-bottom: 8px solid #B2D62D;
-            height: 38px;
-        }
-        .title-style p{
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 36px;
-            text-align: center;
-            position: absolute;
-            left: calc(50% - 80px);
-            top: 180px;
-        }
-        
-        #mainwrapper.toggled #page-content-wrapper {
-            position: absolute;
-            margin-left: 0px;
-            margin-right: 0px;
+        .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        font-family: "Readex Pro";
+        border: none;
+        cursor: pointer;
         }
 
-        #page-content-wrapper {
-            width: 100%;
-            position: relative;
-            margin-top: 200px;
-            margin-left: 41%;
-            padding: 15px;
-            
+        .dropdown {
+        position: relative;
+        display: inline-block;
         }
 
-        .container-fluid {
-            width: 100%;
-            padding-right: 5px;
-            padding-left: 5px;
-            margin-right: auto;
-            margin-left: auto;
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
         }
 
-
-        .profile-card {
-            width: calc(100% + 10rem);
-            max-width: 300px;
-            background-color: white;
-            padding: 6em;
-            border-radius: 10px;
-            box-shadow: 0px 4px 16px -9px rgb(0 0 0 / 41%);
-            -webkit-box-shadow: 0px 4px 16px -9px rgb(0 0 0 / 41%);
-            -moz-box-shadow: 0px 4px 16px -9px rgba(0,0,0,0.41);
-            overflow: hidden;
+        /* Links inside the dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
         }
 
-        .flex {
-            display: flex;
-            justify-content: space-between;
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+        display: block;
         }
 
-        .profile-center {
-            padding-right: 2em;
-            position: relative;
-        }
-
-        .profile-hello {
-            color: #050607;
-            font-size: clamp(1.5rem, 5vw, 2rem);
-            font-weight: 600;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            margin-bottom: 1.5rem;
-
-        }
-
-        .h2, h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-        }
-
-        .profile-item, .first-name, .middle-name, .last-name {
-            border-bottom: 0.5px solid rgb(94, 109, 130, .2);
-            margin-bottom: 1em;
-        }
-
-        .profile-item-label {
-            color: #C70800;
-            font-size: 0.9375rem;
-            padding: 0;
-            margin: 0;
-        }
-
-        img{            
-            height: 180px;
-            position: absolute;
-            margin-top:-170px;
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
         }
     </style>
 </head>
+<body>
+    <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
 
-<body>  
-    <div class="wrapper">
-        <div class="top-line"></div>   
-        <div class="back-icon">
-            <a href="../admin/users.php">
-                <img src="../img/backicon.png">
-            </a>
-        </div>                    
-        <div class="edituserblock">
-            <div class="d-flex justify-content-center">
-                <img src="../images/kads_icon.png">    
-            </div>
-            <h2>Profile</h2>  
-            <div>                                      
-                <div class="profile-item first-name flex">
-                    <p class="profile-item-label">Full Name:</p>
-                    <p class="first-name-value"><?php echo $row['firstname'] .' '. $row['lastname'] ?></p>
-                </div> 
-                <div class="profile-item middle-name flex">
-                    <p class="profile-item-label">Birthday:</p>
-                    <p class="middle-name-value"><?php echo $row['birthday'] ?></p>
-                </div> 
-                <div class="profile-item last-name flex">
-                    <p class="profile-item-label">Phone:</p>
-                    <p class="last-name-value"><?php echo $row['phone'] ?></p>
-                </div> 
+                <!-- ============================================================== -->
+                <!-- Logo | Uncomment na lang kapag meron na -->
+                <!-- ============================================================== -->
 
-                <div class="profile-item username flex">
-                    <p class="profile-item-label">Username:</p>
-                    <p class="username-value"><?php echo $row['username'] ?></p>
-                </div> 
-                <div class="profile-item role flex">
-                    <p class="profile-item-label">Role:</p>
-                    <p class="role-value"><?php if ($row['role'] == 1) {
-                                            echo "Admin";
-                                            } else {
-                                                echo "Customer";
-                                            } ?></p>
+                   <!-- <a class="navbar-brand" href="dashboard.php">
+                        <b class="logo-icon">
+                            <img src="../plugins/images/logo-icon.png" alt="homepage" />
+                        </b>
+                        <span class="logo-text">
+                            <img src="../plugins/images/logo-text.png" alt="homepage" />
+                        </span>
+                    </a> -->
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
                 </div>
-                
-            </div>  
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                   
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                            <a class="profile-pic" href="#">
+                            <div class="dropdown">
+                            <img src="../img/logo.png" alt="user-img" width="36"
+                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
+                                <div class="dropdown-content">
+                                    <a href="profile.php">Profile</a>
+                                    <a href="../logout.php">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+    <!-------------- content start --------------->
+
+    <div class="content-container container d-flex justify-content-center">          
+      <div class="row content-wrapper">
+        <div class="col-4 left-content">
+          <div class="container">
+            <div class="row links-title-top">My Account</div>      
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-11">
+                <a href="profile.php">
+                  <button type="button" class="side-links side-links-active">My Profile</button>                    
+                </a>
+              </div>                  
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-11">
+                <a href="AdminchangePass.php">
+                  <button type="button" class="side-links">Change Password</button>
+                </a>
+              </div>                  
+            </div>                
+                           
+          </div>
+
         </div>
-    </div>  
+        <div class="col right-content">
+          <h1 class="container-title text-center">Admin Profile</h1>
+          <div class="title-line"></div>
+
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+
+            <div class="row">
+              <div class="col">
+                <label for="inputFirstName">First Name</label>
+                <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="firstname" name="firstname" value="<?php echo $row['firstname']; ?>"/>
+                <span class ="invalid-feedback"><?php echo $firstname_err; ?></span>
+              </div>
+            </div>
+
+            <div class="row">                  
+              <div class="col">
+                <label for="inputLastName">Last Name</label>
+                <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" name="lastname" id="lastname" value="<?php echo $row['lastname'];?>">
+                <span class="invalid-feedback"><?php echo $lastname_err; ?></span>  
+              </div>
+            </div>
+
+            <div class="row">                  
+              <div class="col">
+                <label for="inputEmail">Email Address</label>
+                <input type="text" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" name="email" id="email" value="<?php echo $row['username'];?>">
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>                      
+              </div>
+            </div>   
+            
+            <div class="row">                  
+              <div class="col">
+                <label for="inputBday">Phone Number</label>
+                <input type="tel" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" name="phone" id="phone" value="<?php echo $row['phone'];?>">
+                <span class="invalid-feedback"><?php echo $phone_err; ?></span>                     
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 20px;">                  
+              <div class="col">
+                <label for="inputBday">Date of birth</label>
+                <input type="date" class="form-control <?php echo (!empty($bday_err)) ? 'is-invalid' : ''; ?>" name="bday" id="bday" value="<?php echo $row['birthday'];?>">
+                <span class="invalid-feedback"><?php echo $bday_err; ?></span>                     
+              </div>
+            </div>    
+            
+            <button type="submit" class="btn btn-save">Save</button>                
+          </form>
+
+        </div>
+      </div>                    
+    </div>     
+
+    <!-- back to top button -->
+    <button
+      type="button"
+      class="btn btn-danger btn-floating btn-lg"
+      id="btn-back-to-top"
+      >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- back to top button end --> 
+    <!---------------------JS-------------------->     
+    <script src="backtotop.js"></script>   
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -305,7 +305,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
     
     <!---------------------JS-------------------->        
     <script src="backtotop.js"></script>
-    <script src="showpw.js"></script>
+    <script src="../showpw.js"></script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

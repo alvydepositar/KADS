@@ -165,18 +165,15 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
                   <div class="card-img">
                     <img src="img/menu/<?php echo $product['image']; ?>" class="d-block w-100" alt="<?php echo $product['productName']; ?>">
                   </div>
-                  <h5 class="card-title"><?php echo $product['productName']; ?></h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
+                  <h5 class="card-title" style="margin-bottom:10px;"><?php echo $product['productName']; ?></h5>                  
                   <a href="menu.php"><button class="button card-btn">Order Now</button></a>
                 </div>
               </div>
               <?php } ?>
               <!--items end--->                
           </div>
-          <button class="btn btn-primary leftLst"><i class="fas fa-angle-left"></i></button>
-          <button class="btn btn-primary rightLst"><i class="fas fa-angle-right"></i></button>
+          <!--<button class="btn btn-primary leftLst"><i class="fas fa-angle-left"></i></button>
+          <button class="btn btn-primary rightLst"><i class="fas fa-angle-right"></i></button>-->
         </div>
       </div>
       <!--carousel end--->

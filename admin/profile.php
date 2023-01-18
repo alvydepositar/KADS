@@ -185,7 +185,7 @@ if(empty(trim($_POST["email"]))){
         }
     </style>
 </head>
-<body>
+<body>  
     <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin6">
@@ -212,6 +212,7 @@ if(empty(trim($_POST["email"]))){
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
+                
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
                    
                     <!-- ============================================================== -->
@@ -222,22 +223,16 @@ if(empty(trim($_POST["email"]))){
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
+                        
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="#">
-                            <div class="dropdown">
-                            <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
+                              <div class="dropdown">
+                              <img src="../img/logo.png" alt="user-img" width="36"
+                                class="img-circle"><span class="font-medium" style="color:#2c2a3a;"><?php echo $username ?></span>
+                            </a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -251,8 +246,14 @@ if(empty(trim($_POST["email"]))){
                 </div>
             </nav>
         </header>
+        
 
     <!-------------- content start --------------->
+    <div class="back-icon3">
+        <a href="../admin/dashboard.php">
+            <img src="../img/backicon.png">
+        </a>
+    </div>
 
     <div class="content-container container d-flex justify-content-center">          
       <div class="row content-wrapper">

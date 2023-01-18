@@ -155,6 +155,7 @@
     <link rel="stylesheet" href="./css/customerstyle.css">
     <link href="../css/style.min.css" rel="stylesheet">
     <link href="../css/pagestyles.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Inter');
@@ -266,15 +267,16 @@
                     <div class="col-sm">                                                      
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                            <input type="password" name="password" class="form-control showhide-password <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                            <input type="checkbox" class="showPassword"><span class="show-pw"> Show Password</span>
                         </div>
                     </div>   
                     <div class="col-sm">                                                                                
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" name="repassword" class="form-control <?php echo (!empty($repassword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $repassword; ?>">
-                            <span class="invalid-feedback"><?php echo $repassword_err; ?></span>
+                            <input type="password" name="repassword" class="form-control showhide-password <?php echo (!empty($repassword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $repassword; ?>">
+                            <span class="invalid-feedback"><?php echo $repassword_err; ?></span>                            
                         </div>
                     </div>                      
                 </div>                    
@@ -285,6 +287,7 @@
                 <!--</div>-->
             </form>
         </div>             
-    </div>    
+    </div>
+    <script src="../showpw.js"></script>    
 </body>
 </html>

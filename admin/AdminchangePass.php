@@ -68,24 +68,17 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
 <html lang="en" class="scroller">
   <head>
     <meta charset="utf-8" />
-    <title>KADS | Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <!-- css -->
-    <link rel="stylesheet" href="../css/header-responsive.css" /> 
+    <title>KADS | Admin</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <!--<link href="../plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"> -->
+    <link href="../css/style.min.css" rel="stylesheet">
+    <link href="../css/pagestyles.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/header-responsive.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
     <link rel="stylesheet" href="../css/user.css" />
-    <link rel="stylesheet" href="../css/footer.css" />   
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/03977197ef.js" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <style>    
         /* Style The Dropdown Button */
         *{
@@ -135,6 +128,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
         .dropdown:hover .dropbtn {
         background-color: #3e8e41;
         }
+
     </style>
   </head>
   <body>
@@ -171,17 +165,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                     <!-- ============================================================== -->
                     <ul class="navbar-nav ms-auto d-flex align-items-center">
 
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
+
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -189,7 +173,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                             <a class="profile-pic" href="#">
                             <div class="dropdown">
                             <img src="../img/logo.png" alt="user-img" width="36"
-                                class="img-circle"><span class="text-white font-medium"><?php echo $username ?></span></a>
+                                class="img-circle"><span class="font-medium" style="color:#2c2a3a;"><?php echo $username ?></span></a>
                                 <div class="dropdown-content">
                                     <a href="profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
@@ -205,6 +189,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
         </header>
 
     <!-------------- content start --------------->
+    <div class="back-icon3">
+        <a href="../admin/dashboard.php">
+            <img src="../img/backicon.png">
+        </a>
+    </div>
 
     <div class="content-container container d-flex justify-content-center">          
           <div class="row content-wrapper">

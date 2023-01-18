@@ -280,7 +280,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                                             <th class="border-top-0" style="width:220px;">Date</th>
                                             <th class="border-top-0" style="width:200px;">Status</th>
                                             <th class="border-top-0">Order Details</th>    
-                                            <th class="border-top-0" style="width:250px;">Manage</th>                                 
+                                            <th class="border-top-0" style="width:170px;">Manage</th>                                 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -343,7 +343,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
                                                 <div class="row row-btn">
                                                     <div class="col col-btn">
                                                         <a class="btn btn-solid" href="view-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">View </a>
-                                                        <a class="btn btn-solid" href="edit-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Edit</a>
                                                         <a class="btn btn-solid" href="delete-order.php?o_id=<?php echo $order_by_date[$date]['order_number']?>">Delete</a>
                                                     </div>  
                                                 </div>

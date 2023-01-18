@@ -104,7 +104,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
               <h2 class="section-title">My Orders</h2>
 
               <?php 
-                $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id WHERE user_id = '$id' ORDER BY date" ;
+                $query="SELECT * FROM user_orders INNER JOIN products ON user_orders.product_id = products.p_id WHERE user_id = '$id' ORDER BY date DESC" ;
                 $result=mysqli_query($conn,$query);
                 $order_by_date = array();
                 while ($row = mysqli_fetch_assoc($result)) {
